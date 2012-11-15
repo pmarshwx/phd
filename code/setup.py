@@ -8,16 +8,16 @@ import os, sys
 
 # Setup Variables
 dirname = 'disser'
-packages = ['disser']
+packages = ['disser', 'disser.verification', 'disser.stat_tools',
+            'disser.misc']
 setup_path = os.path.split(os.path.abspath(__file__))[0]
 sys.path.append(os.path.join(setup_path, dirname))
 module_path = distutils.sysconfig.get_python_lib()
-include_files = ['../README.md']
-data_files = [(os.path.join(module_path, dirname), include_files)]
+data_files = {dirname: ['data/*']}
 
-import version
-version.write_git_version()
-ver = version.get_version()
+import __verfuncs__ as verfuncs
+verfuncs.write_git_version()
+ver = verfuncs.get_version()
 sys.path.pop()
 
 setup(
@@ -29,7 +29,7 @@ setup(
     url                     = '',
     download_url            = '',
     packages                = packages,
-    data_files              = data_files,
+    package_data            = data_files,
     scripts                 = [],
     cmdclass                = {},
     ext_modules             = [],   )
