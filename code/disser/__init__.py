@@ -4,8 +4,9 @@ import __verfuncs__
 import verification
 import stat_tools
 import misc
+import calibration
 
-__all__ = ['verification', 'stat_tools', 'misc']
+__all__ = ['verification', 'stat_tools', 'misc', 'calibration']
 
 __version__ = __verfuncs__.get_version()
 
