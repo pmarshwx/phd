@@ -84,7 +84,7 @@ def create_forecasts(kwargs):
             thresh=thresh)
 
 
-def fcst_verification(kwargs):
+def forecast_verification(kwargs):
     """
     A script to create the verification files.
 
