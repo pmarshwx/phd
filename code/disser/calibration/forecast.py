@@ -103,7 +103,6 @@ def fcst_verification(kwargs):
             2D mask (1/0) with 1 being good 0 being masked
 
     """
-
     fcst_files = kwargs.get('fcst_files', None)
     if not fcst_files:
         raise Exception("Forecast Files Not Present")
