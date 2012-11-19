@@ -1,4 +1,5 @@
 import hwt
+import pygrib
 import numpy as np
 from disser import stat_tools
 import disser.misc
@@ -78,13 +79,15 @@ def create_hist2d(kwargs):
     for stg4_file, fcst_file, nout_file in files:
         if not disser.misc.fsize_check(stg4_file): continue
         if not disser.misc.fsize_check(fcst_file): continue
-        stg4 = pygrib.open(stg4_file)[1]['values'].filled(-9999)
-        fcst = pygrib.open(fcst_file)[1]['values'].filled(-9999)
+        stg4 = pygrib.open(stg4_file)[1]['values']
+        stg4 = np.ma.asanyarray(stg4).filled(-9999)
+        fcst = pygrib.open(fcst_file)[1]['values']
+        fcst = np.ma.asanyarray(fcst).filled(-9999)
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
         stg4_int = (stg4 * convert_factor).astype(int)
         fcst_int = (fcst * convert_factor).astype(int)
-        stg4_dist, fcst_dist = hwt.bin.joint_precip(stg4_int, phd_int,
+        stg4_dist, fcst_dist = hwt.bin.joint_precip(stg4_int, fcst_int,
                                                     mask, amts_len)
         if not stg4_thresh and not fcst_thresh:
             stg4_thresh = stat_tools.quantile_to_value(
@@ -102,7 +105,7 @@ def create_hist2d(kwargs):
         # Only compare grid points that have valid data
         # in both forecast and observations
         stg4_exceed, fcst_exceed = hwt.neighborhood.find_joint_exceed(
-                stg4, nssl, mask, stg4_thresh, fcst_thresh, missing)
+                stg4, fcst, mask, stg4_thresh, fcst_thresh, missing)
         # Create the histogram
         hist2d = hwt.neighborhood.error_composite(
                 fcst_exceed.astype(int), stg4_exceed.astype(int), radius, dx)
@@ -110,6 +113,6 @@ def create_hist2d(kwargs):
         hist2d = hist2d.reshape(nx, nx)
         np.savez_compressed(nout_file, hist2d=hist2d, stg4_dist=stg4_dist,
                             fcst_dist=fcst_dist, stg4_thresh=stg4_thresh,
-                            nssl_thresh=nssl_thresh, amts=amts,
+                            fcst_thresh=fcst_thresh, amts=amts,
                             fcst_quantile=fcst_quantile,
                             stg4_quantile=stg4_quantile)
