@@ -102,6 +102,8 @@ def forecast_verification(kwargs):
             Threshold at which to conduce the exceedance forecast
         precision : integer (default 0)
             The number of decimal points used in the forecast probabilities
+        missing : integer (default -9999)
+            The value to treat as missing data
         mask : 2D Array
             2D mask (1/0) with 1 being good 0 being masked
 
