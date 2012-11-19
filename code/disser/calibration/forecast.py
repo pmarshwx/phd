@@ -20,22 +20,22 @@ def create_forecasts(kwargs):
                 List of forecast files
             nout_files : array_like
                 List of output files
-            thresh : str, int
+            thresh : str, int (default 25.4)
                 Threshold which to make the forecast from
-            dx : str, int
+            dx : str, int (default 4.7)
                 The grid spacing of the forecast data
             sigx : str, int
                 The larger sigma value
             sigy : str, int
                 The smaller sigma value
-            xrot : str, int
+            xrot : str, int (default 0)
                 The angle by which the x-axis must be rotated to match the
                 orientation of the larger sigma value
-            h : str, int (optional)
+            h : str, int (default 0)
                 The x-distance of the offset
-            k : str, int (optional)
+            k : str, int (default 0)
                 The y-distance of the offset
-            factor : str, int (optional)
+            factor : str, int (default 3)
                 The number of standard deviations to include in calculation
             mask : 2D Array
                 2D mask (1/0) with 1 being good 0 being masked
@@ -46,17 +46,20 @@ def create_forecasts(kwargs):
 
     """
     # Parse Keyword Dictionary
-    stg4_files = kwargs.get(stg4_files, None)
-    fcst_files = kwargs.get(fcst_files, None)
-    nout_files = kwargs.get(nout_files, None)
+    stg4_files = kwargs.get('stg4_files', None)
+    fcst_files = kwargs.get('fcst_files', None)
+    nout_files = kwargs.get('nout_files', None)
+    sigx = kwargs.get('sigx', None)
+    if not sigx: sigx = float(sigx)
+    sigy = kwargs.get('sigy', None)
+    if not sigy: sigy = float(sigy)
     mask = kwargs.get('mask', None)
-    if not stg4_files or not fcst_files or not nout_files:
+    if not stg4_files or not fcst_files or not nout_files or \
+            not sigx or not sigy:
         raise Exception("Must Include Input/Output Files")
     else:
         files = zip(stg4_files, fcst_files, nout_files)
-    dx = float(kwargs.get('dx', None))
-    sigx = float(kwargs.get('sigx', None))
-    sigy = float(kwargs.get('sigy', None))
+    dx = float(kwargs.get('dx', 4.7))
     xrot = float(kwargs.get('xrot', 0.))
     h = int(kwargs.get('h', 0))
     k = int(kwargs.get('k', 0))
