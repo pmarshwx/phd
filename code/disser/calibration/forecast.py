@@ -66,11 +66,11 @@ def create_forecasts(kwargs):
     factor = float(kwargs.get('factor', 3.))
     thresh = float(kwargs.get('thresh', 25.4))
     stg4_thresh = float(kwargs.get('stg4_thresh', thresh))
-    fcst_thresh = float(kwargs.get('nssl_thresh', thresh))
+    fcst_thresh = float(kwargs.get('fcst_thresh', thresh))
     # Create Forecast
     for stg4_file, fcst_file, nout_file in files:
         if not disser.misc.fsize_check(stg4_file): continue
-        if not disser.misc.fsize_check(nssl_file): continue
+        if not disser.misc.fsize_check(fcst_file): continue
         stg4 = pygrib.open(stg4_file)[1]['values']
         fcst = pygrib.open(fcst_file)[1]['values']
         if isinstance(mask, type(None)):
@@ -79,7 +79,7 @@ def create_forecasts(kwargs):
                 stg4, fcst, mask, stg4_thresh, fcst_thresh)
         fcst_aniso = hwt.smoothers.anisotropic_gauss(
                 fcst_d, sigx, sigy, xrot, h, k, dx, factor, True)
-        nssl_aniso *= 100
+        fcst_aniso *= 100
         stg4_d[stg4.mask] = -9999
         np.savez_compressed(
             nout_file, fcst=fcst_d, stg4=stg4_d, fcst_aniso=fcst_aniso,
