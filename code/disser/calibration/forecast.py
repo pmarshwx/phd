@@ -114,6 +114,7 @@ def forecast_verification(kwargs):
     verif_files = kwargs.get('verif_files', None)
     if not fcst_files or not verif_files:
         raise Exception("Needed Files Not Present")
+    files = zip(fcst_files, verif_files)
     field = kwargs.get('field', 'fcst_aniso')
     thresh = float(kwargs.get('thresh', 25.4))
     precision = int(kwargs.get('precision', 0))
@@ -121,7 +122,7 @@ def forecast_verification(kwargs):
     mask = kwargs.get('mask', None)
     initial = True
     multfactor = 10**precision
-    for fcst_file in fcst_files:
+    for fcst_file, verif_file in files:
         f = np.load(fcst_file)
         fcst_prob = f[field]
         stg4 = f['stg4']
