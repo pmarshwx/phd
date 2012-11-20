@@ -94,8 +94,9 @@ def forecast_verification(kwargs):
     Mandatory Keywords:
         fcst_files : array_like
             List of forecast files
-        verif_files : array_like
-            List of verification files
+        verif_file : str
+            String containing the full path to the verification file
+            to be written
 
     Optional Keywords:
         field : str (default 'fcst_aniso')
@@ -111,10 +112,9 @@ def forecast_verification(kwargs):
 
     """
     fcst_files = kwargs.get('fcst_files', None)
-    verif_files = kwargs.get('verif_files', None)
+    verif_file = kwargs.get('verif_file', None)
     if not fcst_files or not verif_files:
         raise Exception("Needed Files Not Present")
-    files = zip(fcst_files, verif_files)
     field = kwargs.get('field', 'fcst_aniso')
     thresh = float(kwargs.get('thresh', 25.4))
     precision = int(kwargs.get('precision', 0))
@@ -122,7 +122,7 @@ def forecast_verification(kwargs):
     mask = kwargs.get('mask', None)
     initial = True
     multfactor = 10**precision
-    for fcst_file, verif_file in files:
+    for fcst_file, fcst_files:
         f = np.load(fcst_file)
         fcst_prob = f[field]
         stg4 = f['stg4']
