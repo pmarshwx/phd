@@ -113,6 +113,6 @@ def create_hist2d(kwargs):
         hist2d = hist2d.reshape(nx, nx)
         np.savez_compressed(nout_file, hist2d=hist2d, stg4_dist=stg4_dist,
                             fcst_dist=fcst_dist, stg4_thresh=stg4_thresh,
-                            fcst_thresh=fcst_thresh, amts=amts,
-                            fcst_quantile=fcst_quantile,
+                            fcst_thresh=fcst_thresh, amts=amts, dx=dx,
+                            fcst_quantile=fcst_quantile, radius=radius,
                             stg4_quantile=stg4_quantile)
