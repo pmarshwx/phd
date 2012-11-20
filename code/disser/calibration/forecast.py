@@ -122,7 +122,7 @@ def forecast_verification(kwargs):
     mask = kwargs.get('mask', None)
     initial = True
     multfactor = 10**precision
-    for fcst_file, fcst_files:
+    for fcst_file in fcst_files:
         f = np.load(fcst_file)
         fcst_prob = f[field]
         stg4 = f['stg4']
