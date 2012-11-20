@@ -60,10 +60,24 @@ se2011 = ['110427',
 
 sedates = se2010 + se2011
 
-arps_members = ['s4cn_arps']
-nmm_members = ['s4cn_nmm', 's4m2_nmm', 's4m3_nmm', 's4m4_nmm', 's4m5_nmm']
-arw_members = ['s4cn_arw', 's4m4_arw', 's4m5_arw', 's4m6_arw', 's4m7_arw',
-               's4m8_arw', 's4m9_arw', 's4m10_arw', 's4m11_arw', 's4m12_arw',
-               's4m13_arw', 's4m14_arw', 's4m15_arw', 's4m16_arw',
-               's4m17_arw', 's4m18_arw', 's4m19_arw', 's4m20_arw']
-members = arps_members + nmm_members + arw_members
+se2010_arps_members = ['s4cn_arps']
+se2010_nmm_members = ['s4cn_nmm', 's4m3_nmm', 's4m4_nmm', 's4m5_nmm']
+se2010_arw_members = ['s4cn_arw', 's4m4_arw', 's4m5_arw', 's4m6_arw',
+                      's4m7_arw', 's4m8_arw', 's4m9_arw', 's4m10_arw',
+                      's4m11_arw', 's4m12_arw']
+se2010_members = se2010_arps_members + se2010_nmm_members + se2010_arw_members
+
+
+se2011_arps_members = ['s4cn_arps']
+se2011_nmm_members = ['s4cn_nmm', 's4m2_nmm', 's4m3_nmm', 
+                      's4m4_nmm', 's4m5_nmm']
+se2011_arw_members = ['s4cn_arw', 's4m4_arw', 's4m5_arw', 
+                      's4m6_arw', 's4m7_arw', 's4m8_arw', 
+                      's4m9_arw', 's4m10_arw', 's4m11_arw', 
+                      's4m12_arw', 's4m13_arw', 's4m14_arw', 
+                      's4m15_arw', 's4m16_arw', 's4m17_arw', 
+                      's4m18_arw', 's4m19_arw', 's4m20_arw']
+se2011_members = se2011_arps_members + se2011_nmm_members + se2011_arw_members
+
+
+
