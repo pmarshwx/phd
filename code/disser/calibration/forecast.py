@@ -113,7 +113,7 @@ def forecast_verification(kwargs):
     """
     fcst_files = kwargs.get('fcst_files', None)
     verif_file = kwargs.get('verif_file', None)
-    if not fcst_files or not verif_files:
+    if not fcst_files:
         raise Exception("Needed Files Not Present")
     field = kwargs.get('field', 'fcst_aniso')
     thresh = float(kwargs.get('thresh', 25.4))
@@ -149,8 +149,11 @@ def forecast_verification(kwargs):
             fcst_total += fcst.sum()
             ftotal += fhist
             ototal += ohist
-    write_file(verif_file, fcst_total, stg4_total, fcst_total/stg4_total,
-               ftotal, ototal, precision)
+    if verif_file:
+        write_file(verif_file, fcst_total, stg4_total, fcst_total/stg4_total,
+                   ftotal, ototal, precision)
+    else:
+        return fcst_total, stg4_total, ftotal, ototal
 
 def write_file(out, nssl, stg4, bias, ftotal, ototal, precision):
     """
@@ -200,6 +203,8 @@ def write_file(out, nssl, stg4, bias, ftotal, ototal, precision):
             opercent = 0.
         fptotal = fcount/fsum * 100
         optotal = ocount/osum * 100
+        if np.isnan(optotal):
+            optotal = 0
         fout.write('%.2f, %.2f, %i, %i, %.2f, %.2f\n' % (fpercent, opercent,
                    ocount, fcount, fptotal, optotal))
     fout.close()
