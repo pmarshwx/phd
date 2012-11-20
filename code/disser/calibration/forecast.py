@@ -149,3 +149,58 @@ def forecast_verification(kwargs):
             fcst_total += fcst.sum()
             ftotal += fhist
             ototal += ohist
+    write_file(verif_file, fcst_total, stg4_total, fcst_total/stg4_total,
+               ftotal, ototal, precision)
+
+def write_file(out, nssl, stg4, bias, ftotal, ototal, precision):
+    """
+    A function to create the CSV file of contingency tables.
+
+    Paramters
+    ---------
+    out : str
+        The full path (including file name) of the file to which
+        the data are written
+    nssl : int
+        The total number of grid point "Yes" forecasts in the forecast
+    stg4 : int
+        The total number of grid point "Yes" observations
+    bias : float
+        The bias of forecast / observations
+    ftotal : 1d numpy array
+        The number of grid point "Yes" forecasts at each probability threshold
+    ototal : 1d numpy array
+        The number of grid point "Yes" observations at each
+        probability threshold
+
+    Returns
+    -------
+    None
+
+    """
+    fout = open(out, 'w')
+    fout.write('### NSSL TOTAL: %i\n' % (nssl))
+    fout.write('### STAGE IV TOTAL: %i\n' % (stg4))
+    fout.write('### BIAS ###: %.4f\n' % (bias))
+    fout.write('fpercent, opercent, ocount, fcount, fptotal, optotal\n')
+    fsum = ftotal.sum()
+    osum = ototal.sum()
+    for i in range(len(ftotal)):
+        fcount = int(ftotal[i])
+        ocount = int(ototal[i])
+        fpercent = (i-1) / 10**precision
+        try:
+            opercent = ocount/fcount * 100
+        except ZeroDivisionError:
+            if ocount == 0:
+                opercent = 0
+            else:
+                opercent = 101
+        if np.isnan(opercent):
+            opercent = 0.
+        fptotal = fcount/fsum * 100
+        optotal = ocount/osum * 100
+        fout.write('%.2f, %.2f, %i, %i, %.2f, %.2f\n' % (fpercent, opercent,
+                   ocount, fcount, fptotal, optotal))
+    fout.close()
+
