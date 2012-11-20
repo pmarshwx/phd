@@ -94,6 +94,8 @@ def forecast_verification(kwargs):
     Mandatory Keywords:
         fcst_files : array_like
             List of forecast files
+        verif_files : array_like
+            List of verification files
 
     Optional Keywords:
         field : str (default 'fcst_aniso')
@@ -109,8 +111,9 @@ def forecast_verification(kwargs):
 
     """
     fcst_files = kwargs.get('fcst_files', None)
-    if not fcst_files:
-        raise Exception("Forecast Files Not Present")
+    verif_files = kwargs.get('verif_files', None)
+    if not fcst_files or not verif_files:
+        raise Exception("Needed Files Not Present")
     field = kwargs.get('field', 'fcst_aniso')
     thresh = float(kwargs.get('thresh', 25.4))
     precision = int(kwargs.get('precision', 0))
@@ -130,7 +133,7 @@ def forecast_verification(kwargs):
         fcst_prob_v *= multfactor
         fcst_prob_v[fcst_prob_v == 0] = -1
         fhist, ohist = hwt.verification.reliability(
-                fcst_prob_v.astype('int'), stg4.astype('int'), mask, 
+                fcst_prob_v.astype('int'), stg4.astype('int'), mask,
                 100*multfactor, missing)
         stg4 = np.ma.asarray(stg4)
         stg4[stg4 == missing] = np.ma.masked
@@ -145,4 +148,3 @@ def forecast_verification(kwargs):
             fcst_total += fcst.sum()
             ftotal += fhist
             ototal += ohist
-    return fcst_total, stg4_total, ftotal, ototal
