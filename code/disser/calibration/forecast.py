@@ -126,13 +126,13 @@ def forecast_verification(kwargs):
         f.close()
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
-        fcst_prob_v = verif_fcst_prep(fcst_prob, multfactor)
-        fcst_prob_v = fcst_prob.copy()
+        fcst_prob_v = fcst_prob.copy().astype('int')
         fcst_prob_v *= multfactor
         fcst_prob_v[fcst_prob_v == 0] = -1
-
         fhist, ohist = hwt.verification.reliability(
-                fcst_prob_v, stg4, mask, 100*multfactor, missing)
+                fcst_prob_v, stg4.astype('int'), mask, 100*multfactor, missing)
+        stg4 = np.ma.asarray(stg4)
+        stg4[stg4 == missing] = np.ma.masked
         if initial:
             stg4_total = stg4.sum()
             fcst_total = fcst.sum()
