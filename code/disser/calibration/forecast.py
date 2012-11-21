@@ -194,8 +194,8 @@ def write_file(out, nssl, stg4, bias, ftotal, ototal, precision):
     fsum = ftotal.sum().astype('float')
     osum = ototal.sum().astype('float')
     for i in range(len(ftotal)):
-        fcount = int(ftotal[i])
-        ocount = int(ototal[i])
+        fcount = ftotal[i]
+        ocount = ototal[i]
         fpercent = (i-1) / 10**precision
         try:
             opercent = ocount/fcount * 100
