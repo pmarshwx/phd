@@ -155,6 +155,7 @@ def forecast_verification(kwargs):
     else:
         return fcst_total, stg4_total, ftotal, ototal
 
+
 def write_file(out, nssl, stg4, bias, ftotal, ototal, precision):
     """
     A function to create the CSV file of contingency tables.
