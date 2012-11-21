@@ -186,8 +186,8 @@ def write_file(out, nssl, stg4, bias, ftotal, ototal, precision):
     fout.write('### STAGE IV TOTAL: %i\n' % (stg4))
     fout.write('### BIAS ###: %.4f\n' % (bias))
     fout.write('fpercent, opercent, ocount, fcount, fptotal, optotal\n')
-    fsum = ftotal.sum()
-    osum = ototal.sum()
+    fsum = ftotal.sum().astype('float')
+    osum = ototal.sum().astype('float')
     for i in range(len(ftotal)):
         fcount = int(ftotal[i])
         ocount = int(ototal[i])
