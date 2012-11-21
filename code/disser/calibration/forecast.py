@@ -71,8 +71,12 @@ def create_forecasts(kwargs):
     for stg4_file, fcst_file, nout_file in files:
         if not disser.misc.fsize_check(stg4_file): continue
         if not disser.misc.fsize_check(fcst_file): continue
-        stg4 = pygrib.open(stg4_file)[1]['values']
-        fcst = pygrib.open(fcst_file)[1]['values']
+        stg4_grb = pygrib.open(stg4_file)
+        stg4 = stg4_grb[1]['values']
+        stg4_grb.close()
+        fcst_grb = pygrib.open(fcst_file)
+        fcst = fcst_grb[1]['values']
+        fcst_grb.close()
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
         stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
