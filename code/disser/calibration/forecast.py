@@ -15,8 +15,8 @@ def _create_forecast(kwargs):
     kwargs : dict
 
         Mandatory Keywords:
-            stg4_files : array_like
-                Actual Forecast data
+            stg4 : array_like
+                Actual Forecast data (binary 1/0 grid)
             fcst : array_like
                 Actual forecast data
             nout_file : string
@@ -52,19 +52,17 @@ def _create_forecast(kwargs):
     mask = kwargs.get('mask')
     sigx = kwargs.get('sigx')
     sigy = kwargs.get('sigy')
-    stg4_thresh = kwargs.get('stg4_thresh', 25.4)
-    fcst_thresh = kwargs.get('fcst_thresh', 25.4)
     xrot = kwargs.get('xrot', 0.)
     h = kwargs.get('h', 0)
     k = kwargs.get('k', 0)
     dx = kwargs.get('dx', 4.7)
     factor = kwargs.get('factor', 3)
-    create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
-                    sigx, sigy, xrot, h, k, dx, factor)
+    create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
+                    h, k, dx, factor)
 
 
-def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
-                    sigx, sigy, xrot=0, h=0, k=0, dx=4.7, factor=3.):
+def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
+                    h, k, dx, factor):
     """
     A thin wrapper around the create_forecast function. Designed to give
     access to the actual forecast creation routine via a dictionary of
@@ -72,8 +70,8 @@ def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
 
     Parameters
     ----------
-    stg4_files : array_like
-        Actual Forecast data
+    stg4 : array_like
+        Actual Forecast data (binary 1/0 grid)
     fcst : array_like
         Actual forecast data
     nout_file : string
@@ -101,14 +99,12 @@ def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
         The number of standard deviations to include in calculation
 
     """
-    stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
-            stg4, fcst, mask, stg4_thresh, fcst_thresh)
     fcst_aniso = hwt.smoothers.anisotropic_gauss(
-            fcst_d, sigx, sigy, xrot, h, k, dx, factor, True)
+            fcst, sigx, sigy, xrot, h, k, dx, factor, True)
     fcst_aniso *= 100
-    stg4_d[stg4.mask] = -9999
+    stg4_d[mask] = -9999
     np.savez_compressed(
-        nout_file, fcst=fcst_d, stg4=stg4_d, fcst_aniso=fcst_aniso,
+        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso,
         factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx)
 
 
@@ -190,7 +186,9 @@ def create_forecasts(kwargs):
         fcst_grb.close()
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
-        create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
+        stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
+                stg4, fcst, mask, stg4_thresh, fcst_thresh)
+        create_forecast(nout_file, stg4_d, fcst_d, stg4.mask,
                         sigx, sigy, xrot, h, k, dx, factor)
 
 
