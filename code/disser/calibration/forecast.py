@@ -60,7 +60,7 @@ def _create_forecast(kwargs):
     dx = kwargs.get('dx', 4.7)
     factor = kwargs.get('factor', 3)
     create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
-                    sigx, sigy, xrot=0, h=0, k=0, dx=4.7, factor=3.)
+                    sigx, sigy, xrot, h, k, dx, factor)
 
 
 def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
@@ -109,7 +109,7 @@ def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
     stg4_d[stg4.mask] = -9999
     np.savez_compressed(
         nout_file, fcst=fcst_d, stg4=stg4_d, fcst_aniso=fcst_aniso,
-        factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx,
+        factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx)
 
 
 def create_forecasts(kwargs):
@@ -191,7 +191,7 @@ def create_forecasts(kwargs):
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
         create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
-                        sigx, sigy, xrot, h, k, dx, factor=)
+                        sigx, sigy, xrot, h, k, dx, factor)
 
 
 def forecast_verification(kwargs):
