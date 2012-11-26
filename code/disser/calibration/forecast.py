@@ -21,28 +21,28 @@ def _create_forecast(kwargs):
                 Actual forecast data
             nout_file : string
                 Output file
-            sigx : str, int
+            sigx : float
                 The larger sigma value
-            sigy : str, int
+            sigy : float
                 The smaller sigma value
             mask : 2D Array
                 2D mask (1/0) with 1 being good 0 being masked
 
         Optional Keywords:
-            stg4_thresh : str, int (default 25.4)
+            stg4_thresh : float (default 25.4)
                 Threshold which to make the forecast from
-            fcst_thresh : str, int (default 25.4)
+            fcst_thresh : float (default 25.4)
                 Threshold which to make the forecast from
-            dx : str, int (default 4.7)
+            dx : float (default 4.7)
                 The grid spacing of the forecast data
-            xrot : str, int (default 0)
+            xrot : float (default 0)
                 The angle by which the x-axis must be rotated to match the
                 orientation of the larger sigma value
-            h : str, int (default 0)
+            h : int (default 0)
                 The x-distance of the offset
-            k : str, int (default 0)
+            k : int (default 0)
                 The y-distance of the offset
-            factor : str, int (default 3)
+            factor : int (default 3)
                 The number of standard deviations to include in calculation
 
     """
@@ -78,24 +78,24 @@ def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
         Actual forecast data
     nout_file : string
         Output file
-    sigx : str, int
+    sigx : float
         The larger sigma value
-    sigy : str, int
+    sigy : float
         The smaller sigma value
     mask : 2D Array
         2D mask (1/0) with 1 being good 0 being masked
-    stg4_thresh : str, int (default 25.4)
+    stg4_thresh : float (default 25.4)
         Threshold which to make the forecast from
-    fcst_thresh : str, int (default 25.4)
+    fcst_thresh : float (default 25.4)
         Threshold which to make the forecast from
-    dx : str, int (default 4.7)
+    dx : float (default 4.7)
         The grid spacing of the forecast data
-    xrot : str, int (default 0)
+    xrot : float (default 0)
         The angle by which the x-axis must be rotated to match the
         orientation of the larger sigma value
-    h : str, int (default 0)
+    h : int (default 0)
         The x-distance of the offset
-    k : str, int (default 0)
+    k : int (default 0)
         The y-distance of the offset
     factor : str, int (default 3)
         The number of standard deviations to include in calculation
@@ -129,15 +129,19 @@ def create_forecasts(kwargs):
                 List of forecast files
             nout_files : array_like
                 List of output files
-            thresh : str, int (default 25.4)
-                Threshold which to make the forecast from
-            dx : str, int (default 4.7)
-                The grid spacing of the forecast data
-            sigx : str, int
+            sigx : str, float
                 The larger sigma value
-            sigy : str, int
+            sigy : str, float
                 The smaller sigma value
-            xrot : str, int (default 0)
+            mask : 2D Array
+                2D mask (1/0) with 1 being good 0 being masked
+
+        Optional Keywords:
+            thresh : str, float (default 25.4)
+                Threshold which to make the forecast from
+            dx : str, float (default 4.7)
+                The grid spacing of the forecast data
+            xrot : str, float (default 0)
                 The angle by which the x-axis must be rotated to match the
                 orientation of the larger sigma value
             h : str, int (default 0)
@@ -146,8 +150,6 @@ def create_forecasts(kwargs):
                 The y-distance of the offset
             factor : str, int (default 3)
                 The number of standard deviations to include in calculation
-            mask : 2D Array
-                2D mask (1/0) with 1 being good 0 being masked
 
     Returns
     -------
