@@ -106,7 +106,7 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
     fcst_aniso = hwt.smoothers.anisotropic_gauss(
             fcst, sigx, sigy, xrot, h, k, dx, factor, True)
     fcst_aniso *= 100
-    stg4_d[mask] = -9999
+    stg4[mask] = -9999
     np.savez_compressed(
         nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso, thresh=thresh,
         factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx)
