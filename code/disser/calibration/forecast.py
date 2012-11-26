@@ -235,7 +235,10 @@ def forecast_verification(kwargs):
         f = np.load(fcst_file)
         fcst_prob = f[field]
         stg4 = f['stg4']
-        fcst = f['fcst']
+        try:
+            fcst = f['fcst']
+        except:
+            fcst = None
         f.close()
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
@@ -249,17 +252,26 @@ def forecast_verification(kwargs):
         stg4[stg4 == missing] = np.ma.masked
         if initial:
             stg4_total = stg4.sum()
-            fcst_total = fcst.sum()
+            if not isinstance(fcst, type(None)):
+                fcst_total = fcst.sum()
+            else:
+                fcst_total = missing
             ftotal = fhist.copy()
             ototal = ohist.copy()
             initial = False
         else:
             stg4_total += stg4.sum()
-            fcst_total += fcst.sum()
+            if not isinstance(fcst, type(None)):
+                fcst_total += fcst.sum()
+            else:
+                fcst_total = missing
             ftotal += fhist
             ototal += ohist
     if verif_file:
-        write_file(verif_file, fcst_total, stg4_total, fcst_total/stg4_total,
+        bias = fcst_total/stg4_total
+        if np.abs(bias - missing) < 1:
+            bias = missing
+        write_file(verif_file, fcst_total, stg4_total, bias,
                    ftotal, ototal, precision)
     else:
         return fcst_total, stg4_total, ftotal, ototal
