@@ -97,7 +97,7 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
         The x-distance of the offset
     k : int (default 0)
         The y-distance of the offset
-    factor : str, int (default 3)
+    factor : float (default 3)
         The number of standard deviations to include in calculation
     thresh : float (default 25.4)
         Threshold which to make the forecast from
@@ -148,7 +148,7 @@ def create_forecasts(kwargs):
                 The x-distance of the offset
             k : str, int (default 0)
                 The y-distance of the offset
-            factor : str, int (default 3)
+            factor : str, float (default 3)
                 The number of standard deviations to include in calculation
 
     Returns
