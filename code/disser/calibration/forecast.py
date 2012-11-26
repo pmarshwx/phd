@@ -42,9 +42,10 @@ def _create_forecast(kwargs):
                 The x-distance of the offset
             k : int (default 0)
                 The y-distance of the offset
-            factor : int (default 3)
+            factor : float (default 3)
                 The number of standard deviations to include in calculation
-
+            thresh : float (default 25.4)
+                Threshold which to make the forecast from
     """
     nout_file = kwargs.get('nout_file')
     stg4 = kwargs.get('stg4')
@@ -57,12 +58,13 @@ def _create_forecast(kwargs):
     k = kwargs.get('k', 0)
     dx = kwargs.get('dx', 4.7)
     factor = kwargs.get('factor', 3)
+    thresh = kwargs.get('thresh', 25.4)
     create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
-                    h, k, dx, factor)
+                    h, k, dx, factor, thresh)
 
 
 def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
-                    h, k, dx, factor):
+                    h, k, dx, factor, thresh):
     """
     A thin wrapper around the create_forecast function. Designed to give
     access to the actual forecast creation routine via a dictionary of
@@ -97,6 +99,8 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
         The y-distance of the offset
     factor : str, int (default 3)
         The number of standard deviations to include in calculation
+    thresh : float (default 25.4)
+        Threshold which to make the forecast from
 
     """
     fcst_aniso = hwt.smoothers.anisotropic_gauss(
@@ -104,7 +108,7 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
     fcst_aniso *= 100
     stg4_d[mask] = -9999
     np.savez_compressed(
-        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso,
+        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso, thresh=thresh
         factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx)
 
 
@@ -189,7 +193,7 @@ def create_forecasts(kwargs):
         stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
                 stg4, fcst, mask, stg4_thresh, fcst_thresh)
         create_forecast(nout_file, stg4_d, fcst_d, stg4.mask,
-                        sigx, sigy, xrot, h, k, dx, factor)
+                        sigx, sigy, xrot, h, k, dx, factor, thresh)
 
 
 def forecast_verification(kwargs):
