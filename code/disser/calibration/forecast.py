@@ -3,6 +3,115 @@ import numpy as np
 import hwt
 import disser.misc
 
+
+def _create_forecast(kwargs):
+    """
+    A thin wrapper around the create_forecast function. Designed to give
+    access to the actual forecast creation routine via a dictionary of
+    parameters instead of direct keywords.
+
+    Parameters
+    ----------
+    kwargs : dict
+
+        Mandatory Keywords:
+            stg4_files : array_like
+                Actual Forecast data
+            fcst : array_like
+                Actual forecast data
+            nout_file : string
+                Output file
+            sigx : str, int
+                The larger sigma value
+            sigy : str, int
+                The smaller sigma value
+            mask : 2D Array
+                2D mask (1/0) with 1 being good 0 being masked
+
+        Optional Keywords:
+            stg4_thresh : str, int (default 25.4)
+                Threshold which to make the forecast from
+            fcst_thresh : str, int (default 25.4)
+                Threshold which to make the forecast from
+            dx : str, int (default 4.7)
+                The grid spacing of the forecast data
+            xrot : str, int (default 0)
+                The angle by which the x-axis must be rotated to match the
+                orientation of the larger sigma value
+            h : str, int (default 0)
+                The x-distance of the offset
+            k : str, int (default 0)
+                The y-distance of the offset
+            factor : str, int (default 3)
+                The number of standard deviations to include in calculation
+
+    """
+    nout_file = kwargs.get('nout_file')
+    stg4 = kwargs.get('stg4')
+    fcst = kwargs.get('fcst')
+    mask = kwargs.get('mask')
+    sigx = kwargs.get('sigx')
+    sigy = kwargs.get('sigy')
+    stg4_thresh = kwargs.get('stg4_thresh', 25.4)
+    fcst_thresh = kwargs.get('fcst_thresh', 25.4)
+    xrot = kwargs.get('xrot', 0.)
+    h = kwargs.get('h', 0)
+    k = kwargs.get('k', 0)
+    dx = kwargs.get('dx', 4.7)
+    factor = kwargs.get('factor', 3)
+    create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
+                    sigx, sigy, xrot=0, h=0, k=0, dx=4.7, factor=3.)
+
+
+def create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
+                    sigx, sigy, xrot=0, h=0, k=0, dx=4.7, factor=3.):
+    """
+    A thin wrapper around the create_forecast function. Designed to give
+    access to the actual forecast creation routine via a dictionary of
+    parameters instead of direct keywords.
+
+    Parameters
+    ----------
+    stg4_files : array_like
+        Actual Forecast data
+    fcst : array_like
+        Actual forecast data
+    nout_file : string
+        Output file
+    sigx : str, int
+        The larger sigma value
+    sigy : str, int
+        The smaller sigma value
+    mask : 2D Array
+        2D mask (1/0) with 1 being good 0 being masked
+    stg4_thresh : str, int (default 25.4)
+        Threshold which to make the forecast from
+    fcst_thresh : str, int (default 25.4)
+        Threshold which to make the forecast from
+    dx : str, int (default 4.7)
+        The grid spacing of the forecast data
+    xrot : str, int (default 0)
+        The angle by which the x-axis must be rotated to match the
+        orientation of the larger sigma value
+    h : str, int (default 0)
+        The x-distance of the offset
+    k : str, int (default 0)
+        The y-distance of the offset
+    factor : str, int (default 3)
+        The number of standard deviations to include in calculation
+
+    """
+    stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
+            stg4, fcst, mask, stg4_thresh, fcst_thresh)
+    fcst_aniso = hwt.smoothers.anisotropic_gauss(
+            fcst_d, sigx, sigy, xrot, h, k, dx, factor, True)
+    fcst_aniso *= 100
+    stg4_d[stg4.mask] = -9999
+    np.savez_compressed(
+        nout_file, fcst=fcst_d, stg4=stg4_d, fcst_aniso=fcst_aniso,
+        factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx,
+
+
 def create_forecasts(kwargs):
     """
     Create a probabilistic forecast using kernel density estimation
@@ -79,16 +188,8 @@ def create_forecasts(kwargs):
         fcst_grb.close()
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
-        stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
-                stg4, fcst, mask, stg4_thresh, fcst_thresh)
-        fcst_aniso = hwt.smoothers.anisotropic_gauss(
-                fcst_d, sigx, sigy, xrot, h, k, dx, factor, True)
-        fcst_aniso *= 100
-        stg4_d[stg4.mask] = -9999
-        np.savez_compressed(
-            nout_file, fcst=fcst_d, stg4=stg4_d, fcst_aniso=fcst_aniso,
-            factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx,
-            thresh=thresh)
+        create_forecast(nout_file, stg4, fcst, mask, stg4_thresh, fcst_thresh,
+                        sigx, sigy, xrot, h, k, dx, factor=)
 
 
 def forecast_verification(kwargs):
