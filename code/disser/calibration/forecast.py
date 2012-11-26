@@ -108,7 +108,7 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
     fcst_aniso *= 100
     stg4_d[mask] = -9999
     np.savez_compressed(
-        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso, thresh=thresh
+        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso, thresh=thresh,
         factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx)
 
 
