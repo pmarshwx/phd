@@ -66,3 +66,5 @@ __git_version__
 *.vrb
 *.xdy
 *.tdo
+*.fls
+*.pdf
