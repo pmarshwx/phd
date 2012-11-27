@@ -1,0 +1,51 @@
+\documentclass{outhesis}
+% Class options are: master, tables, figures, algorithms, index, times
+% and compact
+
+% Use these packages for an English dissertation without the Times font
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+% Insert additional packages and commands below
+\usepackage{hyperref}
+\IfFileExists{revision.sty}{\usepackage{revision}}{}
+
+% Required commands
+\title{A Method for Calibrating Probabilistic Forecasts}
+\author{PATRICK TIMOTHY MARSH}
+\degreename{DOCTOR of PHILOSOPHY}
+\gradyear{2013}
+\school{SCHOOL OF METEOROLOGY}
+\chair{Dr.~Kevin A.~Kloesel}
+\abstractfile{filename} % Insert Abstract file name in between brackets
+% The commands \abstractfile, \thanksfile and \appendixfile take filenames as
+% arguments. The source of the abstract (and the acknowledgements and the
+% appendix) must be placed inside a separate file which name is the argument
+% of the command \abstractfile (and thanksfile and \appendixfile).
+
+% Optional commands
+\cochair{Dr.~John S.~Kain} % Co-chair (if any)
+\readerA{Dr.~David J.~Stensrud}
+\readerB{Dr.~Michael B.~Richman} % Additional readers (up to four)
+\readerC{Dr.~Frederick H.~Carr}
+\readerD{Dr.~S.~Lakshmivarahan}
+% \dedication{text} % Insert dedication text in between brackets
+% \thanksfile{filename} % Acknowledgments file name goes in between brackets
+% \appendixfile{filename} % Insert Appendix file name in between brackets
+
+\begin{document}
+\makefrontmatter
+
+% Insert the dissertation text below or the relevant \input command
+% \input{file} % Insert chapter file name in between brackets (if any)
+
+% The following environment makes the bibliography format compatible with the
+% natbib and chapterbib packages
+\begin{oubibliography}
+  \bibliographystyle{plain}
+  \bibliography{file}
+\end{oubibliography}
+
+\makebackmatter
+\end{document}
