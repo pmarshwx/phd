@@ -29,6 +29,7 @@ pip-log.txt
 
 # General Files
 __git_version__.py
+__git_version__
 .DS_Store
 
 
