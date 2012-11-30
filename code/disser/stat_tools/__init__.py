@@ -17,40 +17,37 @@ def make_ecdf(counts):
     Returns
     -------
     The emperical cumulative distribution function
+
     '''
     cdf = np.cumsum(counts)
     cdf /= cdf[-1]
     return cdf
 
 
-def quantile_to_value(values, counts, quantile):
+def quantile_to_value(values, ecdf, quantile):
     '''
-    This function takes a frequency table via the frequencies and counts as
-    separate arrays and returns the threshold based on the supplied quantile.
+    This function takes an emperical cumulative distribution function and
+    values as separate arrays and returns the threshold based on the supplied
+    quantile.
 
     Parameters
     ----------
     values : array_like
         The values
-    counts : array_like
-        Counts of each value
+    ecdf : array_like
+        The emperical cumulative distribution function
     quantile : float
         The quantile being evaluated
 
     Returns
     -------
-    value : float
-        The value of the user supplied quantile.
+    The value of the user supplied quantile.
 
     '''
-    values = np.asanyarray(values)
-    counts = np.asanyarray(counts)
-    if quantile > 1:
-        quantile = quantile / 100.
-    quantile_array = counts.cumsum() / counts.sum()
-    error = [np.abs(quantile - a) for a in quantile_array]
-    value = values[np.where(error == np.min(error))[0]][0]
-    return value
+    ecdf = np.asarray(ecdf)
+    values = np.asarray(values)
+    return values[ecdf >= quantile][0]
+
 
 def value_to_quantile(values, counts, value):
     '''
