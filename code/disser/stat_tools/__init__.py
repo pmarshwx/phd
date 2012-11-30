@@ -2,6 +2,19 @@ import numpy as np
 import scipy.stats as spstats
 import statsmodels as smodels
 
+
+def make_cdf(counts):
+    '''
+    This function takes a list of counts (similar to what is returned by
+    numpy's histogram function, and returns an emperical cumulative
+    distribution function.
+
+    '''
+    cdf = np.cumsum(counts)
+    cdf /= cdf[-1]
+    return cdf
+
+
 def quantile_to_value(values, counts, quantile):
     '''
     This function takes a frequency table via the frequencies and counts as
