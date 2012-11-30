@@ -58,13 +58,14 @@ def _create_forecast(kwargs):
     k = kwargs.get('k', 0)
     dx = kwargs.get('dx', 4.7)
     factor = kwargs.get('factor', 3)
-    thresh = kwargs.get('thresh', 25.4)
+    stg4_thresh = kwargs.get('stg4_thresh', 25.4)
+    fcst_thresh = kwargs.get('fcst_thresh', 25.4)
     create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
-                    h, k, dx, factor, thresh)
+                    h, k, dx, factor, stg4_thresh, fcst_thresh)
 
 
 def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
-                    h, k, dx, factor, thresh):
+                    h, k, dx, factor, stg4_thresh, fcst_thresh):
     """
     A thin wrapper around the create_forecast function. Designed to give
     access to the actual forecast creation routine via a dictionary of
@@ -99,7 +100,9 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
         The y-distance of the offset
     factor : float (default 3)
         The number of standard deviations to include in calculation
-    thresh : float (default 25.4)
+    stg4_thresh : float (default 25.4)
+        Threshold which to make the forecast from
+    fcst_thresh : float (default 25.4)
         Threshold which to make the forecast from
 
     """
@@ -108,7 +111,8 @@ def create_forecast(nout_file, stg4, fcst, mask, sigx, sigy, xrot,
     fcst_aniso *= 100
     stg4[mask] = -9999
     np.savez_compressed(
-        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso, thresh=thresh,
+        nout_file, fcst=fcst, stg4=stg4, fcst_aniso=fcst_aniso,
+        stg4_thresh=stg4_thresh, fcst_thresh=fcst_thresh,
         factor=factor, sigx=sigx, sigy=sigy, xrot=xrot, h=h, k=k, dx=dx)
 
 
@@ -138,6 +142,10 @@ def create_forecasts(kwargs):
 
         Optional Keywords:
             thresh : str, float (default 25.4)
+                Threshold which to make the forecast from
+            stg4_thresh : str, float (default 25.4)
+                Threshold which to make the forecast from
+            fcst_thresh : str, float (default 25.4)
                 Threshold which to make the forecast from
             dx : str, float (default 4.7)
                 The grid spacing of the forecast data
@@ -176,8 +184,8 @@ def create_forecasts(kwargs):
     k = int(kwargs.get('k', 0))
     factor = float(kwargs.get('factor', 3.))
     thresh = float(kwargs.get('thresh', 25.4))
-    stg4_thresh = float(kwargs.get('stg4_thresh', thresh))
-    fcst_thresh = float(kwargs.get('fcst_thresh', thresh))
+    stg4_thresh = float(kwargs.get('stg4_thresh', stg4_thresh))
+    fcst_thresh = float(kwargs.get('fcst_thresh', fcst_thresh))
     # Create Forecast
     for stg4_file, fcst_file, nout_file in files:
         if not disser.misc.fsize_check(stg4_file): continue
@@ -193,7 +201,8 @@ def create_forecasts(kwargs):
         stg4_d, fcst_d = hwt.neighborhood.find_joint_exceed(
                 stg4, fcst, mask, stg4_thresh, fcst_thresh)
         create_forecast(nout_file, stg4_d, fcst_d, stg4.mask,
-                        sigx, sigy, xrot, h, k, dx, factor, thresh)
+                        sigx, sigy, xrot, h, k, dx, factor,
+                        stg4_thresh, fcst_thresh)
 
 
 def forecast_verification(kwargs):
