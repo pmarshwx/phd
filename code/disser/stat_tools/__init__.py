@@ -3,12 +3,20 @@ import scipy.stats as spstats
 import statsmodels as smodels
 
 
-def make_cdf(counts):
+def make_ecdf(counts):
     '''
-    This function takes a list of counts (similar to what is returned by
-    numpy's histogram function, and returns an emperical cumulative
-    distribution function.
+    This function takes an ordered list of counts (similar to what is
+    returned by numpy's histogram function, and returns an emperical
+    cumulative distribution function.
 
+    Parameters
+    ----------
+    counts : array_like
+        An ordered sequence of counts
+
+    Returns
+    -------
+    The emperical cumulative distribution function
     '''
     cdf = np.cumsum(counts)
     cdf /= cdf[-1]
