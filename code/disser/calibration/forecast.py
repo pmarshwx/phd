@@ -184,8 +184,8 @@ def create_forecasts(kwargs):
     k = int(kwargs.get('k', 0))
     factor = float(kwargs.get('factor', 3.))
     thresh = float(kwargs.get('thresh', 25.4))
-    stg4_thresh = float(kwargs.get('stg4_thresh', stg4_thresh))
-    fcst_thresh = float(kwargs.get('fcst_thresh', fcst_thresh))
+    stg4_thresh = float(kwargs.get('stg4_thresh', thresh))
+    fcst_thresh = float(kwargs.get('fcst_thresh', thresh))
     # Create Forecast
     for stg4_file, fcst_file, nout_file in files:
         if not disser.misc.fsize_check(stg4_file): continue
