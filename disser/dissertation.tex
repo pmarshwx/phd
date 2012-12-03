@@ -3,12 +3,28 @@
 % and compact
 
 % Use these packages for an English dissertation without the Times font
-\usepackage[latin1]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage{lmodern}
+% \usepackage[latin1]{inputenc}
+% \usepackage[T1]{fontenc}
+% \usepackage[english]{babel}
+% \usepackage{lmodern}
+
 % Insert additional packages and commands below
+\usepackage[amssymb]{SIunits}  % allows SI units
+\usepackage[pdftex]{graphicx}  % allows .eps and .epsi graphics to be inserted
+\usepackage{epic}              % allows use of latex graphics
+\usepackage{eepic}             % allows use of latex graphics
+\usepackage{varioref}
+\usepackage{amssymb,amsmath}   % Amer. Math. Soc. packages
+\usepackage{amsfonts}          % Amer. Math. Soc. special fonts package
+\usepackage[centerfoot]{pageno} % allows positioning of page numbers
+\usepackage{natbib}            % citations with ametsoc.bst
+\usepackage[table]{xcolor}     % allow for alternating row colors in table
+\usepackage{longtable}
+\usepackage{array}
 \usepackage{hyperref}
+\labelformat{equation}{\textup{(#1)}}
+\labelformat{enumi}{\textup{(#1)}}
+\bibpunct{(}{)}{;}{a}{}{,}    % AMS uses ``author year'' not ``author, year''
 \IfFileExists{revision.sty}{\usepackage{revision}}{}
 
 % Required commands
@@ -38,14 +54,17 @@
 \makefrontmatter
 
 % Insert the dissertation text below or the relevant \input command
-% \input{file} % Insert chapter file name in between brackets (if any)
+\input{./intro/introduction.tex}
+\input{./method/method.tex}
+\input{./data/data.tex}
+\input{./deterministic/deterministic.tex}
+\input{./ensemble/ensemble.tex}
 
-% The following environment makes the bibliography format compatible with the
-% natbib and chapterbib packages
 \begin{oubibliography}
-  \bibliographystyle{plain}
-  \bibliography{file}
+    \bibliographystyle{ametsoc}
+    \bibliography{./bib/dissertation}
 \end{oubibliography}
+% \references{ametsoc}{./bib/dissertation.bib}
 
 \makebackmatter
 \end{document}
