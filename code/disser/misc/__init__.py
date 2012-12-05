@@ -1,6 +1,38 @@
 import os
 
 
+def mpi_progress(view, jobs, num_of_jobs, sleep=10):
+    """
+    Wrapper function to keep track of progress of mpi jobs.
+
+    Parameters
+    ----------
+    view : IPython.parallel.client.view
+        This is the "view" of the various nodes
+    jobs : The handle of your view.map instance
+        This is the data structure that provides information on your jobs
+    num_of_jobs : int
+        The total number of jobs
+    sleep: number
+        The number of seconds to sleep between iterations
+
+    Returns
+    -------
+    None
+
+    """
+    while jobs.progress < num_of_jobs:
+        finished = 0
+        view.spin()
+        for job in jobs.metadata:
+            if job['outputs_ready']: finished += 1
+        print('Completed {0} of {1} jobs. ({2} %)'.format(finished,
+              num_of_jobs, 100*finished/num_of_jobs))
+        time.sleep(sleep)
+    print('Completed {0} of {1} jobs. ({2} %)'.format(num_of_jobs,
+          num_of_jobs, 100))
+
+
 def is_leap_year(year):
     """
     Simple function to test for leap years.
@@ -69,13 +101,13 @@ se2010_members = se2010_arps_members + se2010_nmm_members + se2010_arw_members
 
 
 se2011_arps_members = ['s4cn_arps']
-se2011_nmm_members = ['s4cn_nmm', 's4m2_nmm', 's4m3_nmm', 
+se2011_nmm_members = ['s4cn_nmm', 's4m2_nmm', 's4m3_nmm',
                       's4m4_nmm', 's4m5_nmm']
-se2011_arw_members = ['s4cn_arw', 's4m4_arw', 's4m5_arw', 
-                      's4m6_arw', 's4m7_arw', 's4m8_arw', 
-                      's4m9_arw', 's4m10_arw', 's4m11_arw', 
-                      's4m12_arw', 's4m13_arw', 's4m14_arw', 
-                      's4m15_arw', 's4m16_arw', 's4m17_arw', 
+se2011_arw_members = ['s4cn_arw', 's4m4_arw', 's4m5_arw',
+                      's4m6_arw', 's4m7_arw', 's4m8_arw',
+                      's4m9_arw', 's4m10_arw', 's4m11_arw',
+                      's4m12_arw', 's4m13_arw', 's4m14_arw',
+                      's4m15_arw', 's4m16_arw', 's4m17_arw',
                       's4m18_arw', 's4m19_arw', 's4m20_arw']
 se2011_members = se2011_arps_members + se2011_nmm_members + se2011_arw_members
 
