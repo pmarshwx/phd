@@ -1,4 +1,4 @@
-\documentclass{outhesis}
+\documentclass[figures, times]{outhesis}
 % Class options are: master, tables, figures, algorithms, index, times
 % and compact
 
@@ -52,13 +52,16 @@
 
 \begin{document}
 \makefrontmatter
+\sloppy
 
 % Insert the dissertation text below or the relevant \input command
 \input{./intro/introduction.tex}
-\input{./method/method.tex}
-\input{./data/data.tex}
-\input{./deterministic/deterministic.tex}
-\input{./ensemble/ensemble.tex}
+\input{./deterministic_method/deterministic_method.tex}
+\input{./deterministic_data/deterministic_data.tex}
+\input{./deterministic_results/deterministic_results.tex}
+\input{./ensemble_method/ensemble_method.tex}
+\input{./ensemble_data/ensemble_data.tex}
+\input{./ensemble_results/ensemble_results.tex}
 
 \begin{oubibliography}
     \bibliographystyle{ametsoc}
