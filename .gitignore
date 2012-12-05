@@ -26,14 +26,12 @@ pip-log.txt
 # Mr Developer
 .mr.developer.cfg
 
-
 # General Files
 __git_version__.py
 __git_version__
 .DS_Store
 
-
-
+# LaTeX Files
 *.acn
 *.acr
 *.alg
@@ -68,3 +66,7 @@ __git_version__
 *.tdo
 *.fls
 *.pdf
+
+# Sublime Files
+*.sublime-*
+*.sublime-*
