@@ -74,9 +74,9 @@ def create_hist2d(kwargs):
         if not disser.misc.fsize_check(stg4_file): continue
         if not disser.misc.fsize_check(fcst_file): continue
         stg4 = pygrib.open(stg4_file)[1]['values']
-        stg4 = np.ma.asanyarray(stg4).filled(-9999)
+        stg4 = np.ma.asanyarray(stg4).filled(missing)
         fcst = pygrib.open(fcst_file)[1]['values']
-        fcst = np.ma.asanyarray(fcst).filled(-9999)
+        fcst = np.ma.asanyarray(fcst).filled(missing)
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
         # Only compare grid points that have valid data
