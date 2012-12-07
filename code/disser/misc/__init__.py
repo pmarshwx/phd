@@ -1,4 +1,4 @@
-import os
+import os, time
 
 
 def mpi_progress(view, jobs, num_of_jobs, sleep=10):
