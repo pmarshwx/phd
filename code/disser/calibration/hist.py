@@ -33,12 +33,6 @@ def create_hist2d(kwargs):
             max_precip_mm : number (default 400)
                 The maximum precipitation value. All precip values
                 greater than this are considered to be this value.
-            stg4_quantile : number (default 99.9)
-                Quantile of precipitation values used for quantile analysis.
-                If thresholds are set, quantiles are ignored.
-            fcst_quantile : number (default 99.9)
-                Quantile of precipitation values used for quantile analysis.
-                If thresholds are set, quantiles are ignored.
             stg4_thresh : number (default 25.4)
                 The observed precipitation value being verified against.
             fcst_thresh : number (default 25.4)
@@ -85,23 +79,6 @@ def create_hist2d(kwargs):
         fcst = np.ma.asanyarray(fcst).filled(-9999)
         if isinstance(mask, type(None)):
             mask = np.ones(stg4.shape, dtype='int')
-        stg4_int = (stg4 * convert_factor).astype(int)
-        fcst_int = (fcst * convert_factor).astype(int)
-        stg4_dist, fcst_dist = hwt.bin.joint_precip(stg4_int, fcst_int,
-                                                    mask, amts_len)
-        if not stg4_thresh and not fcst_thresh:
-            stg4_thresh = stat_tools.quantile_to_value(
-                    amts, stg4_dist, stg4_quantile)
-            fcst_thresh = stat_tools.quantile_to_value(
-                    amts, fcst_dist, fcst_quantile)
-            if stg4_thresh < min_stg4_thresh: continue
-        elif stg4_thresh and not fcst_thresh:
-            stg4_quantile = stat_tools.value_to_quantile(
-                    amts, stg4_dist, stg4_thresh)
-            fcst_thresh = stat_tools.quantile_to_value(
-                    amts, fcst_dist, stg4_quantile)
-            fcst_quantile = stat_tools.value_to_quantile(
-                    amts, stg4_dist, fcst_thresh)
         # Only compare grid points that have valid data
         # in both forecast and observations
         stg4_exceed, fcst_exceed = hwt.neighborhood.find_joint_exceed(
@@ -111,8 +88,6 @@ def create_hist2d(kwargs):
                 fcst_exceed.astype(int), stg4_exceed.astype(int), radius, dx)
         hist2d[hist2d<0] = -1
         hist2d = hist2d.reshape(nx, nx)
-        np.savez_compressed(nout_file, hist2d=hist2d, stg4_dist=stg4_dist,
-                            fcst_dist=fcst_dist, stg4_thresh=stg4_thresh,
+        np.savez_compressed(nout_file, hist2d=hist2d, stg4_thresh=stg4_thresh,
                             fcst_thresh=fcst_thresh, amts=amts, dx=dx,
-                            fcst_quantile=fcst_quantile, radius=radius,
-                            stg4_quantile=stg4_quantile)
+                            radius=radius)
