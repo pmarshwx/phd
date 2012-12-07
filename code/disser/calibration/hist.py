@@ -93,7 +93,7 @@ def create_hist2d(kwargs):
                             radius=radius)
 
 
-def make_frequency_list():
+def make_frequency_list(kwargs):
     """
     Create a 2D histogram of where observed precipitation
     occurred relative to forecast.
