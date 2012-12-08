@@ -1,3 +1,4 @@
+import os
 import hwt
 import pygrib
 import numpy as np
