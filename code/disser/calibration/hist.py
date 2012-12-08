@@ -38,6 +38,8 @@ def create_hist2d(kwargs):
                 greater than this are considered to be this value.
                 stg4_thresh : number (default 25.4)
                 The observed precipitation value being verified against.
+            stg4_thresh : number (default 25.4)
+                The observed precipitation value used as threshold
             fcst_thresh : number (default 25.4)
                 The forecast precipitation value used as threshold
             missing : number (default -9999)
@@ -56,10 +58,6 @@ def create_hist2d(kwargs):
     max_precip_mm = kwargs.get('max_precip_mm', 400)
     hnx = int(radius / dx)
     nx = hnx * 2 + 1
-    # Configurations for Quantile Processing
-    fcst_quantile = kwargs.get('fcst_quantile', 99.9)
-    stg4_quantile = kwargs.get('stg4_quantile', 99.9)
-    min_stg4_thresh = kwargs.get('min_stg4_thresh', 25.4)
     missing = kwargs.get('missing', -9999)
     # Configurations for Exact Amount Processing
     fcst_thresh = kwargs.get('fcst_thresh', 25.4)
