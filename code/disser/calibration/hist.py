@@ -1,8 +1,10 @@
 import hwt
 import pygrib
 import numpy as np
+from scipy import ndimage
 from disser import stat_tools
 import disser.misc
+import metpy as mp
 
 
 def create_hist2d(kwargs):
@@ -156,4 +158,73 @@ def make_frequency_list(kwargs):
                                                     mask, amts_len)
         np.savez_compressed(nout_file, stg4_dist=stg4_dist,
                             fcst_dist=fcst_dist, amts=amts)
+
+
+def get_simulation_params(kwargs):
+    """
+    Fits a 2D anisotropic Gaussian to a 2D frequency diagram
+
+    Parameters
+    ----------
+    kwargs : dict
+
+        Mandatory Keywords:
+            sim_number : array_like
+                The current simulation number
+            dts : array_like
+                List of valid training dates
+            npbin_root : string
+                The root directory for which the forecasts will be stored
+            members : array_like
+                An array_like object with strings of members' names to use
+
+    Returns
+    -------
+    Tuple
+        The simulation number and a dictionary with the
+        fitted distribution parameters as keywords
+
+    """
+    sim_number = kwargs.get('sim_number')
+    dts = kwargs.get('dts')
+    npbin_root = kwargs.get('npbin_root')
+    members = kwargs.get('members')
+    parms = {}
+    for member in members:
+        init = True
+        for dt in dts:
+            date4 = dt.strftime('%Y%m%d%H')
+            year = date4[:4]
+            npbin_path = os.path.join(npbin_root, member)
+            npbin_path = os.path.join(npbin_path, year)
+            npbin_file = os.path.join(npbin_path, '%s.npz' % (date4))
+            f = np.load(npbin_file)
+            if init:
+                hist = f['hist2d']
+                stg4_thresh = f['stg4_thresh']
+                fcst_thresh = f['fcst_thresh']
+                init = False
+            else:
+                hist += f['hist2d']
+            f.close()
+        hist = np.ma.asarray(hist)
+        hist[hist < 0] = np.ma.masked
+        sigx, sigy, xrot = mp.kde.fit_gauss2d_alt(hist)
+        nx = hist.shape[0]
+        hnx = np.floor(nx / 2)
+        y, x = ndimage.center_of_mass(hist)
+        x -= hnx
+        y -= hnx
+        ih = round(x)
+        ik = round(y)
+        if x > (-0.5 + 1e-11) and x < 0:
+            ih = -ih
+        if y > (-0.5 + 1e-11) and y < 0:
+            ik = -ik
+        parms[member] = {
+                'sigx': sigx, 'sigy': sigy, 'xrot': xrot, 'h': x, 'k': y,
+                'fcst_thresh': fcst_thresh, 'stg4_thresh': stg4_thresh,
+                'ih': ih, 'ik': ik}
+    return sim_number, parms
+
 
