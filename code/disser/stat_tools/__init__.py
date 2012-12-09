@@ -20,7 +20,7 @@ def make_ecdf(counts):
 
     '''
     cdf = np.cumsum(counts)
-    cdf /= cdf[-1]
+    cdf /= float(cdf[-1])
     return cdf
 
 
