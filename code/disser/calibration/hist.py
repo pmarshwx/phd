@@ -189,6 +189,7 @@ def get_simulation_params(kwargs):
     dts = kwargs.get('dts')
     npbin_root = kwargs.get('npbin_root')
     members = kwargs.get('members')
+    include_year = kwargs.get('include_year', True)
     parms = {}
     for member in members:
         init = True
@@ -196,7 +197,8 @@ def get_simulation_params(kwargs):
             date4 = dt.strftime('%Y%m%d%H')
             year = date4[:4]
             npbin_path = os.path.join(npbin_root, member)
-            npbin_path = os.path.join(npbin_path, year)
+            if include_year:
+                npbin_path = os.path.join(npbin_path, year)
             npbin_file = os.path.join(npbin_path, '%s.npz' % (date4))
             f = np.load(npbin_file)
             if init:
