@@ -139,7 +139,7 @@ def make_frequency_list(kwargs):
     nout_files = kwargs.get('nout_files', None)
     mask = kwargs.get('mask', None)
     files = zip(stg4_files, fcst_files, nout_files)
-    amts = np.arange(max_precip_mm * convert_factor + 1)
+    amts = np.arange(max_precip_mm * convert_factor + 1).astype(float)
     amts /= float(convert_factor)
     amts_len = amts.shape[0]
     # Loop through files and create histograms
