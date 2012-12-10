@@ -32,6 +32,7 @@ def performance_diagram(**kwargs):
     ax = kwargs.get('ax', None)
     figsize = kwargs.get('figsize', (10,10))
     bias_lines = kwargs.get('bias_lines', None)
+    csi_lines = kwargs.get('csi_lines', None)
 
     if not ax:
         fig = plt.figure(figsize=figsize)
