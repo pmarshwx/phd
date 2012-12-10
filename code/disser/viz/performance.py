@@ -69,7 +69,7 @@ def performance_diagram(**kwargs):
             yyy = pod_lines[-1] + b_offset
         ax.text(xxx, yyy, x, horizontalalignment='center',
                 verticalalignment='center', bbox=dict(fc=(1,1,1,1),
-                ec=(1,1,1,1), boxstyle="round, pad=0.33, rounding_size=0.5",
+                ec=(1,1,1,1), boxstyle="round, pad=0.33, rounding_size=0.5"),
                 lw=1)
     # Plot CSI Lines
     for x in csi_lines:
