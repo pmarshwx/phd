@@ -9,7 +9,7 @@ import os, sys
 # Setup Variables
 dirname = 'disser'
 packages = ['disser', 'disser.verification', 'disser.stat_tools',
-            'disser.misc', 'disser.calibration']
+            'disser.misc', 'disser.calibration', 'disser.viz']
 setup_path = os.path.split(os.path.abspath(__file__))[0]
 sys.path.append(os.path.join(setup_path, dirname))
 module_path = distutils.sysconfig.get_python_lib()
