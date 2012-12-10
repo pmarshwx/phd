@@ -5,8 +5,9 @@ import verification
 import stat_tools
 import misc
 import calibration
+import viz
 
-__all__ = ['verification', 'stat_tools', 'misc', 'calibration']
+__all__ = ['verification', 'stat_tools', 'misc', 'calibration', 'viz']
 
 __version__ = __verfuncs__.get_version()
 
