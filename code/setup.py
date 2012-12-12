@@ -23,7 +23,7 @@ sys.path.pop()
 setup(
     name                    = 'disser',
     version                 = ver,
-    description             = 'Dissertation Code/Utiilities',
+    description             = 'Dissertation Code/Utilities',
     author                  = 'Patrick Marsh',
     author_email            = 'patrick.marsh@noaa.gov',
     url                     = '',
