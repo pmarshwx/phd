@@ -4,10 +4,6 @@
 \chapter{Proposed Method}
 \label{method}
 
-
-\section{Deterministic Forecasts}
-\label{dmethod}
-
 In theory, a perfect deterministic numerical forecast would consist of a perfect (in amplitude and phase) initialization and a perfect integration forward in time resulting in the correct forecast of what was observed. Unfortunately, the current state of our modeling systems is such that perfect forecasts are impossible. Numerical forecasts begin with errors in the initialization, use imperfect approximations of physical processes, and utilize discretized approximations of the continuous atmosphere, all of which result in errors in the final forecast.
 
 This inherent uncertainty in numerical forecasts has led to the recognition that numerical forecasts should have a probabilistic component \citep{ADD}. For many years probabilistic guidance has been produced from deterministic forecasts in the United States using model output statistics (commonly referred to as MOS), a logistical regression process in which the likelihood of a specified outcome at a given location is estimated on the basis of past model performance \citep{Glahn1972}. Unfortunately, statistical post-processing of model output works best when modeling systems allow for the creation of a forecast sample that adequately represents the larger forecast population. In the case of operational numerical models this implies modeling systems must remain consistent for long periods of time. Calibration becomes more challenging with modeling systems that have been recently modified, which limits the forecast sample. Additional challenges arise when dealing with rare events, which require a long forecast sample to adequately represent the forecast population of rare events.
@@ -17,16 +13,30 @@ The statistical post-processing method proposed here goes beyond \cite{Theis2005
 
 
 
+\section{Application in a Deterministic Framework}
+\label{dmethod}
+
+
+
+
 \subsection{2-D Compositing}
 \label{compositing}
 
-The compositing employed here is straight forward. First create a 0-filled, two-dimensional array of lengths $2m+1$ and $2n+1$.
+The compositing employed here is straight forward. First, forecasts are mapped onto the observations' grid. Next the raw forecasts and observations are converted into binary grids of 1s (event occurred) and 0s (event did not occur). Next, all grid points within a specified radius of a forecast event are examined for observations. If an observation occurs within the specified radius of a forecast, the position of the observation relative to the forecast is recorded. Lastly, all of these relative positions are mapped onto a common grid ans summed. The results is a two-dimensional frequency histogram of where observations occurred relative to forecasts.
 
 
 
 
-\subsection{Mean Displacement Vector}
-\label{displacement}
+\subsection{Fitting}
+\label{fitting}
+
+Once the two-dimensional frequency histogram is determined, the next step involves fitting an analytic function to the histogram. As previously mentioned, any analytic function would work, but a Gaussian function is used here.
+
+
+
+
+\subsubsection{Finding the 2-D Histogram's Centroid}
+\label{centroid}
 
 After creation of the two-dimensional frequency histogram, the next step involves determining the centroid of two-dimensional frequency histogram, and, in turn, determining the mean displacement vector. The centroid's location, represented by $\mu_x$ and $\mu_y$ can be computed using
 
@@ -51,10 +61,8 @@ After creation of the two-dimensional frequency histogram, the next step involve
 
 
 
-\subsection{Fitting a Distribution}
-\label{fitting}
-
-Once the mean displacement vector is known, the next step is to fit a statistical distribution to the two-dimensional
+\subsubsection{Finding the 2-D Histogram's Standard Deviation}
+\label{std}
 
 
 
