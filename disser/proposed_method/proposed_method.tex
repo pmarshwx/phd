@@ -8,16 +8,12 @@ In theory, a perfect deterministic numerical forecast would consist of a perfect
 
 This inherent uncertainty in numerical forecasts has led to the recognition that numerical forecasts should have a probabilistic component \citep{ADD}. For many years probabilistic guidance has been produced from deterministic forecasts in the United States using model output statistics (commonly referred to as MOS), a logistical regression process in which the likelihood of a specified outcome at a given location is estimated on the basis of past model performance \citep{Glahn1972}. Unfortunately, statistical post-processing of model output works best when modeling systems allow for the creation of a forecast sample that adequately represents the larger forecast population. In the case of operational numerical models this implies modeling systems must remain consistent for long periods of time. Calibration becomes more challenging with modeling systems that have been recently modified, which limits the forecast sample. Additional challenges arise when dealing with rare events, which require a long forecast sample to adequately represent the forecast population of rare events.
 
-The statistical post-processing method proposed here goes beyond \cite{Theis2005} and \cite{Sobash2011} by employing a compositing and fitting technique for objective calibration of forecast probabilities. The idea behind the proposed method is to objectively determine where observations of a given event occur relative to forecasts of that event. This information is then used to fit an analytic function to the two-dimensional frequency histogram. Several analytic functions might be good candidates for this purpose; a two-dimensional Gaussian function is used here, fitted using methods similar to \cite{Lak2010}. In theory a normalized version of the raw two-dimensional frequency histogram, could be used, but, there is no guarantee that this would produce continuous forecast probabilities. After fitting an analytic function to the two-dimensional histogram, this analytic function is used as a kernel transform a forecast of discrete probabilisties of occurrence into a continuous probabilistic forecast using methods similar to Kernel Density Estimation \citep{Silverman...}.
+The statistical post-processing method proposed here goes beyond \cite{Theis2005} and \cite{Sobash2011} by employing a compositing and fitting technique for objective calibration of forecast probabilities. The idea behind the proposed method is to objectively determine where observations of a given event occur relative to forecasts of that event. This information is then used to fit an analytic function to the two-dimensional frequency histogram. Several analytic functions might be good candidates for this purpose; a two-dimensional Gaussian function is used here, fitted using methods similar to \cite{Lak2010}. In theory a normalized version of the raw two-dimensional frequency histogram, could be used, but, there is no guarantee that this would produce continuous forecast probabilities. After fitting an analytic function to the two-dimensional histogram, this analytic function is used as a kernel transform a forecast of discrete probabilities of occurrence into a continuous probabilistic forecast using methods similar to Kernel Density Estimation \citep{Silverman...}.
 
 
 
 
-\section{Application in a Deterministic Framework}
-\label{dmethod}
-
-
-\subsection{2-D Compositing}
+\section{2-D Compositing}
 \label{compositing}
 
 The compositing employed here is straight forward. First, forecasts are mapped onto the observations' grid. Next the raw forecasts and observations are converted into binary grids of 1s (event occurred) and 0s (event did not occur). Next, all grid points within a specified radius of a forecast event are examined for observations. If an observation occurs within the specified radius of a forecast, the position of the observation relative to the forecast is recorded. Lastly, all of these relative positions are mapped onto a common grid ans summed. The results is a two-dimensional frequency histogram of where observations occurred relative to forecasts.
@@ -25,17 +21,17 @@ The compositing employed here is straight forward. First, forecasts are mapped o
 
 
 
-\subsection{Fitting}
+\section{Fitting}
 \label{fitting}
 
 Once the two-dimensional frequency histogram is determined, the next step involves fitting an analytic function to the histogram. As previously mentioned, any analytic function would work, but a Gaussian function is used here.
 
-To fit a Gaussian function, two parameters must be known: location and variance. Typically, the location of a Gaussian function is given by the mean of the distribution. In the case of a two-dimensional histogram this is given by the weighted center, or centroid, of the distribution. Details on how to compute centroid are given below. In the case of a two-dimensional Gaussian, the variance must be computed in both the X- and Y-dimensions. Details on this is done are also provided below.
+To fit a Gaussian function, two parameters must be known: location and variance. Typically, the location of a Gaussian function is given by the mean of the distribution. In the case of a two-dimensional histogram this is given by the weighted center, or centroid, of the distribution. Details on how to compute centroid are provided in subsection \ref{centroid}. In the case of a two-dimensional Gaussian, the variance must be computed in both the X- and Y-dimensions. Details on this are provided in subsection \ref{std}.
 
 
 
 
-\subsubsection{Finding the 2-D Histogram's Centroid}
+\subsection{Finding the 2-D Histogram's Centroid}
 \label{centroid}
 
 After creation of the two-dimensional frequency histogram, the next step involves determining the centroid of two-dimensional frequency histogram, and, in turn, determining the mean displacement vector. The centroid's location, represented by $\mu_x$ and $\mu_y$ can be computed using
@@ -61,10 +57,10 @@ After creation of the two-dimensional frequency histogram, the next step involve
 
 
 
-\subsubsection{Finding the 2-D Histogram's Standard Deviation}
+\subsection{Finding the 2-D Histogram's Standard Deviation}
 \label{std}
 
-Once the centoid of the two-dimensional histogram is known, the next step to fitting a two-dimensional Gaussian function is to compute the variance in both dimensions. The two-dimensional Gaussian function is represented mathematically as:
+Once the centroid of the two-dimensional histogram is known, the next step to fitting a two-dimensional Gaussian function is to compute the variance in both dimensions. The two-dimensional Gaussian function is represented mathematically as:
 
     \begin{equation}
         \label{2DGauss}
@@ -155,13 +151,14 @@ The rotation angle can be computed from the covariance matrix of the observed fr
 
 
 
-\subsection{Putting it All Together}
+\section{Putting it All Together}
 \label{kde}
 
-Once $\mu_x$, $\mu_y$, $\sigma_x$, $\sigma_y$, and $\theta$ are known, kernel density estimation can be carried out on any forecast. This is done by creating a binary grid from the model's forecast, similar to the ones created in the compositing stage.  Each ``yes'' grid point (1) is then shifted by the mean displacement vector, ${\mu_x, \mu_y}$ and then smoothed by \mbox{equation \ref{2DRotatedGauss}}, using the objectively derived $\sigma_x$, $\sigma_y$, and $\theta$ out to a distance of $5\sigma_x$ in the x-direction and $5\sigma_y$ in the y-direction\footnote{$5\sigma_x$ and $5\sigma_y$, were chosen because this distance accounts for greater than 99.999\% of the fitted Gaussian distribution. In practice, any multiple of $\sigma_x$ and $\sigma_y$ would work, with larger multiples accounting for more of the fitted Gaussian's tails.}. This generates probabilities at the nearby grid points that the corresponding observation will actually occur there, rather than solely at the location of the forecast event. The final forecast probabilities then become the linear combination of all the forecast probabilities created by applying the fitted Gaussian to each forecasted event
+Once $\mu_x$, $\mu_y$, $\sigma_x$, $\sigma_y$, and $\theta$ are known, kernel density estimation can be carried out on any forecast. This is done by creating a binary grid from the model's forecast, similar to the ones created in the compositing stage.  Each ``yes'' grid point (1) is then shifted by the mean displacement vector, ${\mu_x, \mu_y}$ and then smoothed by \mbox{equation \ref{2DRotatedGauss}}, using the objectively derived $\sigma_x$, $\sigma_y$, and $\theta$ out to a distance of $5\sigma_x$ in the x-direction and $5\sigma_y$ in the y-direction\footnote{$5\sigma_x$ and $5\sigma_y$, were chosen because this distance accounts for greater than 99.999\% of the fitted Gaussian distribution. In practice, any multiple of $\sigma_x$ and $\sigma_y$ would work, with larger multiples accounting for more of the fitted Gaussian's tails.}. This generates probabilities at the nearby grid points that the corresponding observation will actually occur there, rather than solely at the location of the forecast event. The final forecast probabilities then become the linear combination of all the forecast probabilities created by applying the fitted Gaussian to each forecast event
 
 
 
 
-\section{Extending to an Ensemble}
-\label{emethod}
+
+
+
