@@ -1,0 +1,69 @@
+%!TEX root = ../dissertation.tex
+
+
+\chapter{Deterministic}
+\label{deterministic}
+
+
+\input{./deterministic/deterministic_data.tex}
+\input{./deterministic/deterministic_results.tex}
+
+
+
+
+% CHAPTER FIGURES HERE --- Ensures they all show up at end of chapter
+
+\newpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=35pc, angle=0]{./deterministic/figs/domain.png}\\
+    \caption{The subset of the Stage IV grid used in the analysis.}
+    \label{domain}
+\end{figure}
+
+
+\newpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=35pc, angle=0]{./deterministic/figs/single_member_composite_400km_12-7mm.png}\\
+    \caption{The two-dimensional frequency distribution of stage IV observations greater than or equal to \mbox{12.7 mm} relative to NSSL-WRF forecasts of similar events for the training dataset (1 Apr 2007 -- 31 Mar 2010). The representative NSSL-WRF forecast grid point is marked by a white dot in the middle of the domain and the stage IV observation frequency is color filled. To illustrate the displacement between forecasts and observations, the centroid of the observations is denoted by the black dot. Contour labels are given in millions.}
+    \label{single_12thresh}
+\end{figure}
+
+
+\newpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=35pc, angle=0]{./deterministic/figs/single_member_composite_400km_25-4mm.png}\\
+    \caption{Same as in Figure \ref{single_12thresh} except for the \mbox{25.4 mm} threshold and contour labels in hundred thousands.}
+    \label{single_25thresh}
+\end{figure}
+
+
+\newpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=35pc, angle=0]{./deterministic/figs/single_member_sample_forecast1.png}\\
+    \caption{Example forecasts and observations from two separate days and differing forecast lengths. The column on the left depicts forecasts and observations for the 6-hrs ending 02 May 2010 at 18 UTC (12-18 hr forecast) whereas the column on the right depicts forecasts and observations for the 6-hrs ending 27 September 2010 at 00 UTC (18-24 hr forecast). Panels (a) and (b) denote the Stage IV 6-hr quantitative precipitation estimates (QPE), panels (c) and (d) denote the 6-hr NSSL-WRF 6-hr quantitative precipitation forecasts (QPF), and panels (e) and (f) depict the Stage IV QPE greater than 25.4 mm contoured on top of the NSSL-WRF probability of exceeding 25.4 mm in 6-hrs. The minimum shaded probability is 0.001 (0.1\%).}
+    \label{single_sample1}
+\end{figure}
+
+
+\newpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=35pc, angle=0]{./deterministic/figs/single_member_sample_forecast2.png}\\
+    \caption{Same layout as in \mbox{Figure \ref{single_sample1}} except the left column depicts the forecast and observations for the 6-hrs ending 06 June 2010 at 06 UTC (24-30 hr forecast) and the right column depicts the 6-hrs ending 30 September 2010 at 12 UTC (30-36 hr forecast).}
+    \label{single_sample2}
+\end{figure}
+
+
+\newpage
+\begin{figure}[cc]
+    \centering
+    \noindent\includegraphics[width=35pc, angle=0]{./deterministic/figs/single_roc_rely.png}\\
+    \caption{Relative Operating Characteristic curve (a) and reliability diagram with corresponding forecast counts (b), both computed over the 01 April 2010 to 31 March 2011 time period. On the ROC curve, the area under curve $(AUC = 0.94)$ and line of no skill (diagonal; dashed) are also plotted. The reliability component of the Brier Score ($REL = 1.3898 \times 10^{-5}$; \citealp{Murphy1973}), line of perfect reliability (diagonal; dashed) and line of no skill (dot-dash line) are also plotted on the reliability diagram. The climatology line is plotted, but because it is less than 0.005 it cannot be distinguished from the x-axis. The forecast counts associated with the reliability diagram are plotted on a log-scale below the reliability diagram.}
+    \label{single_roc_rely}
+\end{figure}
+
+
