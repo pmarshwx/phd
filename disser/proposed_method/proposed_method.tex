@@ -38,18 +38,18 @@ After creation of the two-dimensional frequency histogram, the next step involve
 
     \begin{equation}
         \label{mux}
-        \mu_x = \frac{1}{\mathbf{H}} \sum\limits_{j=-m \atop i=-n}^{n,m}H_{ij} \cdot i,
+        \mu_x = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij} \cdot i,
     \end{equation}
 
     \begin{equation}
         \label{muy}
-        \mu_y = \frac{1}{\mathbf{H}} \sum\limits_{j=-m \atop i=-n}^{n,m}H_{ij} \cdot j,
+        \mu_y = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij} \cdot j,
     \end{equation}
 
 \noindent where $H$ is the observed two-dimensional histogram, $n$ is half the length of the x-dimension of $H$, $m$ is half the length of the y-dimension, and
 
     \begin{equation}
-        \mathbf{H} = \sum\limits_{i=-n \atop j=-m}^{n,m} H_{ij},
+        \mathbf{H} = \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m} H_{ij},
     \end{equation}
 
 \noindent given that the forecast is found at $(0, 0)$. Thus, the observation mean displacement vector is simply $(\mu_x, \mu_y)$.
@@ -92,12 +92,12 @@ In \cite{Sobash2011} attempts to produce reliable forecasts centered on subjecti
 
     \begin{equation}
         \label{sigmax}
-        \sigma_x = \frac{1}{\mathbf{H}} \sum\limits_{j=-m \atop i=-n}^{n,m}H_{ij}(i - \mu_x)^2,
+        \sigma_x = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(i - \mu_x)^2,
     \end{equation}
 
     \begin{equation}
         \label{sigmay}
-        \sigma_y = \frac{1}{\mathbf{H}} \sum\limits_{j=-m \atop i=-n}^{n,m}H_{ij}(j - \mu_y)^2,
+        \sigma_y = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(j - \mu_y)^2,
     \end{equation}
 
 \noindent which can then be used plugged into \mbox{equation \ref{2DGauss}}.
@@ -143,7 +143,7 @@ The rotation angle can be computed from the covariance matrix of the observed fr
 
     \begin{equation}
         \label{sigmaxy}
-        \sigma_{xy} = \frac{1}{\mathbf{H}} \sum\limits_{j=-m \atop i=-n}^{n,m}H_{ij}(i - \mu_x)(j - \mu_y),
+        \sigma_{xy} = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(i - \mu_x)(j - \mu_y),
     \end{equation}
 
 \noindent by taking the $\arctan{\left(\frac{y''}{x''}\right)}$, where $x''$ and $y''$ are the x- and y-components of the eigenvector of $\boldsymbol{\Sigma}_{xy}$ containing the maximum eigenvalue \citep{Lak2010}.
