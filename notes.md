@@ -4,8 +4,7 @@
 
 ### Figures to Create
 
-1. NSSL-WRF vs. STG4 distributions at 12.7 mm
-1. NSSL-WRF vs. STG4 distributions at 25.4 mm
+1. NSSL-WRF vs. STG4 CDF
 1. Sample forecasts at the 12.7 mm threshold
 
 
