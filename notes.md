@@ -6,6 +6,8 @@
 
 1. NSSL-WRF vs. STG4 CDF
 1. Sample forecasts at the 12.7 mm threshold
+1. 16 panel: 15 ensemble member QPFs & STG4
+1. 16 panel: 15 ensemble member probabilistic forecasts & Mean all with STG4 threshold overlaid
 
 
 ### Figures to Modify
