@@ -4,7 +4,11 @@
 \section{Deterministic Results}
 \label{dresults}
 
-It is readily apparent from \mbox{Figure \ref{single_member_composite}} that the centroid of the two-dimensional frequency distribution is observed to the north-northeast of the representative forecast grid point and the distribution has an elliptical shape.
+
+\subsection{25.4 mm Threshold}
+\label{dresults_25.4mm}
+
+It is readily apparent from \mbox{Figure \ref{single_25thresh}} that the centroid of the two-dimensional frequency distribution is observed to the north-northeast of the representative forecast grid point and the distribution has an elliptical shape.
 When the anisotropic Gaussian function is fit to this distribution, the resulting parameters, determined by the methods discussed in \mbox{chapter \ref{method}} and \cite{Lak2010}, are $(\mu_x, \mu_y) = (4.7, 18.8)$ kilometers, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{4.7 km} too far west and \mbox{18.8 km} too far south, $\sigma_x \approx 190$ kilometers, $\sigma_y \approx 155$ kilometers, and $\theta \approx 60^{\circ}$ in the counter-clockwise direction, revealing the anisotropy of the distribution.
 To some extent, the shape and anisotropy are closely related to the mean shape and orientation of individual precipitation objects, as revealed by comparing the average size-weighted orientation of the precipitation objects, determined by the Baldwin object identification algorithm \citep{Baldwin2005}, to the orientation angle of the fitted distribution (not shown).
 
@@ -57,10 +61,20 @@ In order to visualize the reliability of the generated probabilistic forecasts, 
 The resulting diagram indicates that forecasts are quite reliable over a broad range of probabilities.
 
 
+
+
+\subsection{12.7 mm Threshold}
+\label{dresults_12.7mm}
+
+
+
+
+
 As is apparent, this technique offers a method of objectively generating calibrated probabilistic forecasts of RCEs from a single deterministic model.
 This technique is successful because it objectively represents, and corrects for, the mean displacement (systematic error) and the spatial uncertainty associated with the underlying deterministic forecast system (random error).
 Preliminary assessments suggest that this uncertainty varies systematically as a function of numerous factors, such as forecast lead time, geographic location, meteorological season and regime, etc.
 Further refinements to the technique could include dependencies on these factors.
 For example, since cool-season precipitation forecasts tend to be more accurate than those for the warm-season, Gaussian fits to the position-error fields could vary as a function of season, with sharper, higher amplitude distributions in the cool-season and broader, lower amplitude distributions in the warm-season.
+
 
 
