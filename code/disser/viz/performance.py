@@ -86,14 +86,15 @@ def performance_diagram(**kwargs):
                 verticalalignment='center', bbox=dict(fc=(1,1,1,1),
                 ec=(1,1,1,1), boxstyle="round, pad=0.33, rounding_size=0.5",
                 lw=1))
-    ax.set_xlabel('\nSuccess Ratio (1-FAR)', size=14)
+    ax.set_xlabel('Success Ratio (1-FAR)', size=14, labelpad=15)
     ax.set_xticks(np.arange(0, 1+1e-6, 0.1))
     ax.set_xlim(0, 1)
-    ax.set_ylabel('Probability of Detection (POD)\n', size=14)
+    ax.set_ylabel('Probability of Detection (POD)', size=14, labelpad=15)
     ax.set_yticks(ax.get_xticks())
     ax.set_yticklabels(ax.get_xticks())
     ax.set_ylim(0, 1)
-    ax.set_title('Performance Diagram\n\n', size=18,
+    ax.title.set_y(1.05)
+    ax.set_title('Performance Diagram', size=18,
                  verticalalignment='baseline')
     minorLocator = MultipleLocator(0.05)
     ax.xaxis.set_minor_locator(minorLocator)

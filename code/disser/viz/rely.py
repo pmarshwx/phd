@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import ImageGrid
 from matplotlib.ticker import MultipleLocator
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 
 def prepare_reliability(fcounts, ocounts, precision=0):
@@ -73,9 +74,10 @@ def reliability(ax=None, figsize=(10,10)):
         ax = grid[0]; cax = grid.cbar_axes[0]
     diag = np.linspace(0, 1)
     ax.plot(diag, diag, '--', lw=0.5, color='k')
-    ax.set_ylabel('Observed Probability\n', size=14)
-    ax.set_xlabel('\nForecast Probability', size=14)
-    ax.set_title('Reliability Diagram\n\n', size=18,
+    ax.set_ylabel('Observed Probability', size=14, labelpad=15)
+    ax.set_xlabel('Forecast Probability', size=14, labelpad=15)
+    ax.title.set_y(1.05)
+    ax.set_title('Reliability Diagram', size=18,
                  verticalalignment='baseline')
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
