@@ -65,11 +65,11 @@
 \begin{figure}[cc]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
-    ./deterministic/figs/single_member_sample_forecast1}\\
+    ./deterministic/figs/single_member_example1_400km_25mm}\\
     \caption{Example forecasts and observations from two separate days and differing forecast lengths.
     The column on the left depicts forecasts and observations for the 6-hrs ending 02 May 2010 at 18 UTC (12-18 hr forecast) whereas the column on the right depicts forecasts and observations for the 6-hrs ending 27 September 2010 at 00 UTC (18-24 hr forecast).
-    Panels (a) and (b) denote the Stage IV 6-hr quantitative precipitation estimates (QPE), panels (c) and (d) denote the 6-hr NSSL-WRF 6-hr quantitative precipitation forecasts (QPF), and panels (e) and (f) depict the Stage IV QPE greater than 25.4 mm contoured on top of the NSSL-WRF probability of exceeding 25.4 mm in 6-hrs. The minimum shaded probability is 0.001 (0.1\%).}
-    \label{single_sample1}
+    Panels (a) and (b) denote the Stage IV 6-hr quantitative precipitation estimates (QPE), panels (c) and (d) denote the 6-hr NSSL-WRF 6-hr quantitative precipitation forecasts (QPF), and panels (e) and (f) depict the Stage IV QPE greater than 25.4 mm contoured on top of the NSSL-WRF probability of exceeding 25.4 mm in 6-hrs. The minimum shaded probability is 0.0001 (0.01\%).}
+    \label{single_1_400km_25mm}
 \end{figure}
 
 
@@ -77,9 +77,9 @@
 \begin{figure}[cc]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
-    ./deterministic/figs/single_member_sample_forecast2}\\
-    \caption{Same layout as in \mbox{Figure \ref{single_sample1}} except the left column depicts the forecast and observations for the 6-hrs ending 06 June 2010 at 06 UTC (24-30 hr forecast) and the right column depicts the 6-hrs ending 30 September 2010 at 12 UTC (30-36 hr forecast).}
-    \label{single_sample2}
+    ./deterministic/figs/single_member_example2_400km_25mm}\\
+    \caption{Same layout as in \mbox{Figure \ref{single_1_400km_25mm}} except the left column depicts the forecast and observations for the 6-hrs ending 06 June 2010 at 06 UTC (24-30 hr forecast) and the right column depicts the 6-hrs ending 30 September 2010 at 12 UTC (30-36 hr forecast).}
+    \label{single_2_400km_25mm}
 \end{figure}
 
 
@@ -104,5 +104,38 @@
 
     \label{single_12thresh}
 \end{figure}
+
+
+\clearpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
+    ./deterministic/figs/single_member_example1_400km_12mm}\\
+    \caption{The same as in \mbox{Figure \ref{single_1_400km_25mm}} except using the \mbox{12.7 mm} threshold.}
+    \label{single_1_400km_12mm}
+\end{figure}
+
+
+\clearpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
+    ./deterministic/figs/single_member_example2_400km_12mm}\\
+    \caption{Same layout as in \mbox{Figure \ref{single_1_400km_12mm}} except the left column depicts the forecast and observations for the 6-hrs ending 06 June 2010 at 06 UTC (24-30 hr forecast) and the right column depicts the 6-hrs ending 30 September 2010 at 12 UTC (30-36 hr forecast).}
+    \label{single_2_400km_25mm}
+\end{figure}
+
+
+\clearpage
+\begin{figure}[cc]
+    \centering
+    \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
+    ./deterministic/figs/single_member_verif_400km_12mm}\\
+    \caption{The same as in \mbox{Figure \ref{single_verif_400km_25mm}} except using the \mbox{12.7 mm} threshold.}
+    \label{single_verif_400km_25mm}
+\end{figure}
+
+
+
 
 
