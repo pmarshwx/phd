@@ -18,7 +18,7 @@ Four sample forecasts, all of differing lead times, are shown in \mbox{Figures \
 However, one must be cautious about assessing the skill of a probabilistic forecasting system on the basis of individual events.
 
 
-\mbox{Figures \ref{single_1_400km_25mm}a}, \mbox{\ref{single_1_400km_25mm}c}, and \mbox{\ref{single_1_400km_25mm}e} depict observations and model forecasts of precipitation for the 6 hrs ending 18 UTC 2 May 2010 (a 12-18 hr forecast).
+\mbox{Figure \ref{single_1_400km_25mm}a}, \mbox{\ref{single_1_400km_25mm}c}, and \mbox{\ref{single_1_400km_25mm}e} depict observations and model forecasts of precipitation for the 6 hrs ending 18 UTC 2 May 2010 (a 12-18 hr forecast).
 During this 6 hr period, heavy-rain fell over an elongated area stretching from central Mississippi north-northeastward into southeastern Ohio and western West Virginia, with an area exceeding 200 mm in north-central Tennessee \mbox{(Figure \ref{single_1_400km_25mm}a)}.
 South and east of this axis of heaviest rainfall, areas in eastern Mississippi had precipitation totals around the 25.4 mm threshold.
 The NSSL-WRF forecast of this event was generally good, cluing forecasters in on the general area of concern.
@@ -28,7 +28,7 @@ Additionally, the axis of highest probabilities extending northeast of the maxim
 The axis of highest probabilities also extends to the south and southwest of the maximum forecast probabilities, capturing the southwestward extent of the observed heavy rain, at the same time highlighting areas in eastern Mississippi \mbox{(Figure \ref{single_1_400km_25mm}e)}.
 
 
-\mbox{Figsures \ref{single_1_400km_25mm}b}, \mbox{\ref{single_1_400km_25mm}d}, and \mbox{\ref{single_1_400km_25mm}f} depict observations and model forecasts of precipitation for the 6 hrs ending 00 UTC 27 September 2010 (an 18-24 hr forecast).
+\mbox{Figures \ref{single_1_400km_25mm}b}, \mbox{\ref{single_1_400km_25mm}d}, and \mbox{\ref{single_1_400km_25mm}f} depict observations and model forecasts of precipitation for the 6 hrs ending 00 UTC 27 September 2010 (an 18-24 hr forecast).
 Observations depict a large area of precipitation greater than or equal to 25.4 mm stretching from southeastern Alabama northeastward into far northwestern South Carolina with scattered areas reaching this threshold across southern Mississippi and eastern North and South Carolina \mbox{(Figure \ref{single_1_400km_25mm}b)}.
 The NSSL-WRF forecast of this event depicted two areas exceeding 25.4 mm of precipitation, essentially capturing both observed areas (\mbox{cf. Figures \ref{single_1_400km_25mm}b} and \mbox{\ref{single_1_400km_25mm}d)}.
 The corridor of observations greater than 25.4 mm are generally contained within 5-10\% probabilities \mbox{(Figure \ref{single_1_400km_25mm}f)}. In this case, much of the area covered by the highest probabilities of 15-20\% did not receive heavy rainfall during this period.
@@ -55,10 +55,16 @@ The NSSL-WRF deterministic forecast completely missed the heavy precipitation ac
 
 These examples are illuminating but many events are required to assess the skill of probabilistic forecast systems.
 A more objective verification is provided here by applying well-known verification metrics to the entire 12-months worth of forecasts generated in this manner.
-First, a Relative Operating Characteristic curve \citep{Mason1982} is computed from all forecasts and observations \mbox{(Figure \ref{single_verif_400km_25mm}a)}.
-The resulting curve yields an area under the curve (AUC) of 0.94, indicating that the probabilistic forecasts have considerable skill in discriminating between events and non-events.
-In order to visualize the reliability of the generated probabilistic forecasts, a reliability diagram was constructed (Figure \mbox{\ref{single_verif_400km_25mm}b)}.
+First, all probabilistic forecasts, which are continuous, were binned into 5\% bins ranging from 0 to 100.
+Probabilistic forecasts of 0\% and 100\% were placed into their own specific bins\footnote{Technically, a forecast of 100\% was never achieved.}.
+Next, the Probability of Detection (POD) and Success Ratio (SR)\footnote{The Success Ratio is defined as 1 - the False Alarm Ratio (FAR).} were computed for each of the probabilistic bins.
+Then, the POD and SR were plotted on a performance diagram \citep{Roebber2009} \mbox{(Figure \ref{single_verif_400km_25mm}a)}.
+The performance diagram reveals that the best probability bin has a Critical Success Index (CSI) of around 0.1.
+Unfortunately, most of the probability bins had a CSI much lower than 0.1.
+
+Although the performance diagram demonstrates relatively poor results in terms of CSI, the reliability of the forecasts is a different matter (Figure \mbox{\ref{single_verif_400km_25mm}b)}.
 The resulting diagram indicates that forecasts are quite reliable over a broad range of probabilities.
+One caveat, however, is that the variability of the reliability increases as the number of forecast grid points decreases, especially below 10 000 \mbox{(Figure \ref{single_verif_400km_25mm}c)}.
 
 
 
@@ -66,11 +72,35 @@ The resulting diagram indicates that forecasts are quite reliable over a broad r
 \subsection{12.7 mm Threshold}
 \label{dresults_12.7mm}
 
+After evaluating the method at a threshold of \mbox{25.4 mm} in 6 hrs, the method was evaluated at a lower threshold.
+Similar to the two-dimensional frequency histogram at the \mbox{25.4 mm} threshold, \mbox{Figure \ref{single_12comp}} conveys that the centroid of the two-dimensional frequency distribution is observed to the north-northeast of the representative forecast grid point and the distribution has an elliptical shape.
+The fitted anisotropic Gaussian function is constructed using $(\mu_x, \mu_y) = (9.4, 14.1)$ kilometers, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{9.4 km} too far west and \mbox{14.4 km} too far south, $\sigma_x \approx 190$ kilometers, $\sigma_y \approx 170$ kilometers, and $\theta \approx 50^{\circ}$ in the counter-clockwise direction, revealing the anisotropy of the distribution.
+The fitted function at the \mbox{12.7 mm} threshold is less anisotropic as compared to the \mbox{25.4 mm} threshold.
+This is most likely a result stemming from using a lower precipitation threshold.
+The lower precipitation threshold is easier to achieve, resulting in more grid points being considered as ``events''.
+The more events results in a wider composite at the \mbox{12.7 mm} threshold than at the rarer \mbox{25.4 mm} threshold.
+
+
+Examples of the forecasts produced by the calibration method are shown in \mbox{Figures \ref{single_1_400km_12mm} and \ref{single_2_400km_12mm}}. The general structure of the precipitation exceeding \mbox{12.7 mm} is similar to that exceeding \mbox{25.4 mm} discussed in \mbox{section \ref{dresults_25.4mm}} and will not be discussed here.
+Generally speaking, the probabilistic forecasts generated at this threshold appear to be of similar quality as those shown for the \mbox{25.4 mm} threshold.
+The main areas of precipitation exceeding the \mbox{12.7 mm} threshold appears to be contained within areas exceeding probabilities of \mbox{5\%}.
+The most notable difference is the higher probabilities generated.
+
+
+As mentioned previously, even though these examples appear to produce good probabilistic forecasts, it is incorrect to assess the quality of a probabilistic forecast system using isolated events.
+Instead probabilistic forecasts need to be evaluated over many events.
+Following the methods outlined previously, a performance diagram and reliability diagram were constructed for the forecast results at the \mbox{12.7 mm} threshold \mbox{(Figure \ref{single_verif_400km_12mm})}.
+The performance diagram is much improved over that in \mbox{Figure \ref{single_verif_400km_25mm}a}, as all forecast bins have improved CSI; the maximum CSI attained is closer to 0.2.
+The reliability diagram indicates forecasts over a much broader range of probabilities than those in \mbox{Figure \ref{single_verif_400km_25mm}b}.
+The forecasts at lower probabilities demonstrate nearly perfect reliability; forecasts at higher probabilities deviate from perfect reliability slightly, with the trend toward under forecasting.
+In other words, when the method produces a forecast with a high probability, the forecast verifies more often than a reliable forecast would.
+As is the case with the \mbox{25.4 mm} threshold, as the number of forecast grid points decreases, particularly below 10 000 grid points, the forecast is more likely to deviate from perfect reliability (\mbox{Figure \ref{single_verif_400km_12mm}c} versus \mbox{Figure \ref{single_verif_400km_25mm}c}).
 
 
 
-
-As is apparent, this technique offers a method of objectively generating calibrated probabilistic forecasts of RCEs from a single deterministic model.
+\subsection{Discussion}
+\label{ddiscussion}
+As is apparent, the proposed calibration technique offers a method of objectively generating calibrated probabilistic forecasts of RCEs from a single deterministic model.
 This technique is successful because it objectively represents, and corrects for, the mean displacement (systematic error) and the spatial uncertainty associated with the underlying deterministic forecast system (random error).
 Preliminary assessments suggest that this uncertainty varies systematically as a function of numerous factors, such as forecast lead time, geographic location, meteorological season and regime, etc.
 Further refinements to the technique could include dependencies on these factors.
