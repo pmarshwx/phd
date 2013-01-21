@@ -4,11 +4,37 @@
 \section{Ensemble Data}
 \label{edata}
 
+As discussed at the beginning of \mbox{chapter \ref{deterministic}}, in order to develop a statistical post-processing method for calibration of numerical weather prediction forecasts, both forecasts and observations must be readily available.
+Unfortunately, as mentioned in the Introduction, ``\dots there is a limited database of forecasts for RCEs, making robust statistical techniques difficult\dots''
+As limited as databases of deterministic CAM forecasts are, the availability of ensembles of CAM forecasts is even worse.
+
+
+Similar to CAM forecasts, most ensemble CAM (eCAM) forecasts have been short-term initiatives, produced in support of various field programs and experiments.
+The makeup of these eCAMs are often modified year-to-year to adapt to the changing needs of the various field programs and experiments.
+This makes finding a long running, consistent ensemble extremely difficult.
+
+
+One of the largest collections of eCAM forecasts has been produced by the University of Oklahoma's Center for the Analysis and Prediction of Storms (CAPS).
+Since 2007, CAPS has been producing CAM forecasts in support of the Hazardous Weather Testbed's annual Spring Forecast Experiment.
+Typically the ensemble configuration changes year-to-year based on the results of previous years.
+However, in 2011 a conscious effort was made to ensure a subset of that year's CAM forecasts would be produced using the same configuration as the previous year.
+This resulted in the creation of a two year, 15-member eCAM dataset that is used here.
+
+
+
 
 \subsection{Ensemble Forecasts}
 \label{emodel}
 
 
 
+
+
 \subsection{Observations}
+\label{eobservations}
+
+As was the case for the deterministic model calibration, NCEP's Stage IV national quantitative precipitation estimate analysis was chosen as the verification dataset\footnote{See \mbox{section \ref{observations}} for a description of this dataset.}.
+Similarly, as was necessary with the deterministic forecasts, the ensemble forecasts have been interpolated to the Stage IV grid, and all diagnostics and analysis were conducted on this grid.
+Furthermore, the same mask shown in \mbox{Figure \ref{domain}} was used to limit the analysis to areas east of the Rocky Mountains and near land.
+
 
