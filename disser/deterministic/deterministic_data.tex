@@ -8,8 +8,8 @@ To develop a statistical post-processing method for calibration of numerical mod
 Unfortunately, observational datasets of many RCEs (e.g., tornadoes, wind damage, hail swaths, etc) are riddled with inaccuracies and deficiencies \citep{Doswell1988, Weiss2002, Trapp2006, Ortega2009} that prevent their use in rigorous statistical post-processing.
 Precipitation, however, is one of the best documented observational fields in meteorology and it is available as direct output from numerical models.
 Thus, to develop a method of calibration for RCEs, it was decided to focus on precipitation.
-Here, accumulations greater than or equal to \mbox{25.4 mm} in \mbox{6 hrs} are considered rare events as this threshold is met on fewer than 0.5\% of grid points\footnote{If one considers a forecast at a single grid point as a single forecasting occasion, then \mbox{25.4 mm} in \mbox{ 6 hrs} meets the definition of a rare event posed by \cite{Murphy1991}.}.
-Subsequently, the proposed method was applied to forecasts of accumulations greater than or equal to \mbox{12.7 mm} in \mbox{6 hrs} to test the method against a larger sample of forecasting occasions\footnote{Forecasts of at least \mbox{12.7 mm} in \mbox{6 hrs} occurred on approximately 1.5\% of all forecasting occasions.}.
+Here, accumulations greater than or equal to \mbox{25.4 mm} in \mbox{6 hrs} are considered rare events as this threshold is met on fewer than 0.36\% of grid points\footnote{If one considers a forecast at a single grid point as a single forecasting occasion, then \mbox{25.4 mm} in \mbox{6 hrs} meets the definition of a rare event posed by \cite{Murphy1991}.} (\mbox{Figure \ref{single_25quant}}).
+Subsequently, the proposed method was applied to forecasts of accumulations greater than or equal to \mbox{12.7 mm} in \mbox{6 hrs} to test the method against a larger sample of forecasting occasions\footnote{Forecasts of at least \mbox{12.7 mm} in \mbox{6 hrs} occurred on approximately 1.3\% of all forecasting occasions.} (\mbox{Figure \ref{single_12quant}}).
 
 Model forecasts and observations of precipitation were obtained for the 48-month period 01 April 2007 through 31 March 2011 and subdivided into two classifications: training and verification.
 Forecasts and observations during the time period 01 April 2007 through 31 March 2010 (36-months) were used in the training dataset, with the remaining 12-months used for testing and verification of the proposed method.
@@ -39,6 +39,6 @@ NCEP mosaics the Stage III into a national product (the Stage IV analyses) avail
 Diagnostic analyses were conducted on the Stage IV grid, requiring interpolation of the NSSL-WRF output.
 The program \emph{copygb}\footnote{Available at \url{http://www.cpc.ncep.noaa.gov/products/wesley/copygb.html.}} was used for the interpolation and domain-wide total liquid volume was conserved.
 Six-hour accumulation periods were used, taken from the 12-36 hour forecasts ending at 18, 00, 06, and 12 UTC.
-A mask was applied to both the NSSL-WRF forecasts and STage IV observations to limit the region studied to CONUS and near-CONUS areas east of the Rocky Mountains \mbox{(Fig. \ref{domain})}.
+A mask was applied to both the NSSL-WRF forecasts and Stage IV observations to limit the region studied to CONUS and near-CONUS areas east of the Rocky Mountains \mbox{(Fig. \ref{domain})}.
 
 
