@@ -33,8 +33,8 @@ First, forecasts are mapped onto the observations' grid.
 Next the raw forecasts and observations are converted into binary grids of 1s (event occurred) and 0s (event did not occur).
 Next, all grid points within a specified radius of a forecast event are examined for observations.
 If an observation occurs within the specified radius of a forecast, the position of the observation relative to the forecast is recorded.
-Lastly, all of these relative positions are mapped onto a common grid ans summed.
-The results is a two-dimensional frequency histogram of where observations occurred relative to forecasts.
+Lastly, all of these relative positions are mapped onto a common grid and summed.
+The result is a two-dimensional frequency histogram of where observations occurred relative to forecasts.
 
 
 
@@ -43,7 +43,7 @@ The results is a two-dimensional frequency histogram of where observations occur
 \label{fitting}
 
 Once the two-dimensional frequency histogram is determined, the next step involves fitting an analytic function to the histogram.
-As previously mentioned, any analytic function would work, but a Gaussian function is used here.
+As previously mentioned, any analytic function would work, but a Gaussian function is demonstrated here.
 
 To fit a Gaussian function, two parameters must be known: location and variance.
 Typically, the location of a Gaussian function is given by the mean of the distribution.
@@ -95,7 +95,7 @@ The two-dimensional Gaussian function is represented mathematically as:
     \end{equation}
 
 \noindent where $\sigma_x$ is the standard deviation (or, bandwidth, when applied in a KDE framework) in the x-direction and $\sigma_y$ is the standard deviation in the y-direction.
-When $\sigma_x \neq \sigma_y$, the Gaussian is said to be anisotropic.
+When $\sigma_x \neq \sigma_y$, the Gaussian function is said to be anisotropic.
 The function's peak probability density occurs at the center of the function, and decreases monotonically outward such that
 
     \begin{equation}
@@ -111,7 +111,7 @@ The function's peak probability density occurs at the center of the function, an
 
 \noindent where $x$ is the x-component of the distance from the center, $y$ s the y-component of the distance from center, $a$ is the major axis, and $b$ is the minor axis, is satisfied.
 The result is concentric ellipses that monotonically decrease outward.
-In the limiting case of $\sigma_x = \sigma_y$, the Gaussian is said to be isotropic.
+In the limiting case of $\sigma_x = \sigma_y$, the Gaussian function is said to be isotropic.
 In this case, the function's peak probability density still occurs at the center of the function and decreases monotonically outward; however, \mbox{equation \ref{ellipse}} becomes
 
     \begin{equation*}
@@ -190,7 +190,7 @@ The rotation angle can be computed from the covariance matrix of the observed fr
 \section{Putting it All Together}
 \label{kde}
 
-Once $\mu_x$, $\mu_y$, $\sigma_x$, $\sigma_y$, and $\theta$ are known, kernel density estimation can be carried out on any forecast. T
+Once $\mu_x$, $\mu_y$, $\sigma_x$, $\sigma_y$, and $\theta$ are known, kernel density estimation can be carried out on any forecast.
 This is done by creating a binary grid from the model's forecast, similar to the ones created in the compositing stage.
 Each ``yes'' grid point (1) is then shifted by the mean displacement vector, ${\mu_x, \mu_y}$ and then smoothed by \mbox{equation \ref{2DRotatedGauss}}, using the objectively derived $\sigma_x$, $\sigma_y$, and $\theta$ out to a distance of $5\sigma_x$ in the x-direction and $5\sigma_y$ in the y-direction\footnote{$5\sigma_x$ and $5\sigma_y$, were chosen because this distance accounts for greater than 99.999\% of the fitted Gaussian distribution.
 In practice, any multiple of $\sigma_x$ and $\sigma_y$ would work, with larger multiples accounting for more of the fitted Gaussian's tails.}.
