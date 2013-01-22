@@ -53,7 +53,8 @@
         \endfirsthead
 
         % Header for remaining pages
-        \multicolumn{7}{c}{{\tablename} \thetable{} -- Continued} \\
+        \hline
+        \multicolumn{7}{|c|}{{\tablename} \thetable{} -- Continued} \\
         \hline
         \rowcolor{gray!60}
         \member{\textbf{Member}} &
@@ -67,20 +68,30 @@
         \endhead
 
         %This is the footer for all pages except the last page of the table...
-        \multicolumn{7}{l}{{Continued on Next Page \ldots}} \\
+        \multicolumn{7}{|c|}{{Continued on Next Page \ldots}} \\
+        \hline
         \endfoot
 
         %This is the footer for the last page of the table...
-        \hline \hline
-        \multicolumn{7}{l}{Note 1: For all members, cumulus parameterization is turned off} \\
-        \multicolumn{7}{l}{Note 2: For all ARW members, the long-wave radiation parameterization is RRTM} \\
-        \multicolumn{7}{l}{Note 3: For all ARW members, the short-wave radiation parameterization is Goddard} \\
-        \multicolumn{7}{l}{Note 4: For nmm\_cn, nmm\_m2, \& nmm\_m3 the long-wave radiation parameterization is GFDL} \\
-        \multicolumn{7}{l}{Note 5: For nmm\_cn, nmm\_m2, \& nmm\_m3 the short-wave radiation parameterization is GFDL} \\
-        \multicolumn{7}{l}{Note 6: For nmm\_m4 \& nmm\_m5 the long-wave radiation parameterization is RRTM}\\
-        \multicolumn{7}{l}{Note 7: For nmm\_m4 \& nmm\_m5 the short-wave radiation parameterization is Dudhia} \\
-        \multicolumn{7}{l}{Note 8: The arps member uses Chou/Suarex for radiation} \\
-        \multicolumn{7}{l}{Note 9: Ferrier+ refers to a subset of changes in the updated version now in NEMS/NMMB} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 1: For all members, cumulus parameterization is turned off} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 2: For all ARW members, the long-wave radiation parameterization is RRTM} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 3: For all ARW members, the short-wave radiation parameterization is Goddard} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 4: For nmm\_cn, nmm\_m2, \& nmm\_m3 the long-wave radiation parameterization is GFDL} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 5: For nmm\_cn, nmm\_m2, \& nmm\_m3 the short-wave radiation parameterization is GFDL} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 6: For nmm\_m4 \& nmm\_m5 the long-wave radiation parameterization is RRTM}\\
+        \hline
+        \multicolumn{7}{|l|}{Note 7: For nmm\_m4 \& nmm\_m5 the short-wave radiation parameterization is Dudhia} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 8: The arps member uses Chou/Suarex for radiation} \\
+        \hline
+        \multicolumn{7}{|l|}{Note 9: Ferrier+ refers to a subset of changes in the updated version now in NEMS/NMMB} \\
+        \hline
 
         \endlastfoot
 
@@ -237,3 +248,45 @@
 
     \end{longtable}
 \end{center}
+
+
+
+
+\begin{table}[cc]
+    \centering
+    \setlength{\tabcolsep}{0.5in}
+    \renewcommand{\arraystretch}{1.25}
+    \caption[2010 and 2011 dates where CAPS forecasts are available.]
+    {2010 and 2011 dates where CAPS forecasts are available.}
+    \label{sfedtes} \vspace{0.25in}
+    \begin{tabular}{||c c||}
+        \hline \hline
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        \multicolumn{2}{||c||}{\Large 2010 Dates} \\
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        Week \#1: & 17--21 May 2010 \\
+        Week \#2: & 24--28 May 2010 \\
+        Week \#3: & 31 May -- 04 June 2010 \\
+        Week \#4: & 07--11 June 2010 \\
+        Week \#5: & 14--18 June 2010 \\
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        \hline
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        \multicolumn{2}{||c||}{\Large 2011 Dates} \\
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        Week \#1: & 09--13 May 2011 \\
+        Week \#2: & 16--20 May 2011 \\
+        Week \#3: & 23--27 May 2011 \\
+        Week \#4: & 30 May -- 03 June 2011 \\
+        Week \#5: & 06--10 June 2011 \\
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        \hline
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        \multicolumn{2}{||c||}{\Large Special Run Dates} \\
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        Special \#1: & 27 April 2011 \\
+        Special \#2: & 22 May 2011 \\
+        \vspace{\baselineskip} & \vspace{\baselineskip} \\
+        \hline \hline
+    \end{tabular}
+\end{table}
