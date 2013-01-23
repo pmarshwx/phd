@@ -15,31 +15,31 @@ Unfortunately, as mentioned in the Introduction, ``\dots there is a limited data
 As limited as databases of deterministic CAM forecasts are, the availability of ensembles of CAM forecasts is even worse.
 
 
-Similar to CAM forecasts, most ensemble CAM (eCAM) forecasts have been short-term initiatives, produced in support of various field programs and experiments.
+Similar to CAM forecasts, most storm-scale ensemble forecast systems\footnote{The phrase storm-scale ensemble forecast is typically used in reference to ensembles composed of numerical forecasts produced without using cumulus parameterization.} (SSEF) forecasts have been short-term initiatives, produced in support of various field programs and experiments.
 The makeup of these eCAMs are often modified year-to-year to adapt to the changing needs of the various field programs and experiments.
 This makes finding a long running, consistent ensemble extremely difficult.
 
 
-One of the largest collections of eCAM forecasts has been produced by the University of Oklahoma's Center for the Analysis and Prediction of Storms (CAPS).
+One of the largest collections of SSEF forecasts has been produced by the University of Oklahoma's Center for the Analysis and Prediction of Storms (CAPS).
 Since 2007, CAPS has been producing CAM forecasts in support of the Hazardous Weather Testbed's (HWT) annual Spring Forecast Experiment (SFE).
 From 2007 through 2010, the ensemble configuration changed from year-to-year based on the results of previous years.
-However, in 2011 a conscious effort was made to ensure a subset of that year's CAM forecasts would be produced using as similar a configuration as the previous year.
-
-
-In 2010, CAPS produced a 26 member ensemble of convection-allowing model forecasts.
-This eCAM was multi-model in nature, initialized daily at 00 UTC, used 4 km grid spacing, and integrated out to 30 hours.
-Of the 26 members, 19 were WRF-ARW\footnote{Weather Research and Forecasting -- Advanced Research WRF} \citep{WRFV3}, 5 were WRF-NMM\footnote{Weather Research and Forecasting -- nonhydrostatic Mesoscale Model} \citep{NAMnWRF-NMM}, and 2 were ARPS\footnote{Advanced Regional Prediction System} \citep{ARPS}. In 2011, CAPS produced a 50 member ensemble consisting of 41 WRF-ARW, 5 WRF-NMM, and 4 ARPS forecasts initialized daily at 00 UTC, using a grid spacing of 4 km, and integrated forward to 36 hours.
+In 2010, CAPS produced a 26 member SSEF.
+This SSEF was multi-model in nature, initialized daily at 00 UTC, used 4 km grid spacing, and integrated out to 30 hours.
+Of the 26 members, 19 were WRF-ARW\footnote{Weather Research and Forecasting -- Advanced Research WRF} \citep{WRFV3}, 5 were WRF-NMM\footnote{Weather Research and Forecasting -- nonhydrostatic Mesoscale Model} \citep{NAMnWRF-NMM}, and 2 were ARPS\footnote{Advanced Regional Prediction System} \citep{ARPS}.
+In 2011, CAPS expanded the SSEF from 26 members to 50, of which 41 were WRF-ARW, 5 were WRF-NMM, and 4 were ARPS.
+These forecasts were initialized daily at 00 UTC, used a grid spacing of 4 km, and were integrated forward to 36 hours.
 
 
 From these 26 members in 2010 and 50 members in 2011, 15 were chosen to be held as consistent as possible between the two years.
 These 15 members were composed of 10 WRF-ARW forecasts, 4 WRF-NMM forecasts, and 1 ARPS forecast.
 The background initial conditions for these 15 members were downscaled from the 00 UTC 12 km NAM, with additional information coming from a three dimensional variational and cloud analysis from ARPS.
 Except for the control members (one each from the WRF-ARW, WRF-NMM, and ARPS), these initial conditions were then perturbed using mesoscale atmospheric perturbations from NOAA's Environmental Modeling Center's operational Short-Range Ensemble Forecast (SREF) system.
-Boundary conditions for the three control members came from the 00 UTC NAM's forecasts, whereas the remaining 12 members used the SREF forecast corresponding to the perturbations used in the initial conditions. A listing of the configurations for each member of the eCAM can be found in \mbox{Table \ref{ensemble_members}}.
+Boundary conditions for the three control members came from the 00 UTC NAM's forecasts, whereas the remaining 12 members used the SREF forecast corresponding to the perturbations used in the initial conditions.
+A listing of the configurations for each member of the eCAM can be found in \mbox{Table \ref{ensemble_members}}.
 
 
 The only controlled change between 2010 and 2011 for the aforementioned set of 15 forecasts came from a change in the version of WRF. In 2010, \mbox{WRF Version 3.1.1} was used whereas \mbox{WRF Version 3.2.1} was used in 2011.
-Changes in the NAM and SREF, which were used for initial and boundary conditions were controlled by the NOAA National Weather Service and could not be avoided.
+Changes in the NAM and SREF, which were used for initial and boundary conditions, were controlled by the NOAA National Weather Service and could not be avoided.
 
 
 
@@ -56,11 +56,6 @@ Furthermore, the same mask shown in \mbox{Figure \ref{domain}} was used to limit
 
 \subsection{Processing and Data Selection}
 \label{eprocessing}
-
-CAPS produced ensemble forecasts for the 2010 HWT SFE over a five week period from 17 May through 18 June.
-In 2011 CAPS produced ensemble forecasts for the HWT SFE from 09 May through 10 June.
-CAPS produced two retrospective forecasts in 2011 for the 27 April 2011 tornado outbreak in the southeast United States and the 22 May 2011 Joplin, Missouri EF-5 tornado.
-\mbox{Table \ref{sfedtes}} gives the exact list of dates CAPS forecasts are available.
 
 
 
