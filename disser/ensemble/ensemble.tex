@@ -17,13 +17,13 @@
 %%%%%%%%%%%%%%%%%%%
 \newenvironment{telement}[2]{\begin{minipage}[c]{#1} \centering #2} {\end{minipage}}
 \newcommand{\coremem}{\color{red}}
-\newcommand{\member}[1]{\begin{telement}{0.66in}{#1}\end{telement}}
+\newcommand{\member}[1]{\begin{telement}{0.75in}{#1}\end{telement}}
 \newcommand{\ic}[1]{\begin{telement}{1in}{#1}\end{telement}}
-\newcommand{\bc}[1]{\begin{telement}{1in}{#1}\end{telement}}
-\newcommand{\radar}[1]{\begin{telement}{0.5in}{#1}\end{telement}}
-\newcommand{\microphysics}[1]{\begin{telement}{0.66in}{#1}\end{telement}}
+\newcommand{\bc}[1]{\begin{telement}{0.75in}{#1}\end{telement}}
+\newcommand{\radar}[1]{\begin{telement}{0.75in}{#1}\end{telement}}
+\newcommand{\microphysics}[1]{\begin{telement}{0.75in}{#1}\end{telement}}
 \newcommand{\lsm}[1]{\begin{telement}{0.75in}{#1}\end{telement}}
-\newcommand{\pbl}[1]{\begin{telement}{0.66in}{#1}\end{telement}}
+\newcommand{\pbl}[1]{\begin{telement}{0.75in}{#1}\end{telement}}
 
 \newpage
 
@@ -76,23 +76,18 @@
         \hline
         \multicolumn{7}{|l|}{Note 1: For all members, cumulus parameterization is turned off} \\
         \hline
-        \multicolumn{7}{|l|}{Note 2: For all ARW members, the long-wave radiation parameterization is RRTM} \\
+        \multicolumn{7}{|l|}{\multirow{1}{\textwidth}{Note 2: For all ARW members, the long-wave radiation parameterization is RRTM and the short-wave radiation parameterization is Goddard}} \\
         \hline
-        \multicolumn{7}{|l|}{Note 3: For all ARW members, the short-wave radiation parameterization is Goddard} \\
+        \multicolumn{7}{|l|}{\multirow{1}{\textwidth}{Note 3: For nmm\_cn, nmm\_m2, \& nmm\_m3 the long-wave radiation parameterization is GFDL and the short-wave radiation parameterization is GFDL}} \\
         \hline
-        \multicolumn{7}{|l|}{Note 4: For nmm\_cn, nmm\_m2, \& nmm\_m3 the long-wave radiation parameterization is GFDL} \\
+        \multicolumn{7}{|l|}{\multirow{1}{\textwidth}{Note 4: For nmm\_m4 \& nmm\_m5 the long-wave radiation parameterization is RRTM and the short-wave radiation parameterization is Dudhia}}\\
         \hline
-        \multicolumn{7}{|l|}{Note 5: For nmm\_cn, nmm\_m2, \& nmm\_m3 the short-wave radiation parameterization is GFDL} \\
+        \multicolumn{7}{|l|}{Note 5: The arps member uses Chou/Suarex for radiation} \\
         \hline
-        \multicolumn{7}{|l|}{Note 6: For nmm\_m4 \& nmm\_m5 the long-wave radiation parameterization is RRTM}\\
+        \multicolumn{7}{|l|}{Note 6: Ferrier+ refers to a subset of changes in the updated version now in NEMS/NMMB} \\
         \hline
-        \multicolumn{7}{|l|}{Note 7: For nmm\_m4 \& nmm\_m5 the short-wave radiation parameterization is Dudhia} \\
+        \multicolumn{7}{|l|}{\multirow{1}{\textwidth}{Note 7: The ARPS PBL scheme \citep{Xue1996, Sun1986} uses a non-local vertical mixing length within the convective boundary layer}} \\
         \hline
-        \multicolumn{7}{|l|}{Note 8: The arps member uses Chou/Suarex for radiation} \\
-        \hline
-        \multicolumn{7}{|l|}{Note 9: Ferrier+ refers to a subset of changes in the updated version now in NEMS/NMMB} \\
-        \hline
-
         \endlastfoot
 
         % Member 1 of 24
@@ -243,7 +238,7 @@
         \coremem\radar{Yes} &
         \coremem\microphysics{Lin} &
         \coremem\lsm{Force Restore} &
-        \coremem\pbl{??? ???} \\
+        \coremem\pbl{1.5-order TKE-based} \\
         \hline
 
     \end{longtable}
