@@ -52,9 +52,6 @@ CAPS provided SSEF forecasts each weekday during the experiment, with an additio
 In an effort to be consistent with the evaluation carried out on the NSSL-WRF, the decision was made to use six-hour accumulation periods for both SSEF forecasts\footnote{Unless otherwise noted, from this point forward the phrase ``SSEF'', ``SSEF forecasts'', or variants thereof refer to the 15 numerical forecasts that are presented in \mbox{Table \ref{ensemble_members}}.} and the Stage IV analyses.
 The SSEF forecasts were drawn from the \mbox{12-36 hr} forecasts ending at 18, 00, 06, and 12 UTC, but only for \mbox{6 hr} time periods for which every member was available.
 This means that out of the 208 possible \mbox{6 hr} time periods (52 days times 4 periods a day), the potential dataset was immediately reduced to 156 six-hour time periods (52 days times 3 periods a day) because the 2010 SSEF was only integrated out to \mbox{30 hr}.
-An additional 37 six-hour time periods were removed due to at least one member being unavailable.
-Thus, there are 119 six-hour time periods, over 2010 and 2011, for which the entire SSEF is available.
-
 
 
 
@@ -62,14 +59,29 @@ Thus, there are 119 six-hour time periods, over 2010 and 2011, for which the ent
 \subsection{Observations}
 \label{eobservations}
 
-As was the case for the evaluating the deterministic model calibration, NCEP's Stage IV national quantitative precipitation estimate analysis was chosen as the verification dataset\footnote{See \mbox{section \ref{observations}} for a description of this dataset.}.
-Similarly, as was necessary with the deterministic forecasts, the ensemble forecasts have been interpolated to the Stage IV grid, and all diagnostics and analysis were conducted on this grid.
+As was the case for the evaluating the deterministic model calibration, NCEP's Stage IV national quantitative precipitation estimate analysis was chosen as the verification dataset.
+Please see \mbox{section \ref{observations}} for a description of the Stage IV dataset.
+
+
+
+
+\subsection{Processing}
+\label{eprocessing}
+
+As stated in \mbox{section \ref{emodel}}, there were a maximum of 156 six-hour time periods for which SSEF data was expected.
+This potential dataset was further thinned by removing all time periods in which either one or more SSEF members were missing or the Stage IV analysis was unavailable.
+An additional 37 six-hour time periods were removed as a result, leaving 119 six-hour time periods, over 2010 and 2011, for which both the entire SSEF and the Stage IV analyses are available.
+
+
+Unfortunately, 119 time periods is too small a sample to meaningfully break into a training dataset and a verification dataset, especially when considering events that are expected to occur on fewer than 1\% of grid points.
+For comparison, the NSSL-WRF training dataset had 4120 time periods and the verification dataset had 1425.
+
+
+Lastly, as was necessary with the deterministic forecasts, the ensemble forecasts have been interpolated to the Stage IV grid, and all diagnostics and analysis were conducted on this grid.
 Furthermore, the same mask shown in \mbox{Figure \ref{domain}} was used to limit the analysis to areas east of the Rocky Mountains and near land.
 
 
 
 
-\subsection{Processing and Data Selection}
-\label{eprocessing}
 
 
