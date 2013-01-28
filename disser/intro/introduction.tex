@@ -6,7 +6,48 @@
 
 Rare meteorological events\footnote{\cite{Murphy1991} defined a rare meteorological event as one that occurs on less than five percent of forecasting occasions.} that occur on small spatial and short temporal scales pose significant challenges to forecasters.
 This is related to the limited predictability of phenomena occurring on short time-space scales; however, these events comprise a substantial portion of meteorological phenomena that negatively impact society (e.g., heavy rain, large hail, tornadoes, etc.).
-Thus, accurate numerical guidance of these events would provide large societal benefits through improved forecasts.
+Thus, ``good'' forecasts of these events would provide large societal benefits.
+
+
+What makes a ``good'' forecast has been the subject of many discussions throughout the history of forecasting (e.g. \citealp{Mascart1922, Winkler1968, Murphy1993}, \citealp{Murphy1996} and papers within).
+\cite{Murphy1993} provided three distinct measures of forecast ``goodness'': consistency, quality, and value.
+Consistency, sometimes referred to as type 1 ``goodness'', is a measure of correspondence between the actual forecast and the forecaster's judgment of what will occur.
+Quality, sometimes referred to as type 2 ``goodness'', is a measure of correspondence between the forecast and the observations.
+Value, known as type 3 ``goodness'', is a measure of the benefit a forecast provides to users of the forecast.
+
+
+A natural consequence of maximizing consistency is the need for probabilistic forecasts.
+This is the result of the uncertainty in a forecaster's judgment that must be conveyed in the resulting forecast.
+When forecasters produce probabilistic forecasts that accurately depict their uncertainty, the best expected quality, as measured by a strictly proper scoring rules \citep{Winkler1968}, is also achieved.
+Thus cementing the need for forecasts to have a probabilistic component.
+
+
+Unfortunately, raw deterministic model output (i.e. output that has not been post-processed) is not probabilistic in nature.
+Deterministic model output provides a precise answer at every grid point, for all output fields.
+This is a consequence of the internal numerics of deterministic models; equations are constrained to produce a single value.
+
+
+Raw deterministic model output can be thought of in terms of probabilities.
+A single value can be thought of having a probability of 1 that value will be observed, and a 0 that any other value will be observed.
+Unless the deterministic model is always perfect, the probability that the model's forecast will be correct lies somewhere between \mbox{0 and 1}.
+\cite{Lorenz1963, Lorenz1965} demonstrated that deterministic forecasts are subject to initially small errors that grow in amplitude until they become significant features of numerical forecasts.
+These errors abound from all aspects of numerical weather prediction, ranging from numerical to observational to the model itself.
+Thus, perfect, deterministic, numerical weather predictions are essentially impossible.
+Therefore, in order for a numerical weather forecast to satisfy type 2 ``goodness'' they, too, must include a probabilistic component.
+
+
+
+
+
+
+\cite{Bjerknes1904} first recognized that in order to produce numerical forecasts of subsequent states of the atmosphere:
+\begin{enumerate}
+    \item One has to know with sufficient accuracy the state of the atmosphere at a given time; and
+    \item One has to know with sufficient accuracy the laws according to which one state of the atmosphere develops from another.
+\end{enumerate}
+Bjerknes recognized that the creation of a sufficiently accurate analysis of the atmosphere is a necessary condition for reliable forecasts of future atmospheric states based on the integration of the governing equations.
+In fact,
+
 
 
 Convection-allowing models (CAMs) have shown improved skill, compared to parameterized-convection models, in identifying regions where rare meteorological events associated with convection (hereafter RCEs\footnote{Rare Convective Event}) may occur \citep{Clark2010a}.
