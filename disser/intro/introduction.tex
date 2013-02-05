@@ -9,11 +9,37 @@ This is related to the limited predictability of phenomena occurring on short ti
 Thus, ``good'' forecasts of these events would provide large societal benefits.
 
 
+Prior to the 20th century, weather forecasts were largely the result of rules of thumb, with little understanding for the physical mechanisms governing the atmosphere.
+In 1901 Professor Cleveland Abbe proposed that the atmosphere was governed by a set of dynamic and thermodynamic equations, and that these equations could be used to predict future states of the atmosphere \citep{Abbe1901}.
+\cite{Bjerknes1904} followed with the recognition that in order to produce forecasts of subsequent states of the atmosphere based on the governing equations:
+\begin{enumerate}
+    \item One has to know with sufficient accuracy the state of the atmosphere at a given time; and
+    \item One has to know with sufficient accuracy the laws according to which one state of the atmosphere develops from another.
+\end{enumerate}
+Bjerknes recognized that the creation of a sufficiently accurate analysis of the atmosphere is a necessary condition for reliable forecasts of future atmospheric states based on the integration of the governing equations.
+
+
+Beginning on the mid-1910s, Lewis Richardson took up the challenge of weather prediction and went on to produce the first numerical prediction (i.e. one using mathematical equations; \citealp{Lynch2008}).
+The forecast took about \mbox{6 weeks} to produce by hand and predicted the change in surface pressure over the course of \mbox{6 hours}.
+Although the forecast was a spectacular failure --- predicting a \mbox{145 mb} surface pressure fall when the barometric pressure remained nearly constant --- Richardson considered it ``a fairly correct deduction from a somewhat unnatural initial distribution,'' \citep{Lynch2008}.
+Ultimately, Richardson's forecast was doomed from the start, falling victim to Bjerknes' first requirement for successful mathematical forecasts: adequate initial conditions.
+
+
+In the late 1940s, Jule Charney demonstrated that larger-scale atmospheric motions could be sufficiently predicted by advecting the geostrophic vorticity with the geostrophic wind \citep{Charney1947}.
+Charney, and his team of researchers, went on to produce the first successful numerical weather forecasts produced from a computer \cite{Charney1950}.
+Word of this success rapidly spread throughout the meteorological community, and by the mid-1950s short-term operational numerical weather forecasts were being produced in the United States and Sweden \citep{Lewis2005}.
+
+
+
+
+
+
+
 What makes a ``good'' forecast has been the subject of many discussions throughout the history of forecasting (e.g. \citealp{Mascart1922, Winkler1968, Murphy1993}, \citealp{Murphy1996} and papers within).
 \cite{Murphy1993} provided three distinct measures of forecast ``goodness'': consistency, quality, and value.
-Consistency, sometimes referred to as type 1 ``goodness'', is a measure of correspondence between the actual forecast and the forecaster's judgment of what will occur.
-Quality, sometimes referred to as type 2 ``goodness'', is a measure of correspondence between the forecast and the observations.
-Value, known as type 3 ``goodness'', is a measure of the benefit a forecast provides to users of the forecast.
+Consistency, sometimes referred to as \mbox{type 1} ``goodness'', is a measure of correspondence between the actual forecast and the forecaster's judgment of what will occur.
+Quality, sometimes referred to as \mbox{type 2} ``goodness'', is a measure of correspondence between the forecast and the observations.
+Value, known as \mbox{type 3} ``goodness'', is a measure of the benefit a forecast provides to users of the forecast.
 
 
 A natural consequence of maximizing consistency is the need for probabilistic forecasts.
@@ -23,12 +49,10 @@ Thus cementing the need for forecasts to have a probabilistic component.
 
 
 Unfortunately, raw deterministic model output (i.e. output that has not been post-processed) is not probabilistic in nature.
-Deterministic model output provides a precise answer at every grid point, for all output fields.
+Deterministic model output provides a precise answer at every grid point for all output fields.
 This is a consequence of the internal numerics of deterministic models; equations are constrained to produce a single value.
-
-
-Raw deterministic model output can be thought of in terms of probabilities.
-A single value can be thought of having a probability of 1 that value will be observed, and a 0 that any other value will be observed.
+However, raw deterministic model output can be thought of in terms of probabilities.
+A single output value can be thought of having a probability of 1 that the output value will be observed, and a 0 that any other value will be observed.
 Unless the deterministic model is always perfect, the probability that the model's forecast will be correct lies somewhere between \mbox{0 and 1}.
 \cite{Lorenz1963, Lorenz1965} demonstrated that deterministic forecasts are subject to initially small errors that grow in amplitude until they become significant features of numerical forecasts.
 These errors abound from all aspects of numerical weather prediction, ranging from numerical to observational to the model itself.
@@ -36,17 +60,10 @@ Thus, perfect, deterministic, numerical weather predictions are essentially impo
 Therefore, in order for a numerical weather forecast to satisfy type 2 ``goodness'' they, too, must include a probabilistic component.
 
 
+Unfortunately, computing capabilities have not always allowed for probabilistic numerical weather prediction.
+The first operational numerical weather prediction models
 
 
-
-
-\cite{Bjerknes1904} first recognized that in order to produce numerical forecasts of subsequent states of the atmosphere:
-\begin{enumerate}
-    \item One has to know with sufficient accuracy the state of the atmosphere at a given time; and
-    \item One has to know with sufficient accuracy the laws according to which one state of the atmosphere develops from another.
-\end{enumerate}
-Bjerknes recognized that the creation of a sufficiently accurate analysis of the atmosphere is a necessary condition for reliable forecasts of future atmospheric states based on the integration of the governing equations.
-In fact,
 
 
 
