@@ -9,7 +9,7 @@ This is related to the limited predictability of phenomena occurring on short ti
 Thus, ``good'' forecasts of these events would provide large societal benefits.
 
 
-What makes a ``good'' forecast has been the subject of many discussions throughout the history of forecasting (e.g. \citealp{Clayton1889, Nichols1890, Mascart1922, Winkler1968, Murphy1993, Murphy1996} and papers therein).
+What makes a ``good'' forecast has been the subject of many discussions throughout the history of forecasting (e.g. \citealp{Peirce1884, Clayton1889, Nichols1890, Mascart1922, Winkler1968, Murphy1993, Murphy1996} and papers therein).
 In an essay designed to address this question, \cite{Murphy1993} provided three distinct measures of forecast ``goodness'': consistency, quality, and value.
 Consistency, sometimes referred to as \mbox{type 1} ``goodness'', is a measure of correspondence between the actual forecast and the forecaster's judgment of what will occur.
 Quality, sometimes referred to as \mbox{type 2} ``goodness'', is a measure of correspondence between the forecast and the observations.
@@ -26,14 +26,40 @@ When forecasters produce probabilistic forecasts that accurately depict their un
 \section{A Brief History of Probability Forecasting}
 
 Prior to the twentieth century, weather forecasts were largely the result of rules of thumb, with little understanding for the physical mechanisms governing the atmosphere.
-However, several attempts at utilizing probabilities (and odds) in weather forecasts date back to the late eighteenth century \citep{Dalton1793, Murphy1998}.
+However, several attempts at utilizing probabilities (and odds) in weather forecasts date back to the late eighteenth century when J. Dalton included measures of uncertainty in his forecasts \citep{Dalton1793, Murphy1998}.
 Although the exact forecast methods of Dalton are not known, Dalton's forecasts include statements such as ``the probability of rain was much smaller than at other times'' and ``the probability of a fair day to that of a wet one is as ten to one,'' \citep{Murphy1998}.
 Nearly a century later, in 1871, under the direction of Professor Cleveland Abbe, the first forecasts and warnings issued by the United States Signal Service were actually labeled probabilities. \citep{Whitnah1961, Murphy1998}.
 In fact, Professor Abbe promoted the use of ``probabilities'' so much he earned the nickname ``Old Probabilities'' \citep{Scott1873, Murphy1998}.
 
-\cite{Cooke1906a, Cooke1906b}
+
+Although probability forecasting of some variety was performed prior to the start of the twentieth century, the start of probability forecasting is often attributed to the work of W. E. Cooke \cite{Murphy1998}.
+\cite{Cooke1906a} eloquently summarized the shortcomings of deterministic forecasting, and championed the inclusion of uncertainty information, by stating:
+\begin{quote}
+    ``(a)ll those whose duty it is to issue regular daily forecasts know that there are times when they feel very confident and other times when they are doubtful as to the coming weather. It seems to me that the condition of confidence or otherwise forms a very important part of the prediction, and ought to find expression. It is not fair to the forecaster that equal weight should be assigned to all his predictions and the usual method tends to retard that public confidence which all practical meteorologists desire to foster. It is more scientific and honest to be allowed occasionally to say `I feel very doubtful about the weather for tomorrow'\dots and it must be\dots useful to the public if one is allowed occasionally to say `It is practically certain that the weather will be so-and-so tomorrow''' (\mbox{p. 23}; \citealp{Murphy1998}).
+\end{quote}
 
 
+\noindent\cite{Cooke1906a} went on to propose a forecasting paradigm in which a forecaster assigned a set of uncertainty weights to each forecast.
+The uncertainty weights were designed to express various levels of confidence, and it was shown that forecasters were were able to assign weights that appropriately reflected their uncertainty.
+Although these forecasts conveyed uncertainty information, they were not fully probabilistic in nature.
+It wasn't until \cite{Hallenbeck1920} that numerical probabilistic forecasts were recorded in the literature.
+
+
+Around the same time as the work done by Hallenbeck, a series of papers by Anders {{\AA}}ngstr{{\"o}}m poignantly made the case for probabilistic warnings, rather than binary or categorical \citep{Angstrom1919, Angstrom1922, Liljas1994, Murphy1998}.
+The crux of {{\AA}}ngstr{{\"o}}m's arguments revolved around the difficulties forecasters face when they are constrained to issue a warning in binary terms.
+This difficulty, argued {{\AA}}ngstr{{\"o}}m, arises from the fact that forecasters' knowledge of users' cost/loss ratios is generally insufficient to determine whether to ``issue a warning" or ``not issue a warning" in the context of prudcing the best possible forecast for users.
+{{\AA}}ngstr{{\"o}}m further noted that ``(w)hat makes the matter still more complicated is the fact that\dots [the loss function]\dots has very different values in different cases," \cite{Angstrom1922, Murphy1998}.
+
+
+{{\AA}}ngstr{{\"o}}m ultimately concluded: ``The most appropriate system seems therefore to be to leave to the clients concerned by the warning to form an idea of the ratio [cost–loss ratio]\dots and to issue the warnings in such a form that the larger or smaller probability of the event gets clear from the formulation.
+The client may then himself consider if it is worthwhile to make arrangements of protection or to disregard a given warning," \cite{Angstrom1922, Murphy1998}.
+In these two short papers, {{\AA}}ngstr{{\"o}}m succinctly argued the case for probability forecasts.
+
+
+
+
+
+While probability forecasting was in its infancy, another forecasting paradigm was just beginning.
 In 1901 Professor Abbe proposed that the atmosphere was governed by a set of dynamic and thermodynamic equations, and that these equations could be used to predict future states of the atmosphere \citep{Abbe1901}.
 \cite{Bjerknes1904} followed with the recognition that in order to produce forecasts of subsequent states of the atmosphere based on the governing equations:
 \begin{enumerate}
@@ -41,14 +67,6 @@ In 1901 Professor Abbe proposed that the atmosphere was governed by a set of dyn
     \item One has to know with sufficient accuracy the laws according to which one state of the atmosphere develops from another.
 \end{enumerate}
 Bjerknes recognized that the creation of a sufficiently accurate analysis of the atmosphere is a necessary condition for reliable forecasts of future atmospheric states based on the integration of the governing equations.
-
-
-When forecasters produce probabilistic forecasts that accurately depict their uncertainty, the best expected quality, as measured by a strictly proper scoring rules \citep{Winkler1968}, is also achieved.
-
-
-
-
-
 
 
 Lewis Richardson took up the challenge of weather prediction in the 1910s and went on to produce the first numerical prediction (i.e. one using mathematical equations; \citealp{Lynch2008}).
