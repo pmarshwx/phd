@@ -19,15 +19,33 @@ In 1901 Professor Cleveland Abbe proposed that the atmosphere was governed by a 
 Bjerknes recognized that the creation of a sufficiently accurate analysis of the atmosphere is a necessary condition for reliable forecasts of future atmospheric states based on the integration of the governing equations.
 
 
-Beginning on the mid-1910s, Lewis Richardson took up the challenge of weather prediction and went on to produce the first numerical prediction (i.e. one using mathematical equations; \citealp{Lynch2008}).
+Lewis Richardson took up the challenge of weather prediction in the 1910s and went on to produce the first numerical prediction (i.e. one using mathematical equations; \citealp{Lynch2008}).
 The forecast took about \mbox{6 weeks} to produce by hand and predicted the change in surface pressure over the course of \mbox{6 hours}.
 Although the forecast was a spectacular failure --- predicting a \mbox{145 mb} surface pressure fall when the barometric pressure remained nearly constant --- Richardson considered it ``a fairly correct deduction from a somewhat unnatural initial distribution,'' \citep{Lynch2008}.
-Ultimately, Richardson's forecast was doomed from the start, falling victim to Bjerknes' first requirement for successful mathematical forecasts: adequate initial conditions.
+Ultimately, Richardson's forecast was doomed from the start, falling victim to Bjerknes' first requirement for successful numerical forecasts: adequate initial conditions.
 
 
 In the late 1940s, Jule Charney demonstrated that larger-scale atmospheric motions could be sufficiently predicted by advecting the geostrophic vorticity with the geostrophic wind \citep{Charney1947}.
-Charney, and his team of researchers, went on to produce the first successful numerical weather forecasts produced from a computer \cite{Charney1950}.
-Word of this success rapidly spread throughout the meteorological community, and by the mid-1950s short-term operational numerical weather forecasts were being produced in the United States and Sweden \citep{Lewis2005}.
+A few years later, Charney, and his team of researchers, went on to produce the first successful numerical weather forecasts produced from a computer \citep{Charney1950}.
+Word of this success spread rapidly throughout the meteorological community, and by the mid-1950s short-term operational numerical weather forecasts were being produced in the United States and Sweden \citep{Lewis2005}.
+Although operational numerical forecasts began in the mid 1950s, these forecasts were based on the simplified equations formulated by \cite{Charney1947}.
+As a result of the simplified equations used in numerical weather forecasts, some meteorologists began to explore statistical methods to correct the numerical output \citep{Gleeson1961}.
+Based on the work of \cite{Hinkelmann1951}, operational numerical forecasts began using the primative equaitons to produce numerical forecasts in the mid 1960s \citep{Lynch2008}.
+
+
+In the 1960s, Edward Lorenz published a series of papers that demonstrated the chaotic nature of the atmosphere \citep{Lorenz1963, Lorenz1965, Lorenz1968}.
+Lorenz demonstrated that even small errors in the initial state of the modeled atmosphere --- even those within observational error --- can have large impacts on the resulting numerical forecast.
+Armed with the results of \cite{Lorenz1963, Lorenz1965, Lorenz1968}, alternatives to the deterministic numerical prediction paradigm began to be offered.
+\cite{Epstein1969} recognized that the atmosphere could not be completely described with a single numerical forecast due to inherent uncertainty.
+\cite{Epstein1969} and \cite{Gleeson1970} each offered ways to produce probability forecasts in which the numerical model output means and variances directly.
+Although these methods showed promise, the addition of uncertainty terms proved to be too computationally expensive for operational use at that time.
+
+
+\cite{Leith1974} offered the first attempt at Monte Carlo forecasting as he called it, or ensemble forecasting as it is known today.
+Leith suggested that instead of running a single forecast from a single initialization, a collection (ensemble) of forecasts, each with a slightly different initial state, should be produced.
+The resulting forecasts could be used to assess the uncertainty of the forecast.
+As was the case with \cite{Epstein1969} and \cite{Gleeson1970}, even though this approach showed promise, it was too expensive for operational use at that time.
+
 
 
 
