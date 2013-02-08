@@ -32,7 +32,7 @@ Nearly a century later, in 1871, under the direction of Professor Cleveland Abbe
 In fact, Professor Abbe promoted the use of ``probabilities'' so much he earned the nickname ``Old Probabilities'' \citep{Scott1873, Murphy1998}.
 
 
-Although probability forecasting of some variety was performed prior to the start of the twentieth century, the start of probability forecasting is often attributed to the work of W. E. Cooke \cite{Murphy1998}.
+Although probability forecasting of some variety was performed prior to the start of the twentieth century, the start of probability forecasting is often attributed to the work of W. E. Cooke \citep{Murphy1998}.
 \cite{Cooke1906a} eloquently summarized the shortcomings of deterministic forecasting, and championed the inclusion of uncertainty information, by stating:
 \begin{quote}
     ``(a)ll those whose duty it is to issue regular daily forecasts know that there are times when they feel very confident and other times when they are doubtful as to the coming weather. It seems to me that the condition of confidence or otherwise forms a very important part of the prediction, and ought to find expression. It is not fair to the forecaster that equal weight should be assigned to all his predictions and the usual method tends to retard that public confidence which all practical meteorologists desire to foster. It is more scientific and honest to be allowed occasionally to say `I feel very doubtful about the weather for tomorrow'\dots and it must be\dots useful to the public if one is allowed occasionally to say `It is practically certain that the weather will be so-and-so tomorrow''' (\mbox{p. 23}; \citealp{Murphy1998}).
@@ -48,18 +48,13 @@ It wasn't until \cite{Hallenbeck1920} that numerical probabilistic forecasts wer
 Around the same time as the work done by Hallenbeck, a series of papers by Anders {{\AA}}ngstr{{\"o}}m poignantly made the case for probabilistic warnings, rather than binary or categorical \citep{Angstrom1919, Angstrom1922, Liljas1994, Murphy1998}.
 The crux of {{\AA}}ngstr{{\"o}}m's arguments revolved around the difficulties forecasters face when they are constrained to issue a warning in binary terms.
 This difficulty, argued {{\AA}}ngstr{{\"o}}m, arises from the fact that forecasters' knowledge of users' cost/loss ratios is generally insufficient to determine whether to ``issue a warning" or ``not issue a warning" in the context of prudcing the best possible forecast for users.
-{{\AA}}ngstr{{\"o}}m further noted that ``(w)hat makes the matter still more complicated is the fact that\dots [the loss function]\dots has very different values in different cases," \cite{Angstrom1922, Murphy1998}.
-
-
-{{\AA}}ngstr{{\"o}}m ultimately concluded: ``The most appropriate system seems therefore to be to leave to the clients concerned by the warning to form an idea of the ratio [cost–loss ratio]\dots and to issue the warnings in such a form that the larger or smaller probability of the event gets clear from the formulation.
-The client may then himself consider if it is worthwhile to make arrangements of protection or to disregard a given warning," \cite{Angstrom1922, Murphy1998}.
+{{\AA}}ngstr{{\"o}}m further noted that ``(w)hat makes the matter still more complicated is the fact that\dots [the loss function]\dots has very different values in different cases," \citep{Angstrom1922, Murphy1998}. {{\AA}}ngstr{{\"o}}m ultimately concluded: ``The most appropriate system seems therefore to be to leave to the clients concerned by the warning to form an idea of the ratio [cost-loss ratio]\dots and to issue the warnings in such a form that the larger or smaller probability of the event gets clear from the formulation.
+The client may then himself consider if it is worthwhile to make arrangements of protection or to disregard a given warning," \citep{Angstrom1922, Murphy1998}.
 In these two short papers, {{\AA}}ngstr{{\"o}}m succinctly argued the case for probability forecasts.
+Unfortunately, advancements in probability forecasting lay dormant until mid-century.
 
 
-
-
-
-While probability forecasting was in its infancy, another forecasting paradigm was just beginning.
+In addition to probability forecasting, the start of the twentieth century marked the conception of numerical weather prediction.
 In 1901 Professor Abbe proposed that the atmosphere was governed by a set of dynamic and thermodynamic equations, and that these equations could be used to predict future states of the atmosphere \citep{Abbe1901}.
 \cite{Bjerknes1904} followed with the recognition that in order to produce forecasts of subsequent states of the atmosphere based on the governing equations:
 \begin{enumerate}
@@ -107,18 +102,23 @@ Although these methods showed promise, the addition of uncertainty terms proved 
 \cite{Leith1974} offered the first attempt at Monte Carlo forecasting, or ensemble forecasting as it is known today.
 Leith suggested that instead of running a single forecast from a single initialization, a collection (ensemble) of forecasts, each with a slightly different initial state, should be produced.
 The resulting forecasts could be used to assess the uncertainty of the forecast.
+One such method of assessing the uncertainty is to report the fraction of ensemble members that produce a certain forecast divided by the total number of ensemble members.
+This results in a probability of occurrence, derived from the collection of numerical forecasts.
 As was the case with \cite{Epstein1969} and \cite{Gleeson1970}, even though this approach showed promise, it was too expensive for operational use at that time.
 It took nearly two decades worth of computational advancement, but operational ensemble prediction systems because a reality in the early 1990s.
 
 
+A different approach was put forth by \cite{Glahn1972}.
+Instead of adding additional terms to the numerical model, or producing multiple model forecasts each starting with slightly different initial conditions, the idea was to post-process the raw model output by using statistical models.
+The statistical models are in essence multi-variate regressions, derived from the three-dimensional numerical output, observations, and the general climatological conditions for specific locations.
+These model output statistics, or MOS, account for model-biases as well as local effects that cannot be resolved by the model due to model grid spacing.
+Although some MOS products are deterministic in nature (such as the maximum and minimum \mbox{6 hr} temperatures), some products are probabilistic (such as probability of precipitation).
+MOS is still used today by the National Weather Service \citep{Allen2001a, Allen2001b, Sfanos2001, Carroll2005, Glahn2009}.
 
 
 
 
-
-
-
-\section{Convection Allowing Models}
+\section{Increased Resolution versus Ensemble Prediction}
 
 Convection-allowing models (CAMs) have shown improved skill, compared to parameterized-convection models, in identifying regions where rare meteorological events associated with convection (hereafter RCEs\footnote{Rare Convective Event}) may occur \citep{Clark2010a}.
 Furthermore, CAMs are able to do this by explicitly representing deep-convective storms and their unique attributes --- not just storm environments \citep{Kain2010}.
