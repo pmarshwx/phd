@@ -21,10 +21,6 @@ This is the result of the uncertainty in a forecaster's judgment that must be co
 When forecasters produce probabilistic forecasts that accurately depict their uncertainty, the best expected quality, as measured by a strictly proper scoring rules \citep{Winkler1968}, is also achieved, cementing the need for forecasts to have a probabilistic component.
 
 
-
-
-\section{A Brief History of Probability Forecasting}
-
 Prior to the twentieth century, weather forecasts were largely the result of rules of thumb, with little understanding for the physical mechanisms governing the atmosphere.
 However, several attempts at utilizing probabilities (and odds) in weather forecasts date back to the late eighteenth century when J. Dalton included measures of uncertainty in his forecasts \citep{Dalton1793, Murphy1998}.
 Although the exact forecast methods of Dalton are not known, Dalton's forecasts include statements such as ``the probability of rain was much smaller than at other times'' and ``the probability of a fair day to that of a wet one is as ten to one,'' \citep{Murphy1998}.
@@ -47,7 +43,7 @@ It wasn't until \cite{Hallenbeck1920} that numerical probabilistic forecasts wer
 
 Around the same time as the work done by Hallenbeck, a series of papers by Anders {{\AA}}ngstr{{\"o}}m poignantly made the case for probabilistic warnings, rather than binary or categorical \citep{Angstrom1919, Angstrom1922, Liljas1994, Murphy1998}.
 The crux of {{\AA}}ngstr{{\"o}}m's arguments revolved around the difficulties forecasters face when they are constrained to issue a warning in binary terms.
-This difficulty, argued {{\AA}}ngstr{{\"o}}m, arises from the fact that forecasters' knowledge of users' cost/loss ratios is generally insufficient to determine whether to ``issue a warning" or ``not issue a warning" in the context of prudcing the best possible forecast for users.
+This difficulty, argued {{\AA}}ngstr{{\"o}}m, arises from the fact that forecasters' knowledge of users' cost/loss ratios is generally insufficient to determine whether to ``issue a warning" or ``not issue a warning" in the context of producing the best possible forecast for users.
 {{\AA}}ngstr{{\"o}}m further noted that ``(w)hat makes the matter still more complicated is the fact that\dots [the loss function]\dots has very different values in different cases," \citep{Angstrom1922, Murphy1998}. {{\AA}}ngstr{{\"o}}m ultimately concluded: ``The most appropriate system seems therefore to be to leave to the clients concerned by the warning to form an idea of the ratio [cost-loss ratio]\dots and to issue the warnings in such a form that the larger or smaller probability of the event gets clear from the formulation.
 The client may then himself consider if it is worthwhile to make arrangements of protection or to disregard a given warning," \citep{Angstrom1922, Murphy1998}.
 In these two short papers, {{\AA}}ngstr{{\"o}}m succinctly argued the case for probability forecasts.
@@ -75,7 +71,7 @@ A few years later, Charney, and his team of researchers, went on to produce the 
 Word of this success spread rapidly throughout the meteorological community, and by the mid-1950s short-term operational numerical weather forecasts were being produced in the United States and Sweden \citep{Lewis2005}.
 Although operational numerical forecasts began in the mid 1950s, these forecasts were based on the simplified equations formulated by \cite{Charney1947}.
 As a result of the simplified equations used in numerical weather forecasts, some meteorologists began to explore statistical methods to correct the numerical output \citep{Gleeson1961}.
-Based on the work of \cite{Hinkelmann1951}, operational numerical forecasts began using the primative equaitons to produce numerical forecasts in the mid 1960s \citep{Lynch2008}.
+Based on the work of \cite{Hinkelmann1951}, operational numerical forecasts began using the primitive equations to produce numerical forecasts in the mid 1960s \citep{Lynch2008}.
 
 
 Unfortunately, raw deterministic model output (i.e. output that has not been post-processed) is not probabilistic in nature.
@@ -116,13 +112,39 @@ Although some MOS products are deterministic in nature (such as the maximum and 
 MOS is still used today by the National Weather Service \citep{Allen2001a, Allen2001b, Sfanos2001, Carroll2005, Glahn2009}.
 
 
+As previously alluded to, during the latter parts of the twentieth century computing power rapidly increased.
+This increase offered numerical weather prediction modelers the opportunity to either decrease model grid spacing or transition to ensemble forecasting.
+Most operational numerical weather prediction centers argued in favor of decreasing model grid spacing (e.g, \citealp{McPherson1991, WMO1992}).
 
 
-\section{Increased Resolution versus Ensemble Prediction}
+The choice to embrace higher resolution numerical models resulted in much needed improvements to the models' physics parameterizations.
+Additionally, improved model grid spacing allowed for numerical models to better represent atmospheric phenomenon with strong gradients (i.e., fronts, drylines, inversions, etc.).
+These improvements allowed for intoxicatingly detailed forecasts.
+When the details of the numerical forecast were correct, highly specific spatial and temporal forecasts were easily produced \citep{Droegemeier1990}.
+Unfortunately, the details of numerical weather prediction models are best in environments in which the atmosphere is dominated by large-scale phenomenon (i.e., when quasi-geostrophy can be assumed; \citealp{Antolik1989}).
+Thus, numerical guidance tends to be at its best when the forecasting situation is, in some sense, the easiest, and is least needed \citep{Brooks1993}.
 
-Convection-allowing models (CAMs) have shown improved skill, compared to parameterized-convection models, in identifying regions where rare meteorological events associated with convection (hereafter RCEs\footnote{Rare Convective Event}) may occur \citep{Clark2010a}.
+
+Some in the meteorological community, however, argued for adopting ensemble forecasting (e.g. \citealp{Brooks1992a, Brooks1993}).
+As previously noted, \cite{Lorenz1963, Lorenz1965, Lorenz1968} demonstrated that a numerical weather forecast was sensitive to the initial conditions.
+Unfortunately, model grid spacing is typically less than that at which we observe the atmosphere over the globe.
+Thus, in addition to the errors introduced by the observing instruments, additional errors can be introduced as a result of interpolating observations to grid points that do not have collocated observations.
+A consequence of this is that the true state of the atmosphere is rarely, if ever, known.
+
+
+Numerical weather prediction, and in particular, high-resolution models of thunderstorms, has been shown to be very sensitive to small changes in the initial conditions \citep{Lorenz1963, Lorenz1965, Lorenz1968, Brooks1992a, Brooks1992b}.
+As a result, the inherent uncertainty in the observations could result in major errors in a forecast from models on that scale.
+An ensemble approach recognizes the uncertainty in the initial conditions and utilizes it to produce a collection of forecasts, rather than assuming that the initialization is correct \citep{Brooks1992a}.
+
+
+History has shown that a compromise of both of the increased resolution and ensemble forecasting paradigms have prevailed.
+Operational centers in the United States currently run a global ensemble at relatively coarse resolution, whereas a suite of limited area models are run at increasingly higher resolution as the domain size decreases.
+Recently, the computational power has increased to the point of allowing operational limited area model forecasts at grid spacings small enough for the cumulus parameterization scheme to be turned off.
+Even with the sensitivities to initial conditions previously mentioned, these convection-allowing models (CAMs) have shown improved skill, compared to parameterized-convection models, in identifying regions where rare meteorological events associated with convection (hereafter RCEs\footnote{Rare Convective Event}) may occur \citep{Clark2010a}.
 Furthermore, CAMs are able to do this by explicitly representing deep-convective storms and their unique attributes --- not just storm environments \citep{Kain2010}.
-Yet, quantifying the uncertainty associated with explicit numerical prediction of RCEs is particularly challenging \citep{Sobash2011}.
+
+
+Yet, as promising as CAM forecasts are, quantifying the uncertainty associated with explicit numerical prediction of RCEs is particularly challenging \citep{Sobash2011}.
 Of course, ensembles are powerful tools for quantifying uncertainty, but when convection-allowing ensemble prediction systems are used to provide guidance for forecasting storm-attributes, they are subject to the same fundamental limitation that handicaps single-member CAMS forecast systems: Too little is known about the performance characteristics of CAMs in predicting RCEs explicitly.
 
 
@@ -144,10 +166,10 @@ This is achieved by utilizing a statistical distribution to redistribute the tot
 The result is a probability forecast, the character of which is determined by one's choice of statistical distribution and the number of grid points over which the distribution is applied.
 The resulting smoothing effect is similar to that obtained with ensemble output by \cite{Wilks2002}, but initial calibration efforts herein focus on output from a single deterministic model.
 \cite{Sobash2011} demonstrated with a two-dimensional, isotropic Gaussian function that calibration of the probability forecasts derived using this technique is most easily done by changing the number of grid points over which non-zero probabilities are distributed.
-Here, however, an objective calibration method based on past model performance, is presented.
+Here, however, an objective calibration method based on past model performance is presented.
 
 
-This dissertation is laid out as follows: The method is presented in Chapter \ref{method}, followed by application of the method to a deterministic model in Chapter \ref{deterministic}.
+The layout of this dissertation is as follows: The method is presented in Chapter \ref{method}, followed by application of the method to a deterministic model in Chapter \ref{deterministic}.
 Extension to ensembles is presented in Chapter \ref{ensemble} and an overall discussion concludes the dissertation in Chapter \ref{discussion}.
 An explanation of the data used for both the deterministic and ensemble methods can be found in their respective chapters.
 
