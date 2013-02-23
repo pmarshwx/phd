@@ -74,15 +74,19 @@ An additional 37 six-hour time periods were removed as a result, leaving 119 six
 Next, as was necessary with the deterministic forecasts, the ensemble forecasts were interpolated to the Stage IV grid.
 All diagnostics and analyses were conducted on this grid.
 Furthermore, the same mask shown in \mbox{Figure \ref{domain}} was used to limit the analyses to areas east of the Rocky Mountains and near land.
-Unfortunately, 119 time periods is too small a sample to meaningfully break into a training dataset and a verification dataset, especially when considering events that are expected to occur on fewer than 1\% of grid points.
-For comparison, the NSSL-WRF training dataset had 4120 time periods and the verification dataset had 1425.
-To compensate for this, a resampling approach was used.
 
 
-From the list of 119 time periods, 59 of them were randomly chosen, without replacement, to be the training data and the remaining 60 were used as the verification data.
-From the training data, $\sigma_x$, $\sigma_y$, $\theta$, $h$, and $k$ were calculated for each member of the SSEF.
-These parameters were then used to produce calibrated forecasts for time periods in the verification dataset.
-This process was repeated twenty times, giving a set of twenty ``simulations''.
+Unfortunately, 119 time periods is a very small sample from which to evaluate a method for statical calibration of forecasts of rare events.
+This is especially true when the training and forecast data must both come from the 119 time periods.
+For comparison, the NSSL-WRF training dataset had 4120 training time periods and 1425 forecast time periods.
+In an attempt to maximize the utility of the 119 time periods a resampling approach was used to create a set of twenty ``simulations''.
+
+
+Each simulation consists of 59 training periods randomly selected from the valid 119 time periods, with the remaining 60 periods used as forecast periods.
+From these 59 training periods, two-dimensional histograms were created for each of the 15 ensemble members.
+These histograms were then used to calculate the five fitting parameters --- $\sigma_x$, $\sigma_y$, $\theta$, $h$, and $k$ --- for each member's unique two-dimensional anisotropic Gaussian function.
+Forecasts for each member were then made for each time period of the 60 forecast time periods, with each member using their own fitted anisotropic Gaussian function.
+Thus, for each simulation, all 15 ensemble members used the same dates in both for training and the remaining date for forecasting.
 
 
 
