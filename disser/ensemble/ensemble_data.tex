@@ -79,14 +79,16 @@ Furthermore, the same mask shown in \mbox{Figure \ref{domain}} was used to limit
 Unfortunately, 119 time periods is a very small sample from which to evaluate a method for statical calibration of forecasts of rare events.
 This is especially true when the training and forecast data must both come from the 119 time periods.
 For comparison, the NSSL-WRF training dataset had 4120 training time periods and 1425 forecast time periods.
-In an attempt to maximize the utility of the 119 time periods a resampling approach was used to create a set of twenty ``simulations''.
+In an attempt to maximize the utility of the 119 time periods the evaluation was only conducted using the \mbox{12.7 mm} in \mbox{6 hr} threshold.
 
 
-Each simulation consists of 59 training periods randomly selected from the valid 119 time periods, with the remaining 60 periods used as forecast periods.
+In addition to only using the lower threshold, twenty ``simulations'' were created by resampling the 119 time periods.
+This was accomplished by randomly drawing, without replacement, 59 training periods from the valid 119 time periods with the remaining 60 periods used as forecast periods.
 From these 59 training periods, two-dimensional histograms were created for each of the 15 ensemble members.
 These histograms were then used to calculate the five fitting parameters --- $\sigma_x$, $\sigma_y$, $\theta$, $h$, and $k$ --- for each member's unique two-dimensional anisotropic Gaussian function.
 Forecasts for each member were then made for each time period of the 60 forecast time periods, with each member using their own fitted anisotropic Gaussian function.
-Thus, for each simulation, all 15 ensemble members used the same dates in both for training and the remaining date for forecasting.
+Thus, for each simulation all 15 ensemble members used the same 59 time periods for training and the remaining 60 time periods for forecasting.
+This results in 18 000 forecasts (20 simulations x 60 forecast periods x 15 members).
 
 
 
