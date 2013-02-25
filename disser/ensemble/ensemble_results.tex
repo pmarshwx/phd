@@ -4,3 +4,84 @@
 \section{Ensemble Results}
 \label{eresults}
 
+
+
+
+\subsection{25.4 mm Threshold}
+\label{eresults_25.4mm}
+
+As previously mentioned, the first step of the proposed calibration process is to create two-dimensional composites of where observations occurred relative to forecast grid points.
+In the case of the small number of SSEF forecasts, this amounts to creating a composite for each member for each simulation.
+\mbox{Figure \ref{ssef-25mm-400km-composite}} shows the the two-dimensional composites for each member at the \mbox{25.4 mm} in \mbox{6 hr} threshold for one of the twenty simulations.
+In this simulation, it is readily apparent that the WRF-NMM ensemble members are generaly the wettest, with the WRF-ARW members drier.
+(The ARPS member is in between.)
+The overall axis of observations relative to forecasts indicates a general southeast-to-northeast orientation in most members, although this is more readily apparent in some members than others.
+
+
+Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
+About half of the members have the centroid of observations too far east and half having the centroid be too far west.
+(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
+The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
+In this simulation, the WRF-NMM has a westward bias with its forecasts, as the centroid of observations is east of the forecast grid point in every WRF-NMM member.
+A similar observation cannot be made for the WRF-ARW members.
+It is unclear from this single simulation if the westward forecast bias in the WRF-NMM members is systematic of the WRF-NMM core, or merely a function of only having 4 WRF-NMM members.
+
+
+When examining the north/south variations of the observations centroid relative to the model forecast, similar variations are observed.
+(The north/south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
+Slightly more than half the members have the centroid of observations too far north, indicating a southward bias of the forecast, with slightly less than half having the centroid of observations too far south.
+Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM control member having the greatest displacement.
+No obvious preference in displacement direction is readily apparent from the WRF-ARW members.
+However, it does appear that generally speaking, the magnitude of the displacement of the WRF-ARW members appears to be less than that of the WRF-NMM members.
+
+
+The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-composite}} depicts the standard deviation between the two-dimensional composites of each member for the given simulation.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+It is readily apparent that the greatest variability between the members exists to the east of the forecast grid point.
+This is due to the wetter WRF-NMM members having a westward forecast bias, resulting in a wider range of observation counts to the east of the forecast.
+
+
+Unfortunately, \mbox{Figure \ref{ssef-25mm-400km-composite}} is only one simulation out of the twenty simulations produced.
+In an attempt to gain insights into the variation of the two-dimensional composites for each member between all twenty simulations, the standard deviation of each member's composites is shown in \mbox{Figure \ref{ssef-25mm-400km-std}}.
+A cursory examination of the standard deviation of the two-dimensional composites does not yield any immediate insights.
+Some members exhibit a maximum in variability along a southwest to northeast orientation.
+Other members exhibit a more uniform increase in the maximum variability.
+In both cases, the maximum variability tended to be located near the forecast grid point, with generally decreasing variability as distance from the forecast grid point increases.
+
+
+Breaking down the fitting parameters by simulation gives an even better idea of the variability in each member's twenty two-dimensional composites.
+A set of five figures (\mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{k-25mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
+The figures contain box-and-whisker plots for each member's distribution of that figure's fitting parameter.
+The box-and-whisker plots offer insight into the variability in the various fitting functions used by each member.
+In each of the figures, the red horizontal line marks the median value of the distributions, and the blue box represents the 25th and 75th percentiles.
+The whiskers denote the range of the distribution, up to $\pm$ 1.5 times the interquartile range.
+Gold stars are used to denote any outliers, defined to be any value of the distribution that is outside the range of $\pm$ 1.5 times the interquartile range.
+
+
+\mbox{Figure \ref{sigmax-25mm-400km-dist}} displays the box-and-whisker plots for the $\sigma_x$ fitting parameter.
+This parameter is the length of the long axis of the fitted anisotropic Gaussian function.
+Nine out of the fifteen ensemble members do not have outliers.
+Of the remaining six ensemble members with outliers, two of them only have one outlier, two of them have two outliers, and one each has four and five outliers.
+Ensemble members that have outliers had a range of over 20 kilometers for $\sigma_x$, whereas those members without outliers generally had ranges of less than 20 kilometers.
+This means that 40\% of the ensemble members had variability in their $\sigma_x$ parameter that was greater than 10\% of the median length of the $\sigma_x$ fitting parameter.
+
+
+\mbox{Figure \ref{sigmay-25mm-400km-dist}} shows the box-and-whisker plots for the $\sigma_y$ fitting parameter.
+This parameter is the length of the short axis of the fitted anisotropic Gaussian function.
+Unlike with the $\sigma_x$ fitting parameter, the ensemble member distributions of the $\sigma_y$ fitting parameter exhibit fewer outliers with only four members having them.
+This can be attributed to their being more variability in the 25th to 75th percentile, as noted by the increased size of the boxes for many members.
+Furthermore, whereas when the maximum range of the $\sigma_x$ fitting parameter distribution greater than 20 kilometers indicated the presence of an outlier, several members have distributions of $\sigma_y$ with a maximum range greater than 20 kilometers without having an outlier.
+In fact, six out of the ten WRF-ARW members have a range of $\sigma_y$ greater than 20 kilometers and only two of them have outliers.
+
+
+The distributions of the counter-clockwise rotation angle of the abscissa, fitting parameter $\theta$, is shown in \mbox{Figure \ref{theta-25mm-400km-dist}}.
+For this fitting parameter, eleven out of fifteen members exhibit outliers.
+This is not really surprising when one considers the overlap in the distributions of fitting parameters $\sigma_x$ and $\sigma_y$.
+As alluded to in \mbox{Section \ref{std}}, when $\sigma_x$ approaches $\sigma_y$, the Gaussian function approaches being isotropy.
+As a Gaussian function approaches isotropy the variability of the rotation angle, $\theta$ increases as a result of the more circular nature to the function.
+It is much more difficult to accurately measure the orientation of the rotation angle of an ellipse that is nearly circular than that of one with a high level of eccentricity.
+
+
+
+
+
