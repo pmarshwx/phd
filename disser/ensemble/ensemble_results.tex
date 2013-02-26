@@ -11,45 +11,11 @@
 \label{eresults_25.4mm}
 
 As previously mentioned, the first step of the proposed calibration process is to create two-dimensional composites of where observations occurred relative to forecast grid points.
-In the case of the small number of SSEF forecasts, this amounts to creating a composite for each member for each simulation.
-\mbox{Figure \ref{ssef-25mm-400km-composite}} shows the the two-dimensional composites for each member at the \mbox{25.4 mm} in \mbox{6 hr} threshold for one of the twenty simulations.
-In this simulation, it is readily apparent that the WRF-NMM ensemble members are generaly the wettest, with the WRF-ARW members drier.
-(The ARPS member is in between.)
-The overall axis of observations relative to forecasts indicates a general southeast-to-northeast orientation in most members, although this is more readily apparent in some members than others.
+In this case that means creating two-dimensional composites for each member, for each of the twenty simulations.
+Visualizing, analyzing, and understanding all of these two-dimensional composites is challenging as there are 300 two-dimensional composites.
+To achieve this goal, a two-step approach was taken: 1) analyze each SSEF member's distribution for each the five Gaussian fitting parameters; and 2) examine aggregate measures of the spatial distributions.
 
 
-Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
-About half of the members have the centroid of observations too far east and half having the centroid be too far west.
-(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
-The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
-In this simulation, the WRF-NMM has a westward bias with its forecasts, as the centroid of observations is east of the forecast grid point in every WRF-NMM member.
-A similar observation cannot be made for the WRF-ARW members.
-It is unclear from this single simulation if the westward forecast bias in the WRF-NMM members is systematic of the WRF-NMM core, or merely a function of only having 4 WRF-NMM members.
-
-
-When examining the north/south variations of the observations centroid relative to the model forecast, similar variations are observed.
-(The north/south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
-Slightly more than half the members have the centroid of observations too far north, indicating a southward bias of the forecast, with slightly less than half having the centroid of observations too far south.
-Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM control member having the greatest displacement.
-No obvious preference in displacement direction is readily apparent from the WRF-ARW members.
-However, it does appear that generally speaking, the magnitude of the displacement of the WRF-ARW members appears to be less than that of the WRF-NMM members.
-
-
-The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-composite}} depicts the standard deviation between the two-dimensional composites of each member for the given simulation.
-In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
-It is readily apparent that the greatest variability between the members exists to the east of the forecast grid point.
-This is due to the wetter WRF-NMM members having a westward forecast bias, resulting in a wider range of observation counts to the east of the forecast.
-
-
-Unfortunately, \mbox{Figure \ref{ssef-25mm-400km-composite}} is only one simulation out of the twenty simulations produced.
-In an attempt to gain insights into the variation of the two-dimensional composites for each member between all twenty simulations, the standard deviation of each member's composites is shown in \mbox{Figure \ref{ssef-25mm-400km-std}}.
-A cursory examination of the standard deviation of the two-dimensional composites does not yield any immediate insights.
-Some members exhibit a maximum in variability along a southwest to northeast orientation.
-Other members exhibit a more uniform increase in the maximum variability.
-In both cases, the maximum variability tended to be located near the forecast grid point, with generally decreasing variability as distance from the forecast grid point increases.
-
-
-Breaking down the fitting parameters by simulation gives an even better idea of the variability in each member's twenty two-dimensional composites.
 A set of five figures (\mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{k-25mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
 The figures contain box-and-whisker plots for each member's distribution of that figure's fitting parameter.
 The box-and-whisker plots offer insight into the variability in the various fitting functions used by each member.
@@ -89,15 +55,63 @@ Generally speaking, every SSEF member's distribution of $h$ varies by over 20 ki
 Some of the values for $h$ deviated from the forecast grid point by over 40 kilometers, with the maximum difference between $h$ values between any two members being over 80 kilometers!
 
 
-Specifically, ARPS and WRF-NMM members consistently demonstrated a bias toward the observations centroid being east.
-This corresponds to the forecasts, on average, being too far west compared to where observations occurred.
-Most of the WRF-ARW members exhibited the opposite behavior, namely having the observations being too far east (indicating an eastward bias with the forecast).
-Not every WRF-ARW member exhibited this bias, however; two of the WRF-ARW members consisted of positive values for $h$ indicating a westward forecast bias.
-However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias as compared to observations.
+Specifically, ARPS and WRF-NMM members consistently demonstrated a bias toward the observations centroid being east, which corresponds to the forecasts, on average, being too far west.
+Most of the WRF-ARW members exhibited the opposite behavior, namely having the observations too far east (indicating an eastward bias with the forecast).
+Not every WRF-ARW member exhibited this bias, however.
+Two of the WRF-ARW members have a majority of the distribution consist of positive values for $h$ indicating a westward forecast bias.
+However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
 
 
 Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed.
-One difference, however, is that there appears to be a preference for the forecasts of most members, with that preference to be farther north than the centroid of the observations.
+One difference, however, is that there appears to be a forecast displacement preference for most members.
+Most members' forecasts appear to be farther north than the centroid of observations.
+
+
+In addition to examining the two-dimensional composites in the context of distributions of the five anisotropic Gaussian fitting parameters, a cursory examination of their spatial characteristics was also conducted.
+The standard deviation of each member's two-dimensional composites is shown in \mbox{Figure \ref{ssef-25mm-400km-std}}.
+A quick examination of the standard deviation of the two-dimensional composites does not yield any immediate insights.
+Some members exhibit a maximum in variability along a southwest to northeast orientation, whereas other members exhibit a more uniform decrease in variability as one moves radially outward from the forecast grid point.
+In both of these orientations, the maximum variability tended to be located near the forecast grid point, with generally decreasing variability as distance from the forecast grid point increases.
+
+
+Unfortunately, \mbox{Figure \ref{ssef-25mm-400km-std}} doesn't yield much insight into what the specific two-dimensional composites used in the various simulations might look like.
+To examine that aspect of the distributions, a single simulation was chosen at random from the twenty simulations to examine further.
+\mbox{Figure \ref{ssef-25mm-400km-composite}} shows the the two-dimensional composites for each member at the \mbox{25.4 mm} in \mbox{6 hr} threshold.
+In this simulation, it is easily suggested that the WRF-NMM ensemble members are generally the wettest, as indicated by the substantially more observations, with the WRF-ARW members generally drier.
+(The ARPS member is in between.)
+The overall axis of observations relative to forecasts indicates a general southeast-to-northeast orientation in most members, although this is more readily apparent in some members than others.
+
+
+The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-std}} depicts the standard deviation between the two-dimensional composites of each member for all simulations.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+There is considerable variability over the the southern and eastern portion of the search radius, with the maximum in variability at relatively far distances to the south, and slightly east.
+The least variable portion region over the compositing radius is found to the north and northwest.
+
+
+Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
+About half of the members have the centroid of observations too far east and half having the centroid be too far west.
+(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
+The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
+In this simulation, the WRF-NMM has a westward bias with its forecasts, as the centroid of observations is east of the forecast grid point in every WRF-NMM member.
+A similar observation cannot be made for the WRF-ARW members.
+It is unclear from this single simulation if the westward forecast bias in the WRF-NMM members is systematic of the WRF-NMM core, or merely a function of only having 4 WRF-NMM members.
+
+
+When examining the north-south variations of the observations centroid relative to the model forecast, similar variations are observed.
+(The north-south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
+Slightly more than half the members have the centroid of observations too far north, indicating a southward bias of the forecast, with slightly less than half having the centroid of observations too far south.
+Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM control member having the greatest displacement.
+No obvious preference in displacement direction is readily apparent from the WRF-ARW members.
+However, it does appear that generally speaking, the magnitude of the displacement of the WRF-ARW members appears to be less than that of the WRF-NMM members.
+
+
+Similar to \mbox{Figure \ref{ssef-25mm-400km-std}}, the lower right panel of \mbox{Figure \ref{ssef-25mm-400km-composite}} depicts the standard deviation between the two-dimensional composites of each member for the given simulation.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+It is readily apparent that the greatest variability between the members exists to the east of the forecast grid point, as was the case with the overall variability denoted in the lower right panel of \mbox{Figure \ref{ssef-25mm-400km-std}}.
+This is due to the wetter WRF-NMM members having a westward forecast bias, resulting in a wider range of observation counts to the east of the forecast.
+
+
+
 
 
 
