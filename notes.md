@@ -6,7 +6,8 @@
 
 1. 16 panel: 15 ensemble member QPFs & STG4
 1. 16 panel: 15 ensemble member probabilistic forecasts & Mean all with STG4 threshold overlaid
-
+1. NSSL-WRF bias as a function of precipitation threshold
+1. STG4 bias as a function of precipitation threshold
 
 ### Figures to Modify
 

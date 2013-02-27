@@ -4,3 +4,220 @@
 \section{Ensemble Results}
 \label{eresults}
 
+
+
+
+\subsection{25.4 mm Threshold}
+\label{eresults_25.4mm}
+
+As previously mentioned, the first step of the proposed calibration process is to create two-dimensional composites of where observations occurred relative to forecast grid points.
+In this case that means creating two-dimensional composites for each member, for each of the twenty simulations.
+Visualizing, analyzing, and understanding all of these two-dimensional composites is challenging as there are 300 two-dimensional composites.
+To achieve this goal, a two-step approach was taken: 1) analyze each SSEF member's distribution for each the five Gaussian fitting parameters; and 2) examine aggregate measures of the spatial distributions.
+
+
+A set of five figures (\mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{k-25mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
+The figures contain box-and-whisker plots for each member's distribution of that figure's fitting parameter.
+The box-and-whisker plots offer insight into the variability in the various fitting functions used by each member.
+In each of the figures, the red horizontal line marks the median value of the distributions, and the blue box represents the 25th and 75th percentiles.
+The whiskers denote the range of the distribution, up to $\pm$ 1.5 times the interquartile range.
+Gold stars are used to denote any outliers, defined to be any value of the distribution that is outside the range of $\pm$ 1.5 times the interquartile range.
+
+
+\mbox{Figure \ref{sigmax-25mm-400km-dist}} displays the box-and-whisker plots for the $\sigma_x$ fitting parameter.
+This parameter is the length of the long axis of the fitted anisotropic Gaussian function.
+Nine out of the fifteen ensemble members do not have outliers.
+Of the remaining six ensemble members with outliers, two of them only have one outlier, two of them have two outliers, and one each has four and five outliers.
+Ensemble members that have outliers had a range of over 20 kilometers for $\sigma_x$, whereas those members without outliers generally had ranges of less than 20 kilometers.
+This means that 40\% of the ensemble members had variability in their $\sigma_x$ parameter that was greater than 10\% of the median length of the $\sigma_x$ fitting parameter.
+
+
+\mbox{Figure \ref{sigmay-25mm-400km-dist}} shows the box-and-whisker plots for the $\sigma_y$ fitting parameter.
+This parameter is the length of the short axis of the fitted anisotropic Gaussian function.
+Unlike with the $\sigma_x$ fitting parameter, the ensemble member distributions of the $\sigma_y$ fitting parameter exhibit fewer outliers with only four members having them.
+This can be attributed to their being more variability in the 25th to 75th percentile, as noted by the increased size of the boxes for many members.
+Furthermore, whereas when the maximum range of the $\sigma_x$ fitting parameter distribution greater than 20 kilometers indicated the presence of an outlier, several members have distributions of $\sigma_y$ with a maximum range greater than 20 kilometers without having an outlier.
+In fact, six out of the ten WRF-ARW members have a range of $\sigma_y$ greater than 20 kilometers and only two of them have outliers.
+
+
+The distributions of the counter-clockwise rotation angle of the abscissa, fitting parameter $\theta$, is shown in \mbox{Figure \ref{theta-25mm-400km-dist}}.
+For this fitting parameter, eleven out of fifteen members exhibit outliers.
+This is not really surprising when one considers the overlap in the distributions of fitting parameters $\sigma_x$ and $\sigma_y$.
+As alluded to in \mbox{Section \ref{std}}, when $\sigma_x$ approaches $\sigma_y$, the Gaussian function approaches being isotropy.
+As a Gaussian function approaches isotropy the variability of the rotation angle, $\theta$ increases as a result of the more circular nature to the function.
+It is much more difficult to accurately measure the orientation of the rotation angle of an ellipse that is nearly circular than that of one with a high level of eccentricity.
+
+
+The large variability in the fitting parameters was not limited to just the shape of the anisotropic Gaussian.
+The location of the fitting Gaussian also ranged widely (fitting parameters $h$ and $k$).
+Each member's distributions of the $h$ fitting parameter (displacement in the east or west direction) is shown in \mbox{Figure \ref{h-25mm-400km-dist}}.
+Generally speaking, every SSEF member's distribution of $h$ varies by over 20 kilometers (approximately 4-5 grid points), with many members demonstrating an even wider range, and that's just the variability within each member's distribution of $h$.
+Some of the values for $h$ deviated from the forecast grid point by over 40 kilometers, with the maximum difference between $h$ values between any two members being over 80 kilometers!
+
+
+Specifically, ARPS and WRF-NMM members consistently demonstrated a bias toward the observations centroid being east, which corresponds to the forecasts, on average, being too far west.
+Most of the WRF-ARW members exhibited the opposite behavior, namely having the observations too far east (indicating an eastward bias with the forecast).
+Not every WRF-ARW member exhibited this bias, however.
+Two of the WRF-ARW members have a majority of the distribution consist of positive values for $h$ indicating a westward forecast bias.
+However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
+
+
+Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed.
+One difference, however, is that there appears to be a forecast displacement preference for most members.
+Most members' forecasts appear to be farther north than the centroid of observations.
+
+
+In addition to examining the two-dimensional composites in the context of their one-dimensional distributions of the five anisotropic Gaussian fitting parameters, a cursory examination of their spatial characteristics was also conducted.
+The standard deviation of each member's two-dimensional composites is shown in \mbox{Figure \ref{ssef-25mm-400km-std}}.
+A quick examination of the standard deviation of the two-dimensional composites does not yield any immediate insights.
+Some members exhibit a maximum in variability along a southwest to northeast orientation, whereas other members exhibit a more uniform decrease in variability as one moves radially outward from the forecast grid point.
+In both of these orientations, the maximum variability tended to be located near the forecast grid point, with generally decreasing variability as distance from the forecast grid point increases.
+
+
+Unfortunately, \mbox{Figure \ref{ssef-25mm-400km-std}} doesn't yield much insight into what the specific two-dimensional composites used in the various simulations might look like.
+To examine that aspect of the distributions, a single simulation was chosen at random from the twenty simulations to examine further.
+\mbox{Figure \ref{ssef-25mm-400km-composite}} shows the the two-dimensional composites for each member at the \mbox{25.4 mm} in \mbox{6 hr} threshold.
+In this simulation, it is easily suggested that the WRF-NMM ensemble members are generally the wettest, as indicated by the substantially more observations, with the WRF-ARW members generally drier.
+(The ARPS member is in between.)
+The overall axis of observations relative to forecasts indicates a general southeast-to-northeast orientation in most members, although this is more readily apparent in some members than others.
+
+
+The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-std}} depicts the standard deviation between the two-dimensional composites of each member for all simulations.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+There is considerable variability over the the southern and eastern portion of the search radius, with the maximum in variability at relatively far distances to the south, and slightly east.
+The least variable portion region over the compositing radius is found to the north and northwest.
+
+
+Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
+About half of the members have the centroid of observations too far east and half having the centroid be too far west.
+(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
+The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
+In this simulation, the WRF-NMM has a westward bias with its forecasts, as the centroid of observations is east of the forecast grid point in every WRF-NMM member.
+A similar observation cannot be made for the WRF-ARW members.
+It is unclear from this single simulation if the westward forecast bias in the WRF-NMM members is systematic of the WRF-NMM core, or merely a function of only having 4 WRF-NMM members.
+
+
+When examining the north-south variations of the observations centroid relative to the model forecast, similar variations are observed.
+(The north-south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
+Slightly more than half the members have the centroid of observations too far north, indicating a southward bias of the forecast, with slightly less than half having the centroid of observations too far south.
+Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM control member having the greatest displacement.
+No obvious preference in displacement direction is readily apparent from the WRF-ARW members.
+However, it does appear that generally speaking, the magnitude of the displacement of the WRF-ARW members appears to be less than that of the WRF-NMM members.
+
+
+Similar to the lower right panel of \mbox{Figure \ref{ssef-25mm-400km-std}}, the lower right panel of \mbox{Figure \ref{ssef-25mm-400km-composite}} depicts the standard deviation between the two-dimensional composites of each member for the given simulation.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+It is readily apparent that the greatest variability between the members exists to the east of the forecast grid point, as was the case with the overall variability denoted in the lower right panel of \mbox{Figure \ref{ssef-25mm-400km-std}}.
+This is due to the wetter WRF-NMM members having a westward forecast bias, resulting in a wider range of observation counts to the east of the forecast.
+
+
+Although there appears to be variability in the various anisotropic Gaussian functions used to model the displacement characteristics of the SSEF members, how does the modeled Gaussian work in practice?
+\mbox{Figure \ref{ssef-25mm-400km-example}} shows the probabilistic forecast from each member of the SSEF for the six hours ending 06 UTC 20 May 2010.
+Meteorologically speaking, this time period comes at end of a severe weather day; the SPC issued a High Risk for severe weather across portions of central Oklahoma for much of the day 19 May 2010.
+Thunderstorms developed across northwest Oklahoma and southern Kansas early in the afternoon and developed east from there.
+Several clusters of thunderstorms emerged through the course of the afternoon, culminating in a heavy rain even across portions of eastern Oklahoma, eastern Kansas, western Missouri, and western Arkansas.
+A large area of observed precipitation amounts exceeding the \mbox{25.4 mm} in \mbox{6 hr} threshold  occurred across eastern Oklahoma into western Arkansas and southwestern Missouri, with a smaller area observed across northeast Kansas into northwest Missouri.
+Additionally, a small area exceeding the threshold was observed in southwest Kansas to the north of Dodge City, KS.
+
+
+In terms of the overall appearance of their probabilistic forecasts, each member appears to produce a probabilistic forecast that is maximized in the vicinity of the highest observed precipitation accumulation, with decreasing probabilities to the north and south.
+Furthermore, every member of the SSEF seems to have captured the general area where \mbox{25.4 mm} in \mbox{6 hr} occurred.
+In fact, within the limited domain shown in \mbox{Figure \ref{ssef-25mm-400km-example}}, all observed areas exceeding the given threshold were captured by non-zero probabilities, with most areas, for most SSEF members, captured within at least a 5\% contour.
+However, no members' probabilistic forecast encapsulated all observed areas with at least a 5\% contour.
+Although each probabilistic forecast appears to highlight the same area for a heavy rain potential, the character of each member's probabilistic forecast is different.
+All members appear to convey the threat of an elongated north-south area with the potential to see heavy rain, but a handful of members also suggest the possibility of the heavy rain extending northwestward into central and western Kansas.
+The ARPS member and the WRF-ARW control member both appear to have their highest probabilities farther north than the other members, but still south of the secondary area of observed \mbox{25.4 mm} in \mbox{6 hr}.
+
+
+The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-example}} is the ``ensemble'' probability forecast.
+It was computed by taking the average of all fifteen SSEF probabilities at each grid point.
+Because each of the SSEF members highlight the same general location with their individual forecasts, the ensemble average appears to be a good forecast as well.
+However, one drawback of an ensemble average forecast is that it is overly smooth.
+This is because averaging tends to dampen the higher probabilities from each of the SSEF members due to the low likelihood of the maximum probabilities from each member actually occurring on the same grid point in all of the members.
+Furthermore, if the individual probability forecasts were spatially very different, the ensemble average field would essentially average out all of the signal offered by the individual members.
+
+
+As previously mentioned, it is incorrect to assess the validity of a probabilistic forecast on the basis of a single probabilistic forecast.
+Instead, probabilistic forecasts must be evaluated over a sufficiently large sample of forecasts, such that each probability forecast is used a sufficient number of times to be accurately evaluated.
+In an idealized world, probabilistic forecasts would be evaluated over an infinite number of forecasts.
+Since an infinite number of forecasts is impossible, it is generally understood that the larger the sample of probabilistic forecasts to be evaluated, the more robust the verification of the probabilities will be.
+
+
+Unfortunately, with only 60 forecast time periods for each of the SSEF members, and dealing with a rare event, drawing meaningful verification statistics is a challenge.
+The approach used here was to create performance diagrams and reliability diagrams for each member.
+Rather than plot the curves of all twenty simulations for all fifteen members to visualize the uncertainty in the verification, only the mean curve for each member is plotted.
+In the case of a reliability diagram, visualizing the uncertainty of the mean reliability is is easily achieved by plotting error bars of observed probability around the mean reliability at each members' unique forecast probability.
+Here, the error bars, or uncertainty in the mean, were calculated to be $\pm$ one standard deviation of the observed probabilities of that member's forecast probability at that given probability threshold.
+In an effort to prevent too many lines from cluttering the reliability diagram, instead of using error bars the area bounded by $\pm$ one standard deviation of each member's mean reliability is color filled with in a semi-transparent color.)
+
+
+However, determining the location of each probabilistic forecast value on a performance diagram is more difficult.
+The plotted point is based upon that forecast probability's Success Ratio (abscissa) and Probability of Detection (ordinate).
+Since both of these are derived verification measures each can exhibit variability.
+In other words, the location of each evaluated forecast probability is not fixed along either the abscissa or the ordinate.
+Furthermore, instead of being able to add a single set of error bars, error bars must be added in both coordinate directions, making for a cluttered figure.
+Once again, instead of adding error bars, which would make the figure even more difficult to read, an ellipse is drawn around each data point, where the ellipse's x-axis is given by the standard deviation in the abscissa and the ellipse's y-axis is given by the standard deviation in the ordinate.
+
+
+\mbox{Figure \ref{ssef-25mm-400km-example}} depicts both the performance diagram (panel a) and the reliability diagram (panel b) for the SSEF ensemble at the \mbox{25.4 mm} in \mbox{6 hr} threshold.
+Looking at the performance diagram it is readily apparent that the overall values appear to be worse than those from the NSSL-WRF in \mbox{Figure \ref{single_verif_400km_25mm}}, with all SSEF members never achieving a CSI score of 0.1.
+Visually, it does not appear there is much difference between the individual SSEF member forecasts (black curves) and the ensemble forecast generated by the modified Hamill and Colucci method (red curve), as the modified Hamill and Colucci generated forecasts appear to fall within the spread of SSEF forecasts.
+It does appear as if there is a slight improvement by using the ensemble mean forecast (blue curve), but it does not offer much improvement.
+Looking at the ``error clouds'' associated with each point, it does not look like there is much variability in the performance diagram plots between each simulation for each SSEF member.
+
+
+Examining the reliability diagrams found in \mbox{Figure \ref{ssef-25mm-400km-example}b} yields a slightly different story.
+Whereas with the performance diagram, all forecasts appeared to be less than ideal, the reliabilities appear to be fairly good for such a rare event and such a small sample size.
+By no means is the reliability near perfect for the SSEF member forecasts, but except for the rarer probability forecasts of some SSEF members (i.e., higher probability forecasts), every member of the SSEF falls between perfect reliability and the line of no skill (in a Brier Score sense; not shown).
+The variability of the reliability diagram to changes in simulation appears to be greater at higher forecast probabilities, of which their are fewer forecast grid points to evaluate.
+This is easily seen in the general increase in width of the error plumes surrounding the mean reliability as the forecast probabilities increase.
+It should also be noted that, except for the rare probability threshold forecasts, it appears that every member of the SSEF is closer to perfect reliability than the forecasts generated by the modified Hamill and Colucci method.
+However, one benefit of the modified Hamill and Colucci method forecasts is that probability forecasts occur over a wider range of forecast thresholds.
+In other words, it is possible to have a near 100\% probability forecast, that is currently not possible from the individual SSEF member forecasts.
+
+
+One thing of note in the reliability diagrams is that every probabilistic forecast, for every member, including the ensemble mean (blue curve) and modified Hamill and Colucci generated forecasts, is an over forecast.
+In other words, the number of grid point observations at a given forecast probability is fewer than the number of observations needed to achieve perfect reliability for that particular member.
+One interesting artifact of the over forecasts by every member of the SSEF is that the ensemble average probability forecasts appear to be closer to perfect reliability than any of the individual SSEF members.
+This is because the averaging process acts as a spatial smoother, damping the peak probabilities, and spreading them out over a slightly larger area.
+Averaging a set of probability forecasts has the affect of shifting the resulting reliability curve up, and to the left, as compared to the collection of reliability curves for each individual member.
+Thus, because every SSEF member over forecasts, the resulting damped, and spatially smoothed forecasts caused by averaging will be closer to perfect reliability than the individual forecasts\footnote{This is not always guaranteed. In the limiting case of every ensemble member producing the same exact forecast, the ensemble average will be identical to the collection of ensemble forecasts.}.
+
+
+
+
+
+
+
+
+\subsection{12.7 mm Threshold}
+\label{eresults_12.7mm}
+
+
+
+
+
+
+\subsection{Discussion}
+\label{ediscussion}
+
+It is readily apparent from examining \mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{ssef-25mm-400km-composite}} that there is a wide range of variability amongst the fitting parameters.
+The wide range of the fitting parameters could be traced back to a multitude of problems, however, two appear to be most likely.
+The first is that the time of year over which the samples
+
+
+...back to the relatively rare nature of a precipitation accumulation of \mbox{25.4 mm} in \mbox{6 hr}.
+With only 59 days from which to try and capture each SSEF member's displacement characteristics, the threshold of \mbox{25.4 mm} in \mbox{6 hr} occurs too infrequently to create a two-dimensional composite from which to calculate robust fitting parameters.
+This is particularly true when using
+
+However, the fitting parameters that are
+
+
+
+
+
+
+
+
+
+
