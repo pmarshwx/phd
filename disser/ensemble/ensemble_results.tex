@@ -62,7 +62,7 @@ Two of the WRF-ARW members have a majority of the distribution consist of positi
 However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
 
 
-Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed.
+Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed (\mbox{Figure \ref{k-25mm-400km-dist}}).
 One difference, however, is that there appears to be a forecast displacement preference for most members.
 Most members' forecasts appear to be farther north than the centroid of observations.
 
@@ -84,7 +84,7 @@ The overall axis of observations relative to forecasts indicates a general south
 
 The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-std}} depicts the standard deviation between the two-dimensional composites of each member for all simulations.
 In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
-There is considerable variability over the the southern and eastern portion of the search radius, with the maximum in variability at relatively far distances to the south, and slightly east.
+There is considerable variability over the the southern and eastern portion of the composite radius, with the maximum in variability at relatively far distances to the south, and slightly east.
 The least variable portion region over the compositing radius is found to the north and northwest.
 
 
@@ -120,7 +120,7 @@ A large area of observed precipitation amounts exceeding the \mbox{25.4 mm} in \
 Additionally, a small area exceeding the threshold was observed in southwest Kansas to the north of Dodge City, KS.
 
 
-In terms of the overall appearance of their probabilistic forecasts, each member appears to produce a probabilistic forecast that is maximized in the vicinity of the highest observed precipitation accumulation, with decreasing probabilities to the north and south.
+In terms of the overall appearance of their probabilistic forecasts, each member appears to produce a probabilistic forecast that is maximized in the vicinity of the largest area of observed precipitation accumulation, with decreasing probabilities to the north and south.
 Furthermore, every member of the SSEF seems to have captured the general area where \mbox{25.4 mm} in \mbox{6 hr} occurred.
 In fact, within the limited domain shown in \mbox{Figure \ref{ssef-25mm-400km-example}}, all observed areas exceeding the given threshold were captured by non-zero probabilities, with most areas, for most SSEF members, captured within at least a 5\% contour.
 However, no members' probabilistic forecast encapsulated all observed areas with at least a 5\% contour.
@@ -189,6 +189,138 @@ Thus, because every SSEF member over forecasts, the resulting damped, and spatia
 \subsection{12.7 mm Threshold}
 \label{eresults_12.7mm}
 
+As was the case with the NSSL-WRF, the analysis of the proposed calibration method was also carried out at the \mbox{12.7 mm} in \mbox{6 hr} threshold using the SSEF data.
+This was partly motivated by the high variability in both the two-dimensional composites and the resulting reliability curves.
+By examining the proposed technique at a lower precipitation accumulation threshold, it is hoped that more forecast events (grid points) will occur.
+The increase in precipitation events would allow for more filled out two-dimensional composites, and hopefully decrease the intra member variability in the two-dimensional composites between simulations.
+This should, in turn, provide for a larger sample from which to conduct the verification and evaluate the probabilistic forecasts.
+The format here follows the same as with the \mbox{25.4 mm} in \mbox{6 hr} threshold discussed in \mbox{Section \ref{eresults_25.4mm}}.
+
+
+As was the case before, a set of five figures (\mbox{Figures \ref{sigmax-12mm-400km-dist}--\ref{k-12mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
+\mbox{Figure \ref{sigmax-25mm-400km-dist}} displays the box-and-whisker plots for the $\sigma_x$ fitting parameter.
+This parameter is the length of the long axis of the fitted anisotropic Gaussian function.
+Fairly important differences arise when comparing the distributions of the $\sigma_x$ fitting parameter between the \mbox{25.4 mm} threshold and the \mbox{12.7 mm} threshold.
+In the case of the \mbox{25.4 mm} in \mbox{6 hr} threshold, six members had distributions in which the range of $\sigma_x$ values exceeded 20 kilometers.
+With the lower threshold of \mbox{12.7 mm} in \mbox{6 hr} the range between the largest and smallest values of $\sigma_x$ is less than 18 kilometers.
+In fact, most members have a range of $\sigma_x$ values that is less than 10 kilometers.
+
+
+Similar results are found when examining the box-and-whisker plots for the $\sigma_y$ fitting parameter (\mbox{Figure \ref{sigmay-25mm-400km-dist}}) as were found with the $\sigma_x$ distributions.
+Once again the maximum range between any two $\sigma_y$ values from any member is approximately 15 kilometers, which is about half the maximum difference between any two $\sigma_y$ values at the \mbox{25.4 mm} threshold; most members exhibit a range of less than 10 kilometers.
+Furthermore, whereas the distributions of $\sigma_x$ and $\sigma_y$ had quite a bit of overlap at the \mbox{25.4 mm} threshold, there is no overlap between the two fitting parameters at the \mbox{12.7 mm} threshold.
+It is worth noting that six of the fifteen members exhibit an outlier value for $\sigma_y$ at the \mbox{12.7 mm} threshold, but even those members exhibit a range of less than 15 kilometers.
+
+
+The distributions of the counter-clockwise rotation angle of the abscissa, fitting parameter $\theta$, is shown in \mbox{Figure \ref{theta-12mm-400km-dist}}.
+For this fitting parameter, six out of fifteen members exhibit outliers, which is nearly half the number of members with outliers at the \mbox{25.4 mm} threshold.
+This is not really surprising when one considers the lack of any overlap in the distributions of fitting parameters $\sigma_x$ and $\sigma_y$ at the \mbox{12.7 mm} threshold.
+Recall when $\sigma_x$ approaches $\sigma_y$, the Gaussian function approaches isotropy, resulting in nearly circular distributions that make it difficult to assess the angle of rotation.
+With no overlap in the distributions of $\sigma_x$ and $\sigma_y$, this ensures that the resulting two-dimensional composites of some degree of eccentricity and a somewhat better defined abscissa rotation angle.
+Even the SSEF members that do have outliers, the range of $\theta$ values is still significantly less than the variability seen in $\theta$ at the \mbox{25.4 mm} threshold.
+In fact, the median rotation angle ($\theta$) from all of the members appears to be within 5-7 degrees of 45\degree, with the maximum orientation being slightly more than 70\degree and the minimum orientation being slightly less than 30\degree.
+This means that the fitted anisotropic Gaussian for all two-dimensional composites at the \mbox{12.7 mm} threshold exhibits some variation on a southwest-to-northeast orientation.
+
+
+The improvement in the variability in the fitting parameters was not limited to just the shape of the fitted anisotropic Gaussian.
+The variability in the location of the fitting Gaussian also decreased (fitting parameters $h$ and $k$), although not by as much as with $\sigma_x$, $\sigma_y$, and $\theta$.
+Each member's distributions of the $h$ fitting parameter (displacement in the east or west direction) is shown in \mbox{Figure \ref{h-12mm-400km-dist}}.
+Generally speaking, every SSEF member's distribution of $h$ varies by near, or slightly less than, 20 kilometers (approximately 4 grid points).
+
+
+Specifically, ARPS and WRF-NMM members consistently demonstrated a bias toward the observations centroid being east, which corresponds to the forecasts, on average, being too far west.
+Most of the WRF-ARW members exhibited the opposite behavior, namely having the observations too far east (indicating an eastward bias with the forecast).
+Not every WRF-ARW member exhibited this bias, however.
+Two of the WRF-ARW members have a majority of the distribution consist of positive values for $h$ indicating a westward forecast bias.
+However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
+Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed (\mbox{Figure \ref{k-12mm-400km-dist}}).
+One difference, however, is that there appears to be a forecast displacement preference for most members.
+Most members' forecasts appear to be farther north than the centroid of observations.
+These results are generally consistent with the distributions of $h$ and $k$ at the \mbox{25.4 mm} threshold, albeit with slightly more restricted distributions.
+
+
+Next, the two-dimensional composites spatial characteristics are examined.
+The standard deviation of each member's two-dimensional composites is shown in \mbox{Figure \ref{ssef-12mm-400km-std}}.
+A quick examination of the standard deviation of the two-dimensional composites quickly shows that the two-dimensional composites appear to be more uniform than at the \mbox{25.4 mm} threshold.
+In other words, the general pattern to the standard deviations suggests that there is not any obvious spatial biases.
+It does appear that the WRF-NMM members have more variability to the east of the representative forecast grid point, and that there may be more of a maximum in variability from the southwest-to-northeast for these members, but is not as obvious as shown in \mbox{Figure \ref{ssef-25mm-400km-std}}.
+In all standard deviation plots the maximum variability tends to be located near the forecast grid point, with generally decreasing variability as distance from the forecast grid point increases.
+
+
+The lower right panel of \mbox{Figure \ref{ssef-12mm-400km-std}} depicts the standard deviation between the two-dimensional composites of each member for all simulations.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+There is considerable variability over the the southeastern and eastern portion of the composite radius, with the maximum in variability at relatively far distances to the south, and slightly east.
+The least variable portion region over the compositing radius is found to the north, south, and west, with decreasing variability the farther away from the forecast grid point.
+
+
+Unfortunately, \mbox{Figure \ref{ssef-12mm-400km-std}} doesn't yield much insight into what the specific two-dimensional composites used in the various simulations might look like.
+To examine that aspect of the distributions, the same simulation used in \mbox{Figure \ref{ssef-25mm-400km-composite}} was used to examine further.
+\mbox{Figure \ref{ssef-12mm-400km-composite}} shows the the two-dimensional composites for each member at the \mbox{12.7 mm} in \mbox{6 hr} threshold.
+In this simulation, it is easily suggested that the WRF-NMM ensemble members are generally the wettest, as indicated by the more observations, with the WRF-ARW members generally drier.
+(The ARPS member is still in between.)
+The overall axis of observations relative to forecasts indicates a general southeast-to-northeast orientation in most members, although this is more readily apparent in some members than others.
+
+
+The lower right panel of \mbox{Figure \ref{ssef-12mm-400km-std}} depicts the standard deviation between the two-dimensional composites of each member for all simulations.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+There is considerable variability over the the southern and eastern portion of the composite radius, with the maximum in variability at relatively far distances to the south, and slightly east.
+The least variable portion region over the compositing radius is found to the north, west, and far south.
+
+
+Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
+About two-thirds of the members have the centroid of observations too far east and one-third have the centroid be too far west.
+(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
+This represents an increase in the number of members where the centroid of observations is found to be to the east.
+The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
+This is consistent with the findings at the \mbox{25.4 mm} threshold, although the gap between the two groups of members has decreased.
+In this simulation, the WRF-NMM has a westward bias with its forecasts, as the centroid of observations is east of the forecast grid point in every WRF-NMM member.
+A similar observation cannot be made for the WRF-ARW members.
+As was also the case at the \mbox{25.4 mm} threshold, it is unclear from this single simulation if the westward forecast bias in the WRF-NMM members is systematic of the WRF-NMM core, or merely a function of only having 4 WRF-NMM members.
+
+
+When examining the north-south variations of the observations centroid relative to the model forecast, similar variations are observed.
+(The north-south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
+Slightly more than half the members have the centroid of observations too far south, indicating a northward bias of the forecast, with slightly less than half having the centroid of observations too far north.
+This is the opposite that at the \mbox{25.4 mm} threshold.
+Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM S4M4 member having the least displacement.
+No obvious preference in displacement direction is readily apparent from the WRF-ARW members.
+However, it does appear that generally speaking, the magnitude of the displacement of the WRF-ARW members appears to be less than that of the WRF-NMM members.
+
+
+Similar to the lower right panel of \mbox{Figure \ref{ssef-12mm-400km-std}}, the lower right panel of \mbox{Figure \ref{ssef-12mm-400km-composite}} depicts the standard deviation between the two-dimensional composites of each member for the given simulation.
+In this panel, the darker colors indicate a greater standard deviation at that particular grid point than grid points with a lighter color.
+It is readily apparent that the greatest variability between the members exists to the east of the forecast grid point, as was the case with the overall variability denoted in the lower right panel of \mbox{Figure \ref{ssef-12mm-400km-std}}.
+This is due to the wetter WRF-NMM members having a westward forecast bias, resulting in a wider range of observation counts to the east of the forecast.
+
+
+How does the modeled Gaussian work in practice?
+\mbox{Figure \ref{ssef-12mm-400km-example}} shows the probabilistic forecast from each member of the SSEF for the six hours ending 06 UTC 20 May 2010, the same as in \mbox{Figure \ref{ssef-25mm-400km-example}}.
+At the lower precipitation accumulation threshold of \mbox{12.7 mm} in \mbox{6 hr}, a large area of observed precipitation amounts exceeding the threshold occurred across eastern Oklahoma and western Arkansas and extended north and northeastward into western and central Missouri as well as eastern and northeastern Kansas.
+Additionally, small areas exceeding the threshold were observed in northeast Louisiana and extreme southeastern Arkansas, south-central into southwestern Kansas, northern Texas Panhandle, eastern Colorado, and southeastern Wyoming.
+
+
+In terms of the overall appearance, each member appears to produce a probabilistic forecast that is maximized in the vicinity of the largest area observed precipitation accumulation exceeding the specified threshold, with decreasing probabilities to the north and south.
+Furthermore, every member of the SSEF seems to have captured the general area where \mbox{12.7 mm} in \mbox{6 hr} occurred.
+In fact, as was the case at the higher precipitation threshold, within the limited domain shown in \mbox{Figure \ref{ssef-12mm-400km-example}}, all observed areas exceeding the given threshold were captured by non-zero probabilities, with most areas, for most SSEF members, captured within at least a 5\% contour.
+However, no members' probabilistic forecast encapsulated all observed areas with at least a 5\% contour.
+Although each probabilistic forecast appears to highlight the same area for a heavy rain potential, the character of each member's probabilistic forecast is different.
+All members appear to convey the threat of an elongated north-south area with the potential to see heavy rain, with most members also suggesting the possibility of the heavy rain to extend northwestward into central and western Kansas.
+None of the members captured the observed area in northeast Louisiana, nor the areas in the northern Texas Panhandle and southeastern Wyoming.
+It is tempting to say the ensemble forecasts are bust in these areas, however, that cannot be determined based on the figures shown.
+This is because the calibration approach presented here requires a large number of nearby grid points forecast to exceed the specified threshold in order produce a probabilistic forecast that exceeds the 5\% contour.
+It is quite possible that the individual SSEF members did accurately predict accumulations in these ``missed'' areas that exceeded the \mbox{12.7 mm} in \mbox{6 hr} threshold, but did so over a small area which yielded small forecast probabilities.
+
+
+Lastly, the lower right panel of \mbox{Figure \ref{ssef-12mm-400km-example}} is the ``ensemble'' probability forecast.
+Because each of the SSEF members highlight the same general location with their individual forecasts, the ensemble average appears to be a good forecast also.
+
+
+
+
+
+
+
+
 
 
 
@@ -197,7 +329,7 @@ Thus, because every SSEF member over forecasts, the resulting damped, and spatia
 \subsection{Discussion}
 \label{ediscussion}
 
-It is readily apparent from examining \mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{ssef-25mm-400km-composite}} that there is a wide range of variability amongst the fitting parameters.
+It is readily apparent from examining \mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{ssef-25mm-400km-composite} and \ref{sigmax-12mm-400km-dist}--\ref{ssef-12mm-400km-composite}} that there is a wide range of variability amongst the fitting parameters at all precipitation accumulation thresholds.
 The wide range of the fitting parameters could be traced back to a multitude of problems, however, two appear to be most likely.
 The first is that the time of year over which the samples
 
@@ -205,8 +337,6 @@ The first is that the time of year over which the samples
 ...back to the relatively rare nature of a precipitation accumulation of \mbox{25.4 mm} in \mbox{6 hr}.
 With only 59 days from which to try and capture each SSEF member's displacement characteristics, the threshold of \mbox{25.4 mm} in \mbox{6 hr} occurs too infrequently to create a two-dimensional composite from which to calculate robust fitting parameters.
 This is particularly true when using
-
-However, the fitting parameters that are
 
 
 
