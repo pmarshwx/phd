@@ -20,7 +20,7 @@ The idea behind the proposed method is to objectively determine where observatio
 This information is then used to fit an analytic function to the two-dimensional frequency histogram.
 Several analytic functions might be good candidates for this purpose; a two-dimensional Gaussian function is used here, fitted using methods similar to \cite{Lak2010}.
 In theory a normalized version of the raw two-dimensional frequency histogram, could be used, but, there is no guarantee that this would produce continuous forecast probabilities.
-After fitting an analytic function to the two-dimensional histogram, this analytic function is used as the kernel to transform a forecast of discrete probabilities of occurrence into a continuous probabilistic forecast using methods similar to Kernel Density Estimation \citep{Silverman1986}.
+After fitting an analytic function to the two-dimensional histogram, this analytic function is used as the kernel to transform a forecast of ``yes''/``no'' occurrence into a continuous probabilistic forecast using methods similar to Kernel Density Estimation \citep{Silverman1986}.
 
 
 
@@ -29,12 +29,12 @@ After fitting an analytic function to the two-dimensional histogram, this analyt
 \label{compositing}
 
 The compositing employed here is straight forward.
-First, forecasts are mapped onto the observations' grid.
+First, forecasts are mapped onto the observational grid.
 Next the raw forecasts and observations are converted into binary grids of 1s (event occurred) and 0s (event did not occur).
-Next, all grid points within a specified radius of a forecast event are examined for observations.
-If an observation occurs within the specified radius of a forecast, the position of the observation relative to the forecast is recorded.
-Lastly, all of these relative positions are mapped onto a common grid and summed.
-The result is a two-dimensional frequency histogram of where observations occurred relative to forecasts.
+Next, all grid points within a specified radius of a forecast event are examined for observed events.
+If an observed event occurs within the specified radius of a forecast, the position of the observation relative to the forecast is recorded.
+Lastly, all of these relative positions are mapped onto a common grid and accumulated over all forecast periods during a specified training period.
+The result is a two-dimensional frequency histogram of where observations occurred relative to forecasts during the entire training period.
 
 
 
@@ -43,7 +43,8 @@ The result is a two-dimensional frequency histogram of where observations occurr
 \label{fitting}
 
 Once the two-dimensional frequency histogram is determined, the next step involves fitting an analytic function to the histogram.
-As previously mentioned, any analytic function would work, but a Gaussian function is demonstrated here.
+As previously mentioned, any analytic function would work, as long it accurately modeled the two-dimensional frequency histogram.
+A Gaussian function is demonstrated here.
 
 To fit a Gaussian function, two parameters must be known: location and variance.
 Typically, the location of a Gaussian function is given by the mean of the distribution.
@@ -110,15 +111,16 @@ The function's peak probability density occurs at the center of the function, an
     \end{equation}
 
 \noindent where $x$ is the x-component of the distance from the center, $y$ s the y-component of the distance from center, $a$ is the major axis, and $b$ is the minor axis, is satisfied.
-The result is concentric ellipses that monotonically decrease outward.
+The result is a set of concentric ellipses that monotonically decrease outward.
 In the limiting case of $\sigma_x = \sigma_y$, the Gaussian function is said to be isotropic.
 In this case, the function's peak probability density still occurs at the center of the function and decreases monotonically outward; however, \mbox{equation \ref{ellipse}} becomes
 
-    \begin{equation*}
+    \begin{equation}
         \frac{x^2 + y^2}{r} = 1,
-    \end{equation*}
+    \end{equation}
 
-\noindent where $r = \sqrt{a^2 + b^2}$, and produces concentric circles.
+\noindent where $r = \sqrt{a^2 + b^2}$.
+In this case, concentric circles are produced rather than ellipses.
 
 In \cite{Sobash2011} attempts to produce reliable forecasts centered on subjectively changing $\sigma_x$ for a two-dimensional isotropic Gaussian function until the value producing the most reliable forecasts was found\footnote{In a 2D isotropic Gaussian, $\sigma_x = \sigma_y$, thus \mbox{equation \ref{2DGauss}} is reduced to a form only depending on $\sigma_x$}.
 Here, the proposed calibration method uses a two-dimensional anisotropic Gaussian function, with $\sigma_x$ and $\sigma_y$ objectively derived from the model's historical error characteristics.
