@@ -12,17 +12,18 @@
 
 As discussed at the beginning of \mbox{chapter \ref{deterministic}}, in order to develop a statistical post-processing method for calibration of numerical weather prediction forecasts, both forecasts and observations must be readily available.
 Unfortunately, as mentioned in the Introduction, ``\dots there is a limited database of forecasts for RCEs, making robust statistical techniques difficult\dots''
-As limited as databases of deterministic CAM forecasts are, the availability of ensembles of CAM forecasts is even worse.
+As limited as databases of deterministic CAM forecasts are, the availability of \emph{ensembles} of CAM forecasts is even worse.
 
 
-Similar to CAM forecasts, most storm-scale ensemble forecast systems\footnote{The phrase storm-scale ensemble forecast is typically used in reference to ensembles composed of numerical forecasts produced without using cumulus parameterization.} (SSEF) have been short-term initiatives, produced in support of various field programs and experiments.
-The makeup of these SSEFs are often modified year-to-year to adapt to the changing needs of the various field programs and experiments.
-This makes finding a long running, consistent ensemble extremely difficult.
+Similar to CAM forecasts, most storm-scale ensemble forecast systems\footnote{The phrase storm-scale ensemble forecast is typically used in reference to ensembles composed of numerical forecasts produced without using cumulus parameterization.} (SSEF) have been erected on a temporary basis, produced in support of various field programs and experiments.
+The makeup of these SSEFs are often modified from one program to the next to adapt to the changing needs of the various experiments.
+Long running, consistent configured SSEFs were not available for this work.
+It is worth noting that as this work neared completion, the Air Force Weather Agency began running an operational SSEF.
 
 
 One of the largest collections of SSEF forecasts has been produced by the University of Oklahoma's Center for the Analysis and Prediction of Storms (CAPS).
 Since 2007, CAPS has been producing CAM forecasts in support of the Hazardous Weather Testbed's (HWT) annual Spring Forecast Experiment (SFE).
-From 2007 through 2010, the ensemble configuration changed from year-to-year based on the results of previous years.
+From 2007 through 2010, the ensemble configuration changed from year-to-year based on the results of previous years and updated to the WRF modeling system.
 In 2010, CAPS produced a 26 member SSEF.
 This SSEF was multi-model in nature, initialized at 00 UTC, used 4 km grid spacing, and integrated out to 30 hours.
 Of the 26 members, 19 were WRF-ARW\footnote{Weather Research and Forecasting -- Advanced Research WRF} \citep{WRFV3}, 5 were WRF-NMM\footnote{Weather Research and Forecasting -- nonhydrostatic Mesoscale Model} \citep{NAMnWRF-NMM}, and 2 were ARPS\footnote{Advanced Regional Prediction System} \citep{ARPS}.
@@ -30,11 +31,11 @@ In 2011, CAPS expanded the SSEF from 26 members to 50, of which 41 were WRF-ARW,
 These forecasts were also initialized at 00 UTC, used a grid spacing of 4 km, but were integrated forward to 36 hours instead of 30.
 
 
-From these 26 members in 2010 and 50 members in 2011, 15 were chosen to be held as consistent as possible between the two years.
+For this thesis, fifteen members were chosen from the 2010 and 2011 ensembles because these members were configured almost identically between the two years.
 These 15 members were composed of 10 WRF-ARW forecasts, 4 WRF-NMM forecasts, and 1 ARPS forecast.
 The background initial conditions for these 15 members were downscaled from the 00 UTC 12 km NAM, with additional information coming from a three dimensional variational and cloud analysis from ARPS.
 Except for the control members (one each from the WRF-ARW, WRF-NMM, and ARPS), these initial conditions were then perturbed using mesoscale atmospheric perturbations from NOAA's Environmental Modeling Center's operational Short-Range Ensemble Forecast (SREF) system.
-Lateral boundary conditions for the three control members came from the 00 UTC NAM's forecasts, whereas the remaining 12 members used the SREF forecast corresponding to the perturbations used in the initial conditions.
+Lateral boundary conditions for the three control members came from the 00 UTC NAM forecasts, whereas the remaining 12 members used the SREF forecast corresponding to the perturbations used in the initial conditions.
 A listing of the configurations for each member of the SSEF can be found in \mbox{Table \ref{ensemble_members}}.
 
 
@@ -44,7 +45,7 @@ Changes in the NAM and SREF, which were used for initial and lateral boundary co
 
 In 2010 the HWT SFE ran from 17 May through 18 June, and in 2011, the HWT SFE ran from 09  May through 10 June.
 CAPS provided SSEF forecasts each weekday during the experiment, with an additional two retrospective forecasts in 2011: one for the 27 April 2011 tornado outbreak in the southeast United States and another for the 22 May 2011 Joplin, Missouri EF-5 tornado.
-\mbox{Table \ref{sfedtes}} lists the exact dates CAPS forecasts are available.
+\mbox{Table \ref{sfedtes}} lists the dates for which CAPS forecasts are available.
 
 
 In an effort to be consistent with the evaluation carried out on the NSSL-WRF, the decision was made to use six-hour accumulation periods for both SSEF forecasts\footnote{Unless otherwise noted, from this point forward the phrase ``SSEF'', ``SSEF forecasts'', or variants thereof refer to the 15 numerical forecasts that are presented in \mbox{Table \ref{ensemble_members}}.} and the Stage IV analyses.
