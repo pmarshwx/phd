@@ -28,7 +28,7 @@ Nearly a century later, in 1871, under the direction of Professor Cleveland Abbe
 In fact, Professor Abbe promoted the use of ``probabilities'' so much he earned the nickname ``Old Probabilities'' \citep{Scott1873, Murphy1998}.
 
 
-Although probability forecasting of some variety was performed prior to the start of the twentieth century, the start of probability forecasting is often attributed to the work of W. E. Cooke \citep{Murphy1998}.
+Although probability forecasting of some variety was performed prior to the beginning of the twentieth century, the start of probability forecasting is often attributed to the work of W. E. Cooke \citep{Murphy1998}.
 \cite{Cooke1906a} eloquently summarized the shortcomings of deterministic forecasting, and championed the inclusion of uncertainty information, by stating:
 \begin{quote}
     ``(a)ll those whose duty it is to issue regular daily forecasts know that there are times when they feel very confident and other times when they are doubtful as to the coming weather. It seems to me that the condition of confidence or otherwise forms a very important part of the prediction, and ought to find expression. It is not fair to the forecaster that equal weight should be assigned to all his predictions and the usual method tends to retard that public confidence which all practical meteorologists desire to foster. It is more scientific and honest to be allowed occasionally to say `I feel very doubtful about the weather for tomorrow'\dots and it must be\dots useful to the public if one is allowed occasionally to say `It is practically certain that the weather will be so-and-so tomorrow''' (\mbox{p. 23}; \citealp{Murphy1998}).
@@ -41,7 +41,7 @@ Although these forecasts conveyed uncertainty information, they were not fully p
 It wasn't until \cite{Hallenbeck1920} that numerical probabilistic forecasts were recorded in the literature.
 
 
-Around the same time as the work done by Hallenbeck, a series of papers by Anders {{\AA}}ngstr{{\"o}}m poignantly made the case for probabilistic warnings, rather than binary or categorical \citep{Angstrom1919, Angstrom1922, Liljas1994, Murphy1998}.
+Around the same time as the work done by Hallenbeck, a series of papers by Anders {{\AA}}ngstr{{\"o}}m poignantly made the case for probabilistic rather than binary or categorical warnings \citep{Angstrom1919, Angstrom1922, Liljas1994, Murphy1998}.
 The crux of {{\AA}}ngstr{{\"o}}m's arguments revolved around the difficulties forecasters face when they are constrained to issue a warning in binary terms.
 This difficulty, argued {{\AA}}ngstr{{\"o}}m, arises from the fact that forecasters' knowledge of users' cost/loss ratios is generally insufficient to determine whether to ``issue a warning" or ``not issue a warning" in the context of producing the best possible forecast for users.
 {{\AA}}ngstr{{\"o}}m further noted that ``(w)hat makes the matter still more complicated is the fact that\dots [the loss function]\dots has very different values in different cases," \citep{Angstrom1922, Murphy1998}. {{\AA}}ngstr{{\"o}}m ultimately concluded: ``The most appropriate system seems therefore to be to leave to the clients concerned by the warning to form an idea of the ratio [cost-loss ratio]\dots and to issue the warnings in such a form that the larger or smaller probability of the event gets clear from the formulation.
@@ -79,13 +79,13 @@ Deterministic model output provides a precise answer at every grid point for all
 This is a consequence of the internal numerics of deterministic models; equations are constrained to produce a single value.
 However, raw deterministic model output can still be thought of in terms of probabilities.
 A single output value can be interpreted as having a probability of 1 that the output value will be observed, and a 0 that any other value will be observed.
-Unless the deterministic model is always perfect, the probability that the model's forecast will be correct lies somewhere between \mbox{0 and 1}.
+Unless the deterministic model is always perfect (or always wrong), the probability that the model's forecast will be correct lies somewhere between \mbox{0 and 1}.
 
 
 In the 1960s, Edward Lorenz published a series of papers that demonstrated the chaotic nature of the atmosphere \citep{Lorenz1963, Lorenz1965, Lorenz1968}.
 Lorenz demonstrated that even small errors in the initial state of the modeled atmosphere --- even those within observational error --- can have large impacts on the resulting numerical forecast.
 These errors abound from all aspects of numerical weather prediction, ranging from numerical to observational to the model itself.
-Thus, perfect, deterministic, numerical weather predictions are essentially impossible.
+Thus, perfect, deterministic, numerical weather predictions are practically impossible.
 Therefore, in order for a numerical weather forecast to satisfy type 2 ``goodness'' they, too, must include a probabilistic component.
 
 
@@ -96,36 +96,36 @@ Although these methods showed promise, the addition of uncertainty terms proved 
 
 
 \cite{Leith1974} offered the first attempt at Monte Carlo forecasting, or ensemble forecasting as it is known today.
-Leith suggested that instead of running a single forecast from a single initialization, a collection (ensemble) of forecasts, each with a slightly different initial state, should be produced.
+Leith suggested that instead of running one forecast from a single initialization, a collection (ensemble) of forecasts, each with a slightly different initial state, should be produced.
 The resulting forecasts could be used to assess the uncertainty of the forecast.
-One such method of assessing the uncertainty is to report the fraction of ensemble members that produce a certain forecast divided by the total number of ensemble members.
+One such method of assessing the uncertainty is to report the fraction of ensemble members that produce a certain outcome divided by the total number of ensemble members.
 This results in a probability of occurrence, derived from the collection of numerical forecasts.
 As was the case with \cite{Epstein1969} and \cite{Gleeson1970}, even though this approach showed promise, it was too expensive for operational use at that time.
-It took nearly two decades worth of computational advancement, but operational ensemble prediction systems because a reality in the early 1990s.
+It took nearly two decades worth of computational advancement, but operational ensemble prediction systems became a reality in the early 1990s.
 
 
-A different approach was put forth by \cite{Glahn1972}.
-Instead of adding additional terms to the numerical model, or producing multiple model forecasts each starting with slightly different initial conditions, the idea was to post-process the raw model output by using statistical models.
+In the mean time, a different approach was put forth by \cite{Glahn1972}.
+Instead of adding additional terms to the numerical model, or producing multiple model forecasts each starting with slightly different initial conditions, the idea was to post-process the raw model output using statistical models.
 The statistical models are in essence multi-variate regressions, derived from the three-dimensional numerical output, observations, and the general climatological conditions for specific locations.
-These model output statistics, or MOS, account for model-biases as well as local effects that cannot be resolved by the model due to model grid spacing.
-Although some MOS products are deterministic in nature (such as the maximum and minimum \mbox{6 hr} temperatures), some products are probabilistic (such as probability of precipitation).
+These model output statistics, or MOS, account for model biases as well as local effects that cannot be resolved by the native resolution of the model.
+Although some MOS products are generally expressed deterministically (such as the maximum and minimum \mbox{6 hr} temperatures), some products are probabilistic (such as probability of precipitation).
 MOS is still used today by the National Weather Service \citep{Allen2001a, Allen2001b, Sfanos2001, Carroll2005, Glahn2009}.
 
 
-As previously alluded to, during the latter parts of the twentieth century computing power rapidly increased.
-This increase offered numerical weather prediction modelers the opportunity to either decrease model grid spacing or transition to ensemble forecasting.
-Most operational numerical weather prediction centers argued in favor of decreasing model grid spacing (e.g, \citealp{McPherson1991, WMO1992}).
+As previously alluded, during the latter parts of the twentieth century computing power rapidly increased.
+This led to a debate about whether extra resources should be devoted to increasing resolution or introducing ensembles.
+Operational numerical weather prediction centers committed most of the additional resources to decreasing model grid spacing (e.g, \citealp{McPherson1991, WMO1992}).
 
 
 The choice to embrace higher resolution numerical models resulted in much needed improvements to the models' physics parameterizations.
 Additionally, improved model grid spacing allowed for numerical models to better represent atmospheric phenomenon with strong gradients (i.e., fronts, drylines, inversions, etc.).
-These improvements allowed for intoxicatingly detailed forecasts.
-When the details of the numerical forecast were correct, highly specific spatial and temporal forecasts were easily produced \citep{Droegemeier1990}.
-Unfortunately, the details of numerical weather prediction models are best in environments in which the atmosphere is dominated by large-scale phenomenon (i.e., when quasi-geostrophy can be assumed; \citealp{Antolik1989}).
+These improvements allowed for highly specific spatial and temporal forecasts were easily produced \citep{Droegemeier1990}.
+Unfortunately, the details in high resolution forecasts are often the least skillful aspects.
+These details are best in environments in which the atmosphere is dominated by large-scale phenomenon (i.e., when quasi-geostrophy can be assumed; \citealp{Antolik1989}).
 Thus, numerical guidance tends to be at its best when the forecasting situation is, in some sense, the easiest, and is least needed \citep{Brooks1993}.
 
 
-Some in the meteorological community, however, argued for adopting ensemble forecasting (e.g. \citealp{Brooks1992a, Brooks1993}).
+Probabilistic prediction becomes more important as the resolution of models increases, thus ensemble prediction concepts continued to receive attention if not operational implementation. (e.g. \citealp{Brooks1992a, Brooks1993}).
 As previously noted, \cite{Lorenz1963, Lorenz1965, Lorenz1968} demonstrated that a numerical weather forecast was sensitive to the initial conditions.
 Unfortunately, model grid spacing is typically less than that at which we observe the atmosphere over the globe.
 Thus, in addition to the errors introduced by the observing instruments, additional errors can be introduced as a result of interpolating observations to grid points that do not have collocated observations.
