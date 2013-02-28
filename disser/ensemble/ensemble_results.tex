@@ -342,17 +342,63 @@ Since the reliability curves for each SSEF member are near perfect reliability t
 \label{ediscussion}
 
 It is readily apparent from examining \mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{ssef-25mm-400km-composite} and \ref{sigmax-12mm-400km-dist}--\ref{ssef-12mm-400km-composite}} that there is a wide range of variability amongst the fitting parameters at all precipitation accumulation thresholds.
+Furthermore, examining the verification plots (\mbox{Figures \ref{ssef-25mm-400km-verif}a,b and \ref{ssef-12mm-400km-verif}a,b}) could lead one to believe that the probabilistic forecasts are not very good.
+However, it is important to take these results in proper context.
 
 
 
-It does appear, however, that the variability in the fitting parameters at the higher precipitation accumulation threshold is greater than at the lower threshold.
-The wide range of the fitting parameters could be traced back to a multitude of problems, however, two appear to be most likely.
-The first is that the time of year over which the samples
+
+\subsubsection{Warm Season verus Cool Season}
+
+The period from late Spring through Summer is traditionally the hardest time for numerical weather prediction with respect to quantitative precipitation forecasts!
+To illustrate this point, the \mbox{12.7 mm} (\mbox{0.5 in}) in \mbox{6 hr} quantitative precipitation forecast verification scores of the NAM and Global Forecast System (GFS) numerical models, as well as the human forecasts produced by the NOAA Hydrometeorological Prediction Center (HPC; Available online at \url{http://www.hpc.ncep.noaa.gov/html/hpcverif.shtml#6hour}) are shown in \mbox{Figures \ref{hpc18}--\ref{hpc36}} .
+The figures show the threat score (equivalent to CSI) of each forecast system plotted as a function of month for the same forecast time periods as used in both the NSSL-WRF and the SSEF.
+The general trend is for a decline in forecast verification scores during the warm season (late Spring through Summer) and an increase in the cool season (late Autumn through Winter).
+Although these verification scores are for the year 2012, a different time period than used in the analyses conducted in this paper and are only valid at a single precipitation accumulation threshold, the general trend is similar to previous years and higher accumulation thresholds.
 
 
-...back to the relatively rare nature of a precipitation accumulation of \mbox{25.4 mm} in \mbox{6 hr}.
-With only 59 days from which to try and capture each SSEF member's displacement characteristics, the threshold of \mbox{25.4 mm} in \mbox{6 hr} occurs too infrequently to create a two-dimensional composite from which to calculate robust fitting parameters.
-This is particularly true when using
+The evaluation of the calibration method, as applied to the SSEF, has been conducted at what is traditionally one of the most challenging times for quantitative precipitation forecasting, both for numerical weather prediction and for humans!
+Bearing this in mind, a closer look at the performance diagram of the \mbox{12.7 mm} in \mbox{6 hr} threshold indicates that the CSI scores at the various probabilistic forecast values for the SSEF members are slightly better than the CSI values from the larger-scale numerical models (GFS and NAM) for the corresponding time of year.
+This means that it is possible to construct a deterministic forecast from the probabilistic forecast of any SSEF member that is more skillful than the GFS or NAM.
+This is achieved for any SSEF member by choosing a forecast probability threshold for that member that exhibits a higher CSI than either the NAM or GFS and converting all forecast probabilities less than that threshold into a ``NO'' forecast and forecast probabilities exceeding that threshold into a ``YES'' forecast.
+Here a ``NO'' forecast indicates that the grid point is not expected to exceed the specified threshold, and a ``YES'' forecast indicates that the grid point is expected to exceed the specified threshold.
+In fact, for some members of the SSEF, it would be possible to generate a deterministic forecast from the probabilistic forecast that would be comparable in skill to the human forecasts produced by HPC\footnote{HPC does not verify their quantitative precipitation forecasts on a grid point by grid point basis.
+Instead they verify at a number of predefined locations.
+Please see \cite{Olsen1995} for additional information on how HPC conducts its verification.}.
+
+
+It is important to note that this more skillful deterministic forecast can be created from any of the SSEF members.
+In other words, it is possible to produce a collection of deterministic forecasts, derived from probabilistic forecasts, that are more skillful than the larger-scale numerical models.
+The fact the more skillful deterministic forecasts can be derived from the probabilistic forecasts is an important one.
+This allows for improvements in the current deterministic paradigm in which a majority of end users operate, but it also provides additional useful information for higher-end users.
+End users who have very specific cost-loss thresholds can utilize the probabilistic forecast to gain additional, user-specific information from the probabilistic forecasts, without negatively impacting users who depend on the legacy deterministic forecasts.
+
+
+
+
+\subsubsection{Limited Training Period}
+
+
+With only 59 time periods from which to try and capture each SSEF member's displacement characteristics, achieving the threshold of \mbox{25.4 mm} in \mbox{6 hr} occurs too infrequently to create a two-dimensional composite from which to calculate robust fitting parameters.
+The 59 training time periods is simply not long enough to adequately capture the variability in each member's spatial displacement for such a rare event.
+For instance, the maximum number of observations at any of the two-dimensional composite grid points, from any SSEF member, is less than 25 000.
+Compare that with the hundreds of thousands found in the NSSL-WRF composite at the same threshold.
+This inability to capture all of the displacement variability for all SSEF members significantly undercuts the justification of the proposed calibration method.
+Namely, that by modeling the displacement errors, and using the modeled displacement errors as the basis of KDE, one can create calibrated probabilistic forecasts from deterministic models.
+Unfortunately, the method is only as good as the ability to correctly model the underlying displacement errors.
+If the resulting two-dimensional composite is unable to adequately represent the displacement error, the method will not produce as well of a forecast as it could.
+
+
+In the case of the SSEF, simply moving to a lower threshold, such as the \mbox{12.7 mm} in \mbox{6 hr}, resulted in the maximum number of observations at any two-dimensional composite grid point being greater than one hundred thousand -- even for such a limited time period!
+This allowed for an a better depiction of the underlying displacement error, and a much more reliable probabilistic forecast was achieved.
+
+
+
+
+
+
+
+
 
 
 
