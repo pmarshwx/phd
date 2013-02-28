@@ -11,16 +11,17 @@
 \label{dresults_25.4mm}
 
 Before the proposed method can be applied to a numerical forecast, the two-dimensional histogram of observations relative to forecasts must be constructed.
-A distance of \mbox{400 km} was used as the search radius over which to look for observed accumulations of at least \mbox{25.4 mm} in \mbox{6 hr} relative to forecast accumulations of at least \mbox{25.4 mm} in \mbox{6 hr}.
+A distance of \mbox{400 km} was used as the search radius over which to look for observed accumulations of at least \mbox{25.4 mm} in \mbox{6 hr} relative to forecast accumulations of the same.
 The resulting two-dimensional composite is shown in \mbox{Figure \ref{single_25comp}}.
 
 
 It is readily apparent from examining \mbox{Figure \ref{single_25comp}} that the centroid of the two-dimensional frequency distribution is observed to the north-northeast of the representative forecast grid point and the distribution has an elliptical shape.
 When the anisotropic Gaussian function is fit to this distribution, the resulting parameters, determined by the methods discussed in \mbox{chapter \ref{method}} as well as in \cite{Lak2010}, are $(\mu_x, \mu_y) = (4.7, 18.8)$ kilometers, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{4.7 km} too far west and \mbox{18.8 km} too far south, $\sigma_x \approx 190$ kilometers, $\sigma_y \approx 155$ kilometers, and $\theta \approx 60^{\circ}$ in the counter-clockwise direction, revealing the anisotropy of the distribution.
 To some extent, the shape and anisotropy are closely related to the mean shape and orientation of individual precipitation objects, as revealed by comparing the average size-weighted orientation of the precipitation objects, determined by the Baldwin object identification algorithm \citep{Baldwin2005}, to the orientation angle of the fitted distribution (not shown).
+In particular, a southwest-to-northeast orientation of heavy precipitation is often observed.
 
 
-Using this fitted two-dimensional distribution, probabilistic forecasts for each \mbox{6 hr} time period from 01 April 2010 --- 31 March 2011 were generated in a manner similar to what was done by \cite{Sobash2011}, except that the shifted, fitted distribution was used instead of a simple isotropic Gaussian.
+Using this fitted two-dimensional distribution, probabilistic forecasts for each \mbox{6 hr} time period from 01 April 2010 --- 31 March 2011 were generated as described in \mbox{Section \ref{kde}}.
 Four sample forecasts, all of differing lead times, are shown in \mbox{Figures \ref{single_1_400km_25mm}} and \ref{single_2_400km_25mm} and are now discussed.
 However, one must be cautious about assessing the skill of a probabilistic forecasting system on the basis of individual events.
 
@@ -102,7 +103,7 @@ Following the methods outlined previously, a performance diagram and reliability
 The performance diagram is much improved over that in \mbox{Figure \ref{single_verif_400km_25mm}a}, as all forecast bins have improved CSI; the maximum CSI attained is closer to 0.2.
 The reliability diagram indicates forecasts over a much broader range of probabilities than those in \mbox{Figure \ref{single_verif_400km_25mm}b}.
 The forecasts at lower probabilities demonstrate nearly perfect reliability; forecasts at higher probabilities deviate slightly from perfect reliability, with the trend toward under forecasting.
-In other words, when the method produces a forecast with a high probability, the forecast verifies more often than a reliable forecast would.
+In other words, when the method produces a forecast with a high probability, the event occurs more often than a reliable forecast would.
 As is the case with the \mbox{25.4 mm} threshold, as the number of forecast grid points decreases, particularly below 10 000 grid points, the forecast is more likely to deviate from perfect reliability (\mbox{Figure \ref{single_verif_400km_12mm}c} versus \mbox{Figure \ref{single_verif_400km_25mm}c}).
 
 
