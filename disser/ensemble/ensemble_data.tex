@@ -48,9 +48,9 @@ CAPS provided SSEF forecasts each weekday during the experiment, with an additio
 \mbox{Table \ref{sfedtes}} lists the dates for which CAPS forecasts are available.
 
 
-In an effort to be consistent with the evaluation carried out on the NSSL-WRF, the decision was made to use six-hour accumulation periods for both SSEF forecasts\footnote{Unless otherwise noted, from this point forward the phrase ``SSEF'', ``SSEF forecasts'', or variants thereof refer to the 15 numerical forecasts that are presented in \mbox{Table \ref{ensemble_members}}.} and the Stage IV analyses.
-The SSEF forecasts were drawn from the \mbox{12-36 hr} forecasts ending at 18, 00, 06, and 12 UTC, but only for \mbox{6 hr} time periods for which every member was available.
-This means that out of the 208 possible \mbox{6 hr} time periods (52 days times 4 periods a day), the potential dataset was immediately reduced to 156 six-hour time periods (52 days times 3 periods a day) because the 2010 SSEF was only integrated out to \mbox{30 hr}.
+In an effort to be consistent with the evaluation carried out on the NSSL-WRF, the decision was made to use six-hour accumulation periods for the SSEF forecasts\footnote{Unless otherwise noted, from this point forward the phrase ``SSEF'', ``SSEF forecasts'', or variants thereof refer to the 15 numerical forecasts that are presented in \mbox{Table \ref{ensemble_members}}.} and the Stage IV analyses.
+As was the case with the NSSL-WRF, the SSEF forecasts were drawn from subsets of the \mbox{12-36 hr} forecast period ending at 18, 00, 06, and 12 UTC, but only for \mbox{6 hr} time periods for which every member was available.
+Because the 2010 SSEF was only integrated out to \mbox{30 hr}, the potential dataset was immediately reduced to 156 six-hour time periods (52 days times 3 periods a day).
 
 
 
@@ -84,7 +84,7 @@ In an attempt to maximize the utility of the 119 time periods, twenty ``simulati
 This was accomplished by randomly drawing, without replacement, 59 training periods from the valid 119 time periods with the remaining 60 periods used as forecast periods.
 From these 59 training periods, two-dimensional histograms were created for each of the 15 ensemble members.
 These histograms were then used to calculate the five fitting parameters --- $\sigma_x$, $\sigma_y$, $\theta$, $h$, and $k$ --- for each member's unique two-dimensional anisotropic Gaussian function.
-Forecasts for each member were then made for each time period of the 60 forecast time periods, with each member using their own fitted anisotropic Gaussian function.
+Forecasts for each member were then made for each time period of the 60 forecast time periods, with each member using its own fitted anisotropic Gaussian function.
 Thus, for each simulation all 15 ensemble members used the same 59 time periods for training and the remaining 60 time periods for forecasting.
 This results in 18 000 forecasts (20 simulations x 60 forecast periods x 15 members).
 
