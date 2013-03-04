@@ -6,11 +6,11 @@
 
 
 The motivation for this research was driven by the experiences with high resolution numerical models in the NOAA Hazardous Weather Testbed, in particular the NSSL-WRF, along with the needs of the ``Warn-on-Forecast'' (WoF) initiative.
-One aim of the WoF initiative is to transform the warning paradigm of rare convective events from one where RCE warnings are based almost entirely on observations to one where RCE warnings are based on short-term, high resolution numerical forecasts of an RCE occurring.
+One aim of the WoF initiative is to transform the warning paradigm of rare convective events from one where RCE warnings are based almost entirely on observations to one where RCE warnings are based on short-term, high resolution numerical forecasts of a RCE.
 A key challenge for the WoF paradigm is to produce probabilistic guidance for the occurrence of RCEs that has a high degree of statistical reliability and resolution and is unambiguous for users to interpret.
 
 
-This is especially challenging since these phenomena will not be explicitly resolved in larger domain model configurations for many years to come (e.g., explicit prediction of tornadoes will require grid spacing on the order of a few tens of meters).
+This is especially difficult since these phenomena will not be explicitly resolved in larger domain model configurations for many years to come (e.g., explicit prediction of tornadoes will require grid spacing on the order of a few tens of meters).
 One possibility for overcoming this problem is to identify ``extreme'' model-generated features that have strong correlations with observed severe convective phenomena, and then use the former as surrogates for the severe phenomena in question.
 This ``surrogate-severe'' (SS) approach is fundamentally different from traditional applications of numerical weather prediction for severe weather because it is phenomenon based.
 In particular, it relies on identification of explicit convective phenomena rather than environmental conditions that might support such phenomena.
@@ -22,7 +22,7 @@ Among the quantities they examined, model-generated updraft helicity (UH) appear
 Subjective assessments in the HWT convinced participants that SS quantities from high resolution models had the potential to offer guidance to forecasters as to the vicinity (in time and space) of RCE occurrence, but not necessarily the exact location.
 
 
-The fact that subjective assessments of high resolution numerical model forecasts suggest that forecasts of RCEs are in the vicinity of observations of RCEs, but are not necessarily collocated, highlights the need for the forecast to be expressed probabilistically.
+The fact that subjective assessments of high resolution numerical model forecasts suggest that forecasts of RCEs are in the vicinity of observations of RCEs, but are not necessarily collocated, highlights the need for the uncertainty in the forecast to be expressed.
 One way to do this is to utilize an ensemble of high resolution numerical models to quantify the spatial uncertainty in the location of the forecast RCEs.
 Unfortunately, the infrequent nature of rare events makes it unlikely that two separate high-resolution model forecasts would place extreme model-generated convective storm phenomena at the same grid point, even for generally similar mesoscale forecasts.
 Thus, ensemble generated probabilities of RCE occurrence at a given grid point are typically extremely small.
@@ -32,9 +32,11 @@ This is consistent with the limited predictability on the convective scale and t
 Informal conversations with operational meteorologists in the HWT suggest that both forecasters and users of hazardous weather information may not respond appropriately to the very small probability values that result from creating ensemble probabilities of RCE occurrence on a fine grid, as is the cause with storm scale ensemble forecast systems.
 One potential remedy to this problem was offered by \cite{Sobash2011}.
 Instead of using an ensemble to generate a probabilistic forecast, their method utilized a a single deterministic forecast and applied a ``neighborhood''-based approach that is rooted in the concepts of \cite{Theis2005} and \cite{Brooks1998}.
+
+
 This neighborhood approach consists of two steps.
-The first step consists of taking binary grid point forecasts of occurrence of specific events and expanding their spatial extent by converting all grid points within a specified ``neighborhood'' into forecasts of occurrence for the given event.
-For example, consider a case in which a single grid point from a high resolution numerical model with grid spacing of \mbox{4 km} grid is forecast to have a phenomenon occur.
+The first step involves taking binary grid point forecasts of occurrence of specific events and expanding their spatial extent by converting all grid points within a specified ``neighborhood'' into forecasts of the given event's occurrence.
+For example, consider a case in which a single grid point from a high resolution numerical model (grid spacing of \mbox{4 km}) is forecast to have a phenomenon occur.
 Furthermore consider that a neighborhood of \mbox{40 km} is specified
 The first step of the neighborhood approach takes all grid points within the specified neighborhood of the forecast grid point, \mbox{40 km} radius in this example, and converts those grid points into forecasts of the phenomenon's occurrence.
 This effectively increases the area for which the phenomenon is forecast.
@@ -50,7 +52,7 @@ No longer is a forecaster examining the probability of a phenomenon occurring on
 However, given the limited predictability on the convective grid scale and the comparatively low probability values at the grid point, use of a neighborhood is typically considered an acceptable method to identify a region of enhanced threat.
 
 
-The method put forth by \cite{Sobash2011} relies on accurate observations of the phenomenon being predicted to assess the quality of the resulting probabilistic forecasts.
+Furthermore, the method put forth by \cite{Sobash2011} relies on accurate observations of the phenomenon being predicted to assess the quality of the resulting probabilistic forecasts.
 This poses significant limitations due to the lack of quality observations of these phenomena.
 As previously noted, numerical guidance of severe thunderstorms has improved in recent years with the advent of convection-allowing models and high temporal resolution storm-attribute parameters (e.g., updraft-helicity, downdraft intensity, graupel loading, etc; \citealp{Kain2010}).
 Unfortunately, however, corresponding observational datasets with spatial and temporal coherence comparable to the model data are not available.
@@ -62,17 +64,18 @@ Thus, one approach to improving the quality of numerical models' probabilistic f
 After these enhancements have been fully evaluated using extreme precipitation events the refined methods can be applied to the original severe thunderstorm prediction problem.
 
 
-This study did just that.
+This study begins this process.
 It is a proof-of-concept for using numerical forecasts of explicit phenomenon-based RCE to create objectively calibrated probabilistic forecasts.
-This proof-of-concept builds on the twork of \cite{Sobash2011} achieved by using grid point forecasts of heavy precipitation events (defined to be either \mbox{12.7 mm} or \mbox{25.4 mm} in \mbox{6 hr}) and the corresponding verification datasets, to build on the work of \cite{Sobash2011}.
-Furthermore, it does without the use of a neighborhood, allowing forecasters to utilize the higher specificity offered by high resolution numerical models as compared to coarser resolution models, such as the NAM.
-The objectively calibrated probabilistic forecasts are achieved by first computing a two-dimensional frequency distribution of observed precipitation event locations relative to forecasts of precipitation events.
-Then, these two-dimensional composites are used to determine the necessary parameters of an analytical function that can be used in the kernel density estimation step of \cite{Sobash2011}.
+This builds on the work of \cite{Sobash2011} by using grid point forecasts of heavy precipitation events (defined to be either \mbox{12.7 mm} or \mbox{25.4 mm} in \mbox{6 hr}) and the corresponding verification datasets.
+Furthermore, this is done without the use of a neighborhood.
+By forgoing the use of a neighborhood, forecasters can utilize the higher specificity offered by high resolution numerical models as compared to coarser resolution models such as the NAM.
+The objectively calibrated probabilistic forecasts are achieved by first computing a two-dimensional frequency distribution of observed precipitation events relative to forecasts of the same events.
+Next, these two-dimensional composites are used to determine the necessary parameters of an analytical function that can be used in the kernel density estimation step of \cite{Sobash2011}.
 Assessing the utility of such an approach with two very different high resolution datasets --- 1) 48-months of high resolution output from the real-time NSSL-WRF model; and 2) the individual member forecasts for the 119 time periods from the 2010 and 2011 CAPS SSEF --- generally indicates this technique has the potential to produce skillful probabilistic forecasts derived from a single numerical forecast.
 
 
-NSSL-WRF probabilistic forecasts of precipitation exceeding \mbox{25.4 mm} in \mbox{6 hr}, utilizing the approach put forth in this study, were subjectively evaluated during the 2011 NOAA HWT SFE.
-During this subjective assessment operational forecasters expressed concern about the resulting probability field, particularly the smooth appearance and low amplitude.
+During the 2011 NOAA HWT SFE, NSSL-WRF probabilistic forecasts of precipitation exceeding \mbox{25.4 mm} in \mbox{6 hr}, utilizing the approach put forth in this study, were subjectively evaluated
+During this subjective assessment, operational forecasters expressed concern about the resulting probability field, particularly the smooth appearance and low amplitude.
 Although a valid concern, the character of the probability fields is inherently linked to the underlying numerical model's ability to accurately predict the exact location of ``events''.
 When a model's two-dimensional histogram has a large area of relatively uniform observed event occurrence, indicative of relatively large model spatial uncertainty, the fitted analytic function generates broad, low-amplitude probabilities.
 Conversely, when the higher observed event occurrence in the two-dimensional histogram is more concentrated, indicating a reduction in model spatial uncertainty, the analytic function produces sharper, higher-amplitude probabilities.
@@ -94,28 +97,38 @@ This is because the forecast bias for the NSSL-WRF forecast periods was nearly o
 Unfortunately, the forecast bias was not always near unity for the members of the CAPS SSEF (e.g. \mbox{Figures \ref{s4cn_arw_ecdf_12mm_400km} and \ref{s4cn_nmm_ecdf_12mm_400km}}).
 
 
-One approach to bias correcting the forecasts is to utilize quantile replacement.
-This is achieved by computing the empirical cumulative distribution function for both the observations and the forecasts for the training period.
-Then the quantile of the desired threshold is found from the empirical cumulative distribution of the observations.
-Next this ``observed quantile'' is used to find the forecast threshold that corresponds to the same quantile from the empirical cumulative distribution of the forecast.
-This assures that the same fraction of forecasts occurring above the threshold and below the threshold is equal to the fraction of observations occurring above the threshold to the observations occurring below the threshold.
+One approach to bias correcting the forecasts is to utilize quantile matching.
+This approach is achieved by computing the empirical cumulative distribution function from the training dataset for both the observations and the forecasts.
+Next the quantile of the phenomenon being forecast is determined from the observed distribution of the training dataset.
+Lastly, the forecast threshold associated with this quantile is computed from the forecast empirical cumulative distribution function.
+This computed forecast threshold is then used as the forecast threshold for the bias-corrected forecasts created from the forecast training dataset.
+In theory, this assures that the same fraction of forecasts occurring above the threshold and below the threshold is equal to the fraction of observations occurring above the threshold to the observations occurring below the threshold.
 
 
-Unfortunately, this approach only improves the resulting forecasts if the empirical cumulative distribution function for the forecast data is statistically similar to the empirical cumulative distribution function for the training data.
-If this is not the case, the resulting probability forecasts could end up being worse as a result of the forecast bias being worse for the forecast data than for the training data.
+For example, in the case of the NSSL-WRF, if one wanted to produce a bias-corrected forecast of \mbox{12.7 mm} in \mbox{6 hr} using the quantile matching approach, one must find the quantile associated with that threshold from the observed empirical cumulative distribution.
+As illustrated in \mbox{Figure \ref{single_12quant}}, this quantile value is 0.987.
+The forecast threshold that corresponds to a quantile of 0.987 is \mbox{13.75 mm} in \mbox{6 hr}.
+Thus, when using quantile matching as a means of bias-correcting NSSL-WRF forecasts, a forecast accumulation of \mbox{13.75 mm} or greater in \mbox{6 hr} equates to observed accumulations of \mbox{12.7 mm} in \mbox{6 hr} or greater.
+
+
 The quantile replacement approach to bias correction was used to try and improve the forecasts from both the NSSL-WRF and the CAPS SSEF.
 In both cases, the bias corrected forecasts offered little, if any, improvement to the reliability --- and in the case of the NSSL-WRF made the forecasts less reliable.
-This is due to the fact the empirical cumulative distribution function for the training data was statistically different than for the forecast data.
+This is due to the empirical cumulative distribution function for the training data being statistically different than for the forecast data.
+When the forecast and training empirical cumulative distribution functions are statistically different, the bias-corrected threshold from the training period will not be the same as the bias-corrected threshold from the forecast period.
+This results in ``bias-corrected'' probabilistic forecasts that are potentially of worse quality than non-bias-corrected forecasts.
+
+
 For example, the forecast bias for the CAPS SSEF members was highly dependent on the specific time periods chosen for the training and forecast periods.
-This is attributed to the occurrence of a handful of high amplitude precipitation time periods.
-Depending on the exact number of these high amplitude time periods in each of the training or forecast dataset, the resulting empirical cumulative distribution functions were one of several distributions (\mbox{Figure \ref{s4cn_arw_ecdf_12mm_400km} and \ref{s4cn_nmm_ecdf_12mm_400km}}) making this form of bias-correction untractable.
+This is attributed to the occurrence of a handful of time periods with significant precipitation events in which a substantial number of grid points exceeded the observed threshold.
+Depending on the exact number of these high amplitude time periods in each of the training or forecast dataset, the resulting empirical cumulative distribution functions tended toward one of several empirical cumulative distribution functions (\mbox{Figure \ref{s4cn_arw_ecdf_12mm_400km} and \ref{s4cn_nmm_ecdf_12mm_400km}}).
+The empirical cumulative distribution functions between the training and forecasts periods were always different making this form of bias-correction untractable.
 
 
-Lastly, it is important to discuss the role of ensemble prediction systems in producing probabilistic forecasts.
-In this study, probabilistic forecasts from an ensemble prediction systems were limited to probabilistic forecasts from individual members.
+Lastly, it is important to write a few words the role of ensemble prediction systems as related to producing probabilistic forecasts.
+In this study, probabilistic forecasts from an ensemble prediction systems were primarily limited to probabilistic forecasts from the individual members of the ensemble.
 A single ``ensemble probability'' was produced by taking the average of all the probabilistic forecasts from the ensemble's individual members.
-As discussed in \mbox{Section \ref{ediscussion}}, the reliability of this single probabilistic forecast from the ensemble improved upon the individual members at the \mbox{25.4 mm} in \mbox{6 hr} threshold and was worse than the individual members at the \mbox{12.7 mm} in \mbox{6 hr} threshold.
-Furthermore, it was shown that it is possible to produce probabilistic forecasts from each individual member that were more reliable than a probabilistic forecast generated by post-processing the ensemble forecast.
+As discussed in \mbox{Section \ref{ediscussion}}, the reliability of this single probabilistic forecast from the ensemble improved upon the individual members at the \mbox{25.4 mm} in \mbox{6 hr} threshold and was worse than the individual members at the \mbox{12.7 mm} in \mbox{6 hr} threshold, and will not be repeated here.
+Furthermore, it was shown that it is possible to produce probabilistic forecasts from each individual member that were more reliable than a probabilistic forecast generated by post-processing the ensemble forecast (i.e., the modified Hamill and Colucci method).
 In light of this result, the question must be asked, ``What then is the role of the ensemble?''
 
 
@@ -123,14 +136,19 @@ Traditionally, ensemble prediction systems have been used to create probabilisti
 This is because well crafted ensemble prediction systems are likely to be more effective at sampling the range and character of possible solutions.
 As previously mentioned, KDE-based approaches rely on the underlying numerical forecast to predict the occurrence of the phenomenon being forecast.
 If the underlying numerical model does not forecast a phenomenon, KDE-based statistical post-processing will not produce any forecast probabilities of that phenomenon.
-This is where an ensemble prediction system can add benefit to KDE-based statistical post-processing --- by providing additional realizations from which a KDE-based statistical post-processing technique can be used.
+This is where an ensemble prediction system and KDE-based statistical post-processing can compliment one another.
+The ensemble prediction system can provide multiple realizations from which a KDE-based statistical post-processing technique can be used.
+The likelihood that every member of an ensemble would miss and event is significantly less than the likelihood of any individual member missing that same event.4
 
 
 Taking a step back, the KDE-based post-processing technique proposed in this work has the potential to produce probabilistic forecasts from each member that are near perfect reliability (e.g., the SSEF forecasts at the \mbox{12.7 mm} in \mbox{6 hr} threshold used in this study).
 It is not readily apparent what to do with a set of fifteen probabilistic forecasts that differ between one another but are statically reliable.
 Each probabilistic forecast is statistically correct, but varies between one another.
-One possible solution here is to utilize both the deterministic aspect of the individual SSEF members, along with their corresponding probabilistic aspect.
-For example forecasters can examine the evolution of the forecast in deterministic space, and see the resulting spatial uncertainty of that model.
+Should the individual member probabilistic forecasts be combined into a single probabilistic forecast?
+Should the probabilistic forecasts from the individual members be utilized to gain insight into the uncertainty in the spatial probabilities?
+In other words, how does one maximize the utility of an ensemble of probabilities?
+One possible solution here is to utilize both the deterministic aspect of the individual SSEF members, along with the corresponding probabilistic forecasts generated from the method proposed in this study.
+In this scenario, forecasters have the ability examine the evolution of the forecast in a deterministic frame work, and then utilize the corresponding probabilistic forecasts to gain insight into the spatial uncertainty of a particular deterministic forecast.
 
 
 
@@ -149,7 +167,11 @@ For example forecasters can examine the evolution of the forecast in determinist
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
     ./discussion/figs/nssl-wrf_bias}\\
-    \caption{}
+    \caption{The NSSL-WRF forecast bias as a function of \mbox{6 hr} precipitation threshold.
+    The black curve is the forecast bias calculated over the \mbox{36 month} training dataset.
+    The rec curve is the forecast bias calculated over the \mbox{12 month} forecast dataset.
+    The horizontal blue line depicts the line of perfect forecast bias.
+    The vertical black dashed lines correspond to the \mbox{12.7 mm} threshold (left) and the \mbox{25.4 mm} threshold (right).}
     \label{nssl-wrf_bias}
 \end{figure}
 
@@ -159,7 +181,11 @@ For example forecasters can examine the evolution of the forecast in determinist
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
     ./discussion/figs/ecdf_12mm_400km_s4cn_arw.pdf}\\
-    \caption{}
+    \caption{The empirical cumulative distribution functions for the twenty simulations for both the Stage IV observations (black) and the CAPS SSEF WRF-ARW control member forecasts (red).
+    The vertical black dashed line is the \mbox{25.4 mm} threshold.
+    The horizontal blue dashed line is the connects the Stage IV quantile associated with the \mbox{12.7 mm} threshold to the equivalent quantile of the WRF-ARE control member.
+    Where the blue line intersects the WRF-ARW control member empirical cumulative distribution function is the corresponding forecast threshold at which the ratio of points above to points below is equal to the Stage IV ratio of points above to points below the \mbox{12.7 mm} threshold.
+    Note that the twenty simulations collapse into only four empirical cumulative distribution functions, depending on the dates selected.}
     \label{s4cn_arw_ecdf_12mm_400km}
 \end{figure}
 
@@ -168,6 +194,7 @@ For example forecasters can examine the evolution of the forecast in determinist
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
     ./discussion/figs/ecdf_12mm_400km_s4cn_nmm.pdf}\\
-    \caption{}
+    \caption{The same as in \mbox{Figure \ref{s4cn_arw_ecdf_12mm_400km}}, but for the CAPS SSEF WRF-NMM control member.
+    Note the large disparity between the Stage IV empirical cumulative distribution function and the WRF-NMM control member.}
     \label{s4cn_nmm_ecdf_12mm_400km}
 \end{figure}
