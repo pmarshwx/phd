@@ -16,14 +16,14 @@ As limited as databases of deterministic CAM forecasts are, the availability of 
 
 
 Similar to CAM forecasts, most storm-scale ensemble forecast systems\footnote{The phrase storm-scale ensemble forecast is typically used in reference to ensembles composed of numerical forecasts produced without using cumulus parameterization.} (SSEF) have been erected on a temporary basis, produced in support of various field programs and experiments.
-The makeup of these SSEFs are often modified from one program to the next to adapt to the changing needs of the various experiments.
+The makeup of these SSEFs is often modified from one program to the next to adapt to the changing needs of the various experiments.
 Long running, consistent configured SSEFs were not available for this work.
 It is worth noting that as this work neared completion, the Air Force Weather Agency began running an operational SSEF.
 
 
 One of the largest collections of SSEF forecasts has been produced by the University of Oklahoma's Center for the Analysis and Prediction of Storms (CAPS).
 Since 2007, CAPS has been producing CAM forecasts in support of the Hazardous Weather Testbed's (HWT) annual Spring Forecast Experiment (SFE).
-From 2007 through 2010, the ensemble configuration changed from year-to-year based on the results of previous years and updated to the WRF modeling system.
+From 2007 through 2010, the ensemble configuration changed from year-to-year based on the results of previous years and updates to the WRF modeling system.
 In 2010, CAPS produced a 26 member SSEF.
 This SSEF was multi-model in nature, initialized at 00 UTC, used 4 km grid spacing, and integrated out to 30 hours.
 Of the 26 members, 19 were WRF-ARW\footnote{Weather Research and Forecasting -- Advanced Research WRF} \citep{WRFV3}, 5 were WRF-NMM\footnote{Weather Research and Forecasting -- nonhydrostatic Mesoscale Model} \citep{NAMnWRF-NMM}, and 2 were ARPS\footnote{Advanced Regional Prediction System} \citep{ARPS}.
@@ -32,7 +32,7 @@ These forecasts were also initialized at 00 UTC, used a grid spacing of 4 km, bu
 
 
 For this thesis, fifteen members were chosen from the 2010 and 2011 ensembles because these members were configured almost identically between the two years.
-These 15 members were composed of 10 WRF-ARW forecasts, 4 WRF-NMM forecasts, and 1 ARPS forecast.
+These 15 members are composed of 10 WRF-ARW forecasts, 4 WRF-NMM forecasts, and 1 ARPS forecast.
 The background initial conditions for these 15 members were downscaled from the 00 UTC 12 km NAM, with additional information coming from a three dimensional variational and cloud analysis from ARPS.
 Except for the control members (one each from the WRF-ARW, WRF-NMM, and ARPS), these initial conditions were then perturbed using mesoscale atmospheric perturbations from NOAA's Environmental Modeling Center's operational Short-Range Ensemble Forecast (SREF) system.
 Lateral boundary conditions for the three control members came from the 00 UTC NAM forecasts, whereas the remaining 12 members used the SREF forecast corresponding to the perturbations used in the initial conditions.
@@ -85,8 +85,8 @@ This was accomplished by randomly drawing, without replacement, 59 training peri
 From these 59 training periods, two-dimensional histograms were created for each of the 15 ensemble members.
 These histograms were then used to calculate the five fitting parameters --- $\sigma_x$, $\sigma_y$, $\theta$, $h$, and $k$ --- for each member's unique two-dimensional anisotropic Gaussian function.
 Forecasts for each member were then made for each time period of the 60 forecast time periods, with each member using its own fitted anisotropic Gaussian function.
-Thus, for each simulation all 15 ensemble members used the same 59 time periods for training and the remaining 60 time periods for forecasting.
-This results in 18 000 forecasts (20 simulations x 60 forecast periods x 15 members).
+Thus, for each simulation, all 15 ensemble members used the same 59 time periods for training and the remaining 60 time periods for forecasting.
+This resulted in 18 000 forecasts (20 simulations x 60 forecast periods x 15 members).
 
 
 
