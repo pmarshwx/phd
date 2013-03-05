@@ -6,23 +6,21 @@
 
 
 The motivation for this research was driven by the experiences with high resolution numerical models in the NOAA Hazardous Weather Testbed, in particular the NSSL-WRF, along with the needs of the ``Warn-on-Forecast'' (WoF) initiative.
-One aim of the WoF initiative is to transform the warning paradigm of rare convective events from one where RCE warnings are based almost entirely on observations to one where RCE warnings are based on short-term, high resolution numerical forecasts of a RCE.
+One aim of the WoF initiative is to transform the warning paradigm of rare convective events from one where RCE warnings are based almost entirely on observations to one where RCE warnings are based on short-term, high resolution numerical forecasts of RCEs.
 A key challenge for the WoF paradigm is to produce probabilistic guidance for the occurrence of RCEs that has a high degree of statistical reliability and resolution and is unambiguous for users to interpret.
-
-
 This is especially difficult since these phenomena will not be explicitly resolved in larger domain model configurations for many years to come (e.g., explicit prediction of tornadoes will require grid spacing on the order of a few tens of meters).
+
+
 One possibility for overcoming this problem is to identify ``extreme'' model-generated features that have strong correlations with observed severe convective phenomena, and then use the former as surrogates for the severe phenomena in question.
 This ``surrogate-severe'' (SS) approach is fundamentally different from traditional applications of numerical weather prediction for severe weather because it is phenomenon based.
 In particular, it relies on identification of explicit convective phenomena rather than environmental conditions that might support such phenomena.
-
-
 \cite{Sobash2011} established the viability of this approach using several different SS diagnostic quantities.
-Among the quantities they examined, model-generated updraft helicity (UH) appeared to show the strongest correlation with observed reports of severe weather.
-[UH is a measure of mid-level rotation in model-predicted updrafts and subjective assessments suggest that it is a useful surrogate for supercell thunderstorms \citep{Kain2010}, even when these storms are only crudely represented on the WRF model's native grid \citep{Kain2008}.]
+Among the quantities they examined, model-generated updraft helicity appeared to show the strongest correlation with observed reports of severe weather.
+[Updraft helicity is a measure of mid-level rotation in model-predicted updrafts and subjective assessments suggest that it is a useful surrogate for supercell thunderstorms \citep{Kain2010}, even when these storms are only crudely represented on the WRF model's native grid \citep{Kain2008}.]
 Subjective assessments in the HWT convinced participants that SS quantities from high resolution models had the potential to offer guidance to forecasters as to the vicinity (in time and space) of RCE occurrence, but not necessarily the exact location.
 
 
-The fact that subjective assessments of high resolution numerical model forecasts suggest that forecasts of RCEs are in the vicinity of observations of RCEs, but are not necessarily collocated, highlights the need for the uncertainty in the forecast to be expressed.
+The fact that subjective assessments of high resolution numerical model forecasts suggest that forecasts of RCEs are in the vicinity of observations of RCEs, but are not necessarily collocated, highlights the need to communicate the uncertainty in the forecast.
 One way to do this is to utilize an ensemble of high resolution numerical models to quantify the spatial uncertainty in the location of the forecast RCEs.
 Unfortunately, the infrequent nature of rare events makes it unlikely that two separate high-resolution model forecasts would place extreme model-generated convective storm phenomena at the same grid point, even for generally similar mesoscale forecasts.
 Thus, ensemble generated probabilities of RCE occurrence at a given grid point are typically extremely small.
@@ -121,13 +119,14 @@ This results in ``bias-corrected'' probabilistic forecasts that are potentially 
 For example, the forecast bias for the CAPS SSEF members was highly dependent on the specific time periods chosen for the training and forecast periods.
 This is attributed to the occurrence of a handful of time periods with significant precipitation events in which a substantial number of grid points exceeded the observed threshold.
 Depending on the exact number of these high amplitude time periods in each of the training or forecast dataset, the resulting empirical cumulative distribution functions tended toward one of several empirical cumulative distribution functions (\mbox{Figure \ref{s4cn_arw_ecdf_12mm_400km} and \ref{s4cn_nmm_ecdf_12mm_400km}}).
-The empirical cumulative distribution functions between the training and forecasts periods were always different making this form of bias-correction untractable.
+The empirical cumulative distribution functions between the training and forecasts periods were always different making this form of bias-correction intractable.
 
 
-Lastly, it is important to write a few words the role of ensemble prediction systems as related to producing probabilistic forecasts.
+Lastly, it is important to mention ensemble prediction systems as related to producing probabilistic forecasts.
 In this study, probabilistic forecasts from an ensemble prediction systems were primarily limited to probabilistic forecasts from the individual members of the ensemble.
 A single ``ensemble probability'' was produced by taking the average of all the probabilistic forecasts from the ensemble's individual members.
-As discussed in \mbox{Section \ref{ediscussion}}, the reliability of this single probabilistic forecast from the ensemble improved upon the individual members at the \mbox{25.4 mm} in \mbox{6 hr} threshold and was worse than the individual members at the \mbox{12.7 mm} in \mbox{6 hr} threshold, and will not be repeated here.
+As discussed in \mbox{Section \ref{ediscussion}}, the reliability of this single probabilistic forecast from the ensemble improved upon the individual members at the \mbox{25.4 mm} in \mbox{6 hr} threshold and was worse than the individual members at the \mbox{12.7 mm} in \mbox{6 hr} threshold.
+(See the discussion in \mbox{Section \ref{ediscussion}} for more information.)
 Furthermore, it was shown that it is possible to produce probabilistic forecasts from each individual member that were more reliable than a probabilistic forecast generated by post-processing the ensemble forecast (i.e., the modified Hamill and Colucci method).
 In light of this result, the question must be asked, ``What then is the role of the ensemble?''
 
@@ -138,7 +137,7 @@ As previously mentioned, KDE-based approaches rely on the underlying numerical f
 If the underlying numerical model does not forecast a phenomenon, KDE-based statistical post-processing will not produce any forecast probabilities of that phenomenon.
 This is where an ensemble prediction system and KDE-based statistical post-processing can compliment one another.
 The ensemble prediction system can provide multiple realizations from which a KDE-based statistical post-processing technique can be used.
-The likelihood that every member of an ensemble would miss and event is significantly less than the likelihood of any individual member missing that same event.4
+The likelihood that every member of an ensemble would miss and event is significantly less than the likelihood of any individual member missing that same event.
 
 
 Taking a step back, the KDE-based post-processing technique proposed in this work has the potential to produce probabilistic forecasts from each member that are near perfect reliability (e.g., the SSEF forecasts at the \mbox{12.7 mm} in \mbox{6 hr} threshold used in this study).
@@ -150,6 +149,12 @@ In other words, how does one maximize the utility of an ensemble of probabilitie
 One possible solution here is to utilize both the deterministic aspect of the individual SSEF members, along with the corresponding probabilistic forecasts generated from the method proposed in this study.
 In this scenario, forecasters have the ability examine the evolution of the forecast in a deterministic frame work, and then utilize the corresponding probabilistic forecasts to gain insight into the spatial uncertainty of a particular deterministic forecast.
 
+
+In conclusion, the proposed method is not being offered as a replacement to ensemble prediction systems, but rather as something that can be utilized in concert with existing modeling systems.
+This method can be used to enhance ensemble prediction systems by providing measures of uncertainty associated with the placement of features in the individual ensemble members.
+At the same time, this method can produce well calibrated probabilistic forecasts from deterministic modeling systems when insufficient computing resources are available to produce a full ensemble prediction system.
+Ultimately, this method demonstrates that it is possible to take a model and statistically post process it in such a manner that the probabilistic forecasts are more reliable than those from an ensemble prediction system.
+However, this is not a guarantee that the individually post processed forecasts will beat the ensemble on any given forecast.
 
 
 
