@@ -1,24 +1,23 @@
 %!TEX root = ../dissertation.tex
 
 
-One aim of the Warn-on-Forecast initiative is to transform the warning paradigm of rare convective events (RCEs) from warn-on-detection to one where RCE warnings are based on short-term, high resolution numerical forecasts of RCEs.
-A key challenge for the WoF paradigm is the creation of probabilistic guidance for the occurrence of RCEs that has a high degree of statistical reliability and resolution and is unambiguous for users to interpret.
+One aim of the Warn-on-Forecast initiative is to transform the warning paradigm of rare convective events (RCEs) from warn-on-detection to one where RCE warnings are informed by short-term, high resolution numerical forecasts of RCEs.
+A key challenge for the WoF paradigm is the creation of probabilistic guidance for the occurrence of phenomena associated with RCEs that has a high degree of statistical reliability and resolution and is unambiguous for users to interpret.
 This is especially difficult since these phenomena will not be explicitly resolved in operational model configurations for many years to come (e.g., explicit prediction of tornadoes will require grid spacing on the order of a few tens of meters).
 One possibility for overcoming this problem is to identify ``extreme'' model-generated features that have strong correlations with observed severe convective phenomena, and then use the former as surrogates for the severe phenomena in question.
-This ``surrogate-severe'' approach is fundamentally different from traditional applications of numerical weather prediction for severe weather because it is phenomenon based.
-In particular, it relies on identification of explicit convective phenomena rather than environmental conditions that might support such phenomena.
+This ``surrogate-severe'' approach is fundamentally different from traditional applications of numerical weather prediction for severe weather because it is phenomenon based. In particular, it relies on identification of explicit convective phenomena rather than environmental conditions that might support such phenomena.
 
 
-Previous studies have demonstrated that high resolution numerical model forecasts are capable of producing forecasts of RCEs that are in the vicinity of observations of RCEs, but are not necessarily collocated.
-This displacement error of high resolution numerical mdoels forecasts of RCEs highlights the need to communicate uncertainty in the forecast.
-One method of communicating uncertainty is to utilize probabilistic forecasts.
+Previous studies have demonstrated that high resolution numerical models are capable of producing forecasts containing RCEs in the same time-space window as corresponding observed events, but not necessarily in precise agreement.
+The presence of displacement error in high resolution numerical model forecasts of RCEs highlights the need to communicate uncertainty in the forecast. One method of communicating uncertainty is to utilize probabilistic forecasts.
 
 
 This study proposes a method of objectively deriving calibrated probabilistic forecasts of rare events from deterministic forecasts.
 This is achieved by fitting a parametric kernel density function to the model's historical spatial error characteristics.
 This fitted kernel density function is then applied to individual forecast fields to produce probabilistic forecasts.
-Evaluation of the resulting probabilistic forecasts indicates that the forecast probabilisties are reliable.
-
+Evaluation of the resulting probabilistic forecasts indicates that the forecast probabilisties are
+reliable.
 
 This study concludes by applying this calibration method to the individual members of a 15 member high resolution ensemble forecast system.
 Results reveal that each individual ensemble member's probabilistic forecasts are reliable, prompting a discussion regarding how best to utilize an ensemble of reliable probabilistic forecasts.
+
