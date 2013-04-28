@@ -70,3 +70,6 @@ __git_version__
 # Sublime Files
 *.sublime-*
 *.sublime-*
+
+# Folders
+presentation/figs
