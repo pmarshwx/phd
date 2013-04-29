@@ -8,14 +8,16 @@ In theory, a perfect deterministic numerical forecast would consist of a perfect
 Unfortunately, the current state of our modeling systems is such that perfect forecasts are impossible.
 Numerical forecasts begin with errors in the initialization, use imperfect approximations of physical processes, and utilize discretized approximations of the continuous atmosphere, all of which result in errors in the final forecast.
 
-This inherent uncertainty in numerical forecasts has led to the recognition that numerical forecasts should have a probabilistic component (e.g. \citealp{Glahn1972, Murphy1993, Glahn2009}).
-For many years probabilistic guidance has been produced from deterministic forecasts in the United States using model output statistics (commonly referred to as MOS), a logistical regression process in which the likelihood of a specified outcome at a given location is estimated on the basis of past model performance \citep{Glahn1972}.
+
+These inherent limitations to numerical forecasts have led to the recognition that numerical forecasts should have a probabilistic component (e.g. \citealp{Glahn1972, Leith1974, Murphy1993, Glahn2009}).
+For many years probabilistic guidance has been produced from deterministic forecasts in the United States using model output statistics (commonly referred to as MOS), a multivariate linear regression in which the likelihood of a specified outcome at a given location is estimated on the basis of past model performance \citep{Glahn1972}.
 Unfortunately, statistical post-processing of model output works best when modeling systems allow for the creation of a forecast sample that adequately represents the larger forecast population.
 In the case of operational numerical models this implies modeling systems must remain consistent for long periods of time.
 Calibration becomes more challenging with modeling systems that have been recently modified, which limits the forecast sample.
 Additional challenges arise when dealing with rare events, which require a long forecast sample to adequately represent the forecast population of rare events.
 
-The statistical post-processing method proposed here goes beyond \cite{Theis2005} and \cite{Sobash2011} by employing a compositing and fitting technique for objective calibration of forecast probabilities.
+
+The statistical post-processing method proposed here uses some of the concepts developed by \cite{Theis2005} and \cite{Sobash2011}, but goes much further by employing a compositing and fitting technique for objective calibration of forecast probabilities.
 The idea behind the proposed method is to objectively determine where observations of a given event occur relative to forecasts of that event.
 This information is then used to fit an analytic function to the two-dimensional frequency histogram.
 Several analytic functions might be good candidates for this purpose; a two-dimensional Gaussian function is used here, fitted using methods similar to \cite{Lak2010}.
@@ -30,7 +32,7 @@ After fitting an analytic function to the two-dimensional histogram, this analyt
 
 The compositing employed here is straight forward.
 First, forecasts are mapped onto the observational grid.
-Next the raw forecasts and observations are converted into binary grids of 1s (event occurred) and 0s (event did not occur).
+Next the raw forecasts and observations are converted into binary grids of 1s (predefined event occurred) and 0s (predefined event did not occur).
 Next, all grid points within a specified radius of a forecast event are examined for observed events.
 If an observed event occurs within the specified radius of a forecast, the position of the observation relative to the forecast is recorded.
 Lastly, all of these relative positions are mapped onto a common grid and accumulated over all forecast periods during a specified training period.
@@ -43,8 +45,9 @@ The result is a two-dimensional frequency histogram of where observations occurr
 \label{fitting}
 
 Once the two-dimensional frequency histogram is determined, the next step involves fitting an analytic function to the histogram.
-As previously mentioned, any analytic function would work, as long it accurately modeled the two-dimensional frequency histogram.
+As previously mentioned, any analytic function would work, as long it accurately approximates the two-dimensional frequency histogram.
 A Gaussian function is demonstrated here.
+
 
 To fit a Gaussian function, two parameters must be known: location and variance.
 Typically, the location of a Gaussian function is given by the mean of the distribution.
@@ -110,7 +113,7 @@ The function's peak probability density occurs at the center of the function, an
         \frac{a}{b} = \frac{\sigma_x}{\sigma_y},
     \end{equation}
 
-\noindent where $x$ is the x-component of the distance from the center, $y$ s the y-component of the distance from center, $a$ is the major axis, and $b$ is the minor axis, is satisfied.
+\noindent where $x$ is the x-component of the distance from the center, $y$ is the y-component of the distance from center, $a$ is the major axis, and $b$ is the minor axis, is satisfied.
 The result is a set of concentric ellipses that monotonically decrease outward.
 In the limiting case of $\sigma_x = \sigma_y$, the Gaussian function is said to be isotropic.
 In this case, the function's peak probability density still occurs at the center of the function and decreases monotonically outward; however, \mbox{equation \ref{ellipse}} becomes
@@ -128,17 +131,17 @@ This is done by using
 
     \begin{equation}
         \label{sigmax}
-        \sigma_x = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(i - \mu_x)^2,
+        \sigma_x^2 = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(i - \mu_x)^2,
     \end{equation}
 
     \begin{equation}
         \label{sigmay}
-        \sigma_y = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(j - \mu_y)^2,
+        \sigma_y^2 = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(j - \mu_y)^2,
     \end{equation}
 
 \noindent which can then be used plugged into \mbox{equation \ref{2DGauss}}.
 
-Unfortunately, the two-dimensional Gaussian function represented by \mbox{equation \ref{2DGauss}} forces $\sigma_x$ and $\sigma_y$ to lie along the abscissa and ordinate, respectively.
+The two-dimensional Gaussian function represented by \mbox{equation \ref{2DGauss}} forces $\sigma_x$ and $\sigma_y$ to lie along the abscissa and ordinate, respectively.
 In order to model a two-dimensional distribution where the major and minor axes are rotated off the abscissa and ordinate, a rotation matrix,
 
     \begin{equation}
@@ -157,14 +160,7 @@ In order to model a two-dimensional distribution where the major and minor axes 
     \end{equation}
 
 \noindent where $\theta$ is the rotation angle (in radians) of the major axis from the abscissa in the counter-clockwise direction, must be applied to the two-dimensional Gaussian given in \mbox{equation \ref{2DGauss}}.
-The rotated, two-dimensional Gaussian equation can be represented mathematically by
 
-    \begin{equation}
-        \label{2DRotatedGauss}
-        G'(x', y', \sigma_x, \sigma_y) = \frac{1}{2 \pi \sigma_x \sigma_y} e^{- \frac{1}{2} \left( \frac{x'^2}{\sigma_x^2} + \frac{y'^2}{\sigma_y^2} \right)},
-    \end{equation}
-
-\noindent where $x'$ and $y'$ are determined by \mbox{equation \ref{RotationMatrix}}.
 
 The rotation angle can be computed from the covariance matrix of the observed frequency distribution,
 
@@ -172,8 +168,8 @@ The rotation angle can be computed from the covariance matrix of the observed fr
         \label{CovMatrix}
         \boldsymbol{\Sigma}_{xy} =
         \begin{bmatrix}
-            \sigma_x & \sigma_{xy} \\
-            \sigma_{xy} & \sigma_y
+            \sigma_x^2 & \sigma_{xy} \\
+            \sigma_{xy} & \sigma_y^2
         \end{bmatrix}
     \end{equation}
 
@@ -184,7 +180,16 @@ The rotation angle can be computed from the covariance matrix of the observed fr
         \sigma_{xy} = \frac{1}{\mathbf{H}} \sum\limits_{\substack{j=-m \\ i=-n}}^{n,m}H_{ij}(i - \mu_x)(j - \mu_y),
     \end{equation}
 
-\noindent by taking the $\arctan{\left(\frac{y''}{x''}\right)}$, where $x''$ and $y''$ are the x- and y-components of the eigenvector of $\boldsymbol{\Sigma}_{xy}$ containing the maximum eigenvalue \citep{Lak2010}.
+\noindent by taking the $\arctan{\left(\frac{y''}{x''}\right)}$, where $x''$ and $y''$ are the x- and y-components of the eigenvector of $\boldsymbol{\Sigma}_{xy}$ associated with the maximum eigenvalue \citep{Lak2010}.
+
+The rotated, two-dimensional Gaussian equation can be represented mathematically by
+
+    \begin{equation}
+        \label{2DRotatedGauss}
+        G'(x', y', \sigma_x, \sigma_y) = \frac{1}{2 \pi \sigma_x \sigma_y} e^{- \frac{1}{2} \left( \frac{x'^2}{\sigma_x^2} + \frac{y'^2}{\sigma_y^2} \right)},
+    \end{equation}
+
+\noindent where $x'$ and $y'$ are determined by \mbox{equation \ref{RotationMatrix}}.
 
 
 
