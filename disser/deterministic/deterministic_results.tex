@@ -11,14 +11,15 @@
 \label{dresults_25.4mm}
 
 Before the proposed method can be applied to a numerical forecast, the two-dimensional histogram of observations relative to forecasts must be constructed.
-A distance of \mbox{400 km} was used as the search radius over which to look for observed accumulations of at least \mbox{25.4 mm} in \mbox{6 hr} relative to forecast accumulations of the same.
+A distance of \mbox{400 km} was used as the search radius over which to look for the location of observed accumulations of at least \mbox{25.4 mm} in \mbox{6 hr} relative to forecast accumulations of the same.
 The resulting two-dimensional composite is shown in \mbox{Figure \ref{single_25comp}}.
 
 
 It is readily apparent from examining \mbox{Figure \ref{single_25comp}} that the centroid of the two-dimensional frequency distribution is observed to the north-northeast of the representative forecast grid point and the distribution has an elliptical shape.
-When the anisotropic Gaussian function is fit to this distribution, the resulting parameters, determined by the methods discussed in \mbox{chapter \ref{method}} as well as in \cite{Lak2010}, are $(\mu_x, \mu_y) = (4.7, 18.8)$ kilometers, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{4.7 km} too far west and \mbox{18.8 km} too far south, $\sigma_x \approx 190$ kilometers, $\sigma_y \approx 155$ kilometers, and $\theta \approx 60^{\circ}$ in the counter-clockwise direction, revealing the anisotropy of the distribution.
-To some extent, the shape and anisotropy are closely related to the mean shape and orientation of individual precipitation objects, as revealed by comparing the average size-weighted orientation of the precipitation objects, determined by the Baldwin object identification algorithm \citep{Baldwin2005}, to the orientation angle of the fitted distribution (not shown).
-In particular, a southwest-to-northeast orientation of heavy precipitation is often observed.
+When the anisotropic Gaussian function is fit to this distribution, the resulting parameters, determined by the methods discussed in \mbox{chapter \ref{method}} as well as in \cite{Lak2010}, are $(\mu_x, \mu_y) = (4.7, 18.8)$ km, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{4.7 km} too far west and \mbox{18.8 km} too far south, $\sigma_x \approx 190$ km, $\sigma_y \approx 155$ km, and $\theta \approx 60^{\circ}$ in the counter-clockwise direction, revealing the anisotropy of the distribution.
+To some extent, the shape and anisotropy are closely related to the mean shape and orientation of individual precipitation objects.
+This was suspected on the basis of subjective assessments and confirmed by applying the Baldwin object identification algorithm \citep{Baldwin2005}.
+In particular, heavy precipitation features are often observed to have a southwest-to-northeast orientation.
 
 
 Using this fitted two-dimensional distribution, probabilistic forecasts for each \mbox{6 hr} time period from 01 April 2010 --- 31 March 2011 were generated as described in \mbox{Section \ref{kde}}.
@@ -83,18 +84,18 @@ One caveat, however, is that the variability of the reliability increases as the
 After evaluating the method at a threshold of \mbox{25.4 mm} in \mbox{6 hr}, the method was evaluated at a lower threshold.
 Similar to the two-dimensional frequency histogram at the \mbox{25.4 mm} threshold, \mbox{Figure \ref{single_12comp}} conveys that the centroid of the two-dimensional frequency distribution generated from using the \mbox{12.7 mm} threshold is also observed to the north-northeast of the representative forecast grid point.
 As was the case with the \mbox{25.4 mm} threshold, the distribution at the \mbox{12.7 mm} threshold also has an elliptical shape.
-The fitted anisotropic Gaussian function has parameters $(\mu_x, \mu_y) = (9.4, 14.1)$ kilometers, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{9.4 km} too far west and \mbox{14.4 km} too far south, $\sigma_x \approx 190$ kilometers, $\sigma_y \approx 170$ kilometers, and $\theta \approx 50^{\circ}$ in the counter-clockwise direction.
-The fitted function at the \mbox{12.7 mm} threshold is less anisotropic as compared to the \mbox{25.4 mm} threshold.
+The fitted anisotropic Gaussian function has parameters $(\mu_x, \mu_y) = (9.4, 14.1)$ km, indicating that the NSSL-WRF forecasts were, on average, approximately \mbox{9.4 km} too far west and \mbox{14.4 km} too far south, $\sigma_x \approx 190$ km, $\sigma_y \approx 170$ km, and $\theta \approx 50^{\circ}$ in the counter-clockwise direction.
+The fitted function at the \mbox{12.7 mm} threshold is close to isotropic as compared to the \mbox{25.4 mm} threshold function.
 This is most likely a result stemming from using a lower precipitation threshold.
-The lower precipitation threshold is easier to achieve, resulting in more grid points being considered as ``events''.
-The more events results in a wider composite at the \mbox{12.7 mm} threshold than at the rarer \mbox{25.4 mm} threshold.
+The lower precipitation threshold is achieved more frequently, resulting in more grid points being considered as ``events''.
+More events create a wider composite at the \mbox{12.7 mm} threshold than at the greater \mbox{25.4 mm} threshold.
 
 
 Examples of the forecasts produced by the calibration method are shown in \mbox{Figures \ref{single_1_400km_12mm} and \ref{single_2_400km_12mm}}.
 The general structure of the precipitation exceeding \mbox{12.7 mm} is similar to that exceeding \mbox{25.4 mm} discussed in \mbox{section \ref{dresults_25.4mm}} and will not be discussed in detail here.
 Generally speaking, the probabilistic forecasts generated at this threshold appear to be of similar quality as those shown for the \mbox{25.4 mm} threshold.
 The main areas of precipitation exceeding the \mbox{12.7 mm} threshold appears to be contained within areas exceeding probabilities of \mbox{5\%}.
-The most notable difference is the higher probabilities generated.
+The most notable difference is that probability values are greater.
 
 
 As mentioned previously, even though these examples appear to produce good probabilistic forecasts, it is improper to assess the quality of a probabilistic forecast system using isolated events.
