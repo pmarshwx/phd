@@ -4,12 +4,13 @@
 \section{Deterministic Data}
 \label{ddata}
 
-To develop a statistical post-processing method for calibration of numerical model forecasts, forecasts and corresponding observations must be readily available.
+Forecasts and corresponding observations must be readily available for one to develop a statistical post-processing method for calibration of numerical model forecasts.
 Unfortunately, observational datasets of many RCEs (e.g., tornadoes, wind damage, hail swaths, etc) are riddled with inaccuracies and deficiencies \citep{Doswell1988, Weiss2002, Trapp2006, Ortega2009} that prevent their use in rigorous statistical post-processing.
 Precipitation, however, is one of the best documented observational fields in meteorology, and it is available as direct output from numerical models.
-Thus, to develop a method of calibration for RCEs, it was decided to focus on precipitation.
+Thus, to develop a prototype method of calibration for RCEs, accumulated precipitation was selected as the predictand.
 Here, accumulations greater than or equal to \mbox{25.4 mm} in \mbox{6 hr} are considered rare events as this threshold is met on fewer than 0.36\% of all grid points\footnote{If one considers a forecast at a single grid point as a single forecasting occasion, then \mbox{25.4 mm} in \mbox{6 hr} meets the definition of a rare event posed by \cite{Murphy1991}.} (\mbox{Figure \ref{single_25quant}}).
 Subsequently, the proposed method was applied to forecasts of accumulations greater than or equal to \mbox{12.7 mm} in \mbox{6 hr} to test the method against a less rare event\footnote{Forecasts of at least \mbox{12.7 mm} in \mbox{6 hr} occurred on approximately 1.3\% of all grid points.} (\mbox{Figure \ref{single_12quant}}).
+
 
 Model forecasts and observations of precipitation were obtained for the 48-month period 01 April 2007 through 31 March 2011 and subdivided into two categories: training data and verification data.
 Forecasts and observations during the time period 01 April 2007 through 31 March 2010 (36 months) were used in the training dataset, with the remaining 12 months used for testing and verification of the proposed method.
@@ -44,11 +45,11 @@ NCEP mosaics the Stage III into a national product (the Stage IV analyses) avail
 
 Diagnostic analyses were conducted on the Stage IV grid, requiring interpolation of the NSSL WRF-ARW\footnote{Hereafter referred to as NSSL-WRF.} output.
 The program \emph{copygb}\footnote{Available at \url{http://www.cpc.ncep.noaa.gov/products/wesley/copygb.html.}} was used for the interpolation and domain-wide total liquid volume was conserved.
-Six-hour accumulation periods were used for both model forecasts and the Stage IV analyses, with model forecasts coming from the \mbox{12-36 hr} forecasts ending at 18, 00, 06, and 12 UTC.
+Six-hour accumulation periods were used for both model forecasts and the Stage IV analyses, with model forecasts coming from the \mbox{12-36 hr} integration periods ending at 18, 00, 06, and 12 UTC.
 A mask was applied to both the NSSL-WRF forecasts and Stage IV analyses to limit the region studied to CONUS and near-CONUS areas east of the Rocky Mountains \mbox{(Fig. \ref{domain})}.
 
 
-Over the course of the three years training dataset and the one year verification dataset there were occasional \mbox{6 hr} time periods where either the NSSL-WRF data or the Stage IV analyses were unavailable.
+Over the course of the three year training dataset and the one year verification dataset there were occasional \mbox{6 hr} time periods where either the NSSL-WRF data or the Stage IV analyses were unavailable.
 If either the Stage IV analysis or the NSSL-WRF data were unavailable for a given \mbox{6 hr} time period, that particular time period was removed from consideration.
 Additionally, some of the Stage IV analyses contain missing data over portions of the domain shown in \mbox{Figure \ref{domain}}.
 In these situations, the missing grid points from the Stage IV analyses were masked on the corresponding NSSL-WRF grid, and the training and verification of the proposed method was carried out on the remaining grid points.
