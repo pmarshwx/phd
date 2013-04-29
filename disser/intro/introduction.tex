@@ -17,7 +17,7 @@ Value, known as \mbox{type 3} ``goodness'', is a measure of the benefit a foreca
 
 
 A natural consequence of maximizing consistency is the need for probabilistic forecasts.
-This is the result of the uncertainty in a forecaster's judgment that must be conveyed in the resulting forecast.
+This is the result of the uncertainty in a forecaster's judgment that is often the result of uncertainty in forecast guidance and thus must be conveyed in the resulting forecast.
 When forecasters produce probabilistic forecasts that accurately depict their uncertainty, the best expected quality, as measured by a strictly proper scoring rules \citep{Winkler1968}, is also achieved, cementing the need for forecasts to have a probabilistic component.
 
 
@@ -118,8 +118,8 @@ Operational numerical weather prediction centers committed most of the additiona
 
 
 The choice to embrace higher resolution numerical models resulted in much needed improvements to the models' physics parameterizations.
-Additionally, improved model grid spacing allowed for numerical models to better represent atmospheric phenomenon with strong gradients (i.e., fronts, drylines, inversions, etc.).
-These improvements allowed for highly specific spatial and temporal forecasts were easily produced \citep{Droegemeier1990}.
+Additionally, improved model grid spacing allowed for numerical models to better represent atmospheric phenomenon with small dimension, strong gradients, or both (i.e., fronts, drylines, inversions, etc.).
+These improvements allowed for highly specific spatial and temporal forecasts to be easily produced \citep{Lilly1990}.
 Unfortunately, the details in high resolution forecasts are often the least skillful aspects.
 These details are best in environments in which the atmosphere is dominated by large-scale phenomenon (i.e., when quasi-geostrophy can be assumed; \citealp{Antolik1989}).
 Thus, numerical guidance tends to be at its best when the forecasting situation is, in some sense, the easiest, and is least needed \citep{Brooks1993}.
@@ -129,7 +129,7 @@ Probabilistic prediction becomes more important as the resolution of models incr
 As previously noted, \cite{Lorenz1963, Lorenz1965, Lorenz1968} demonstrated that a numerical weather forecast was sensitive to the initial conditions.
 Unfortunately, model grid spacing is typically less than that at which we observe the atmosphere over the globe.
 Thus, in addition to the errors introduced by the observing instruments, additional errors can be introduced as a result of interpolating observations to grid points that do not have collocated observations.
-A consequence of this is that the true state of the atmosphere is rarely, if ever, known.
+A consequence of this is that the true state of the atmosphere is never precisely known.
 
 
 Numerical weather prediction, and in particular, high-resolution models of thunderstorms, has been shown to be very sensitive to small changes in the initial conditions \citep{Lorenz1963, Lorenz1965, Lorenz1968, Brooks1992a, Brooks1992b}.
@@ -137,7 +137,7 @@ As a result, the inherent uncertainty in the observations could result in major 
 An ensemble approach recognizes the uncertainty in the initial conditions and utilizes it to produce a collection of forecasts, rather than assuming that the initialization is correct \citep{Brooks1992a}.
 
 
-History has shown that a compromise of both of the increased resolution and ensemble forecasting paradigms have prevailed.
+History has shown that a compromise of both of the increased resolution and ensemble forecasting paradigms has prevailed.
 Operational centers in the United States currently run a global ensemble at relatively coarse resolution, whereas a suite of limited area models are run at increasingly higher resolution as the domain size decreases.
 Recently, the computational power has increased to the point of allowing operational limited area model forecasts at grid spacings small enough for the cumulus parameterization scheme to be turned off.
 Even with the sensitivities to initial conditions previously mentioned, these convection-allowing models (CAMs) have shown improved skill, compared to parameterized-convection models, in identifying regions where rare meteorological events associated with convection (hereafter RCEs\footnote{Rare Convective Event}) may occur \citep{Clark2010a}.
@@ -149,7 +149,7 @@ Of course, ensembles are powerful tools for quantifying uncertainty, but when co
 
 
 There are three main reasons for this deficiency.
-First, routine, explicit, contiguous  or near-contiguous United States (CONUS or near-CONUS) scale forecasts of RCEs have been available for only 6-7 years in the United States, so there is still much to learn about which phenomena can be skillfully predicted with convection-allowing models \citep{Kain2008, Kain2010}.
+First, routine, explicit, contiguous  or near-contiguous United States (CONUS or near-CONUS) scale forecasts of RCEs have been available for nearly a decade in the United States, but there is still much to learn about which phenomena can be skillfully predicted with convection-allowing models \citep{Kain2008, Kain2010}.
 Second, most real-time forecasting efforts with convection-allowing models have been short-term initiatives, focusing on specific tasks (e.g., \citealp{Done2004, Weisman2008}).
 Third, there is a limited database of forecasts for RCEs, making robust statistical techniques difficult (e.g., \citealp{Hamill2006}).
 In short, there is a limited track record in the use of CAMs as guidance for prediction of RCEs.
