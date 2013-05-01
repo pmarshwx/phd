@@ -36,7 +36,9 @@
     \rowcolors{2}{gray!20}{white}
     \begin{longtable}{|c|c|c|c|c|c|c|}
         \caption[Configurations for the 2010 and 2011 CAPS Ensemble Members]
-        {Configurations for the 2010 and 2011 CAPS Ensemble Members.}
+        {Configurations for the 2010 and 2011 CAPS Ensemble Members.
+        The \emph{arw} prefix is indicative of WRF-ARW members, \emph{nmm} is indicative of WRF-NMM members, and \emph{arps} is indicative of ARPS members.
+        The suffix \emph{cn} indicates a control member, whereas a suffix of \emph{mX}, where X is a number, indicates a perturbation.}
         \label{ensemble_members} \\
 
         % Header for the first page
@@ -326,9 +328,9 @@
 \begin{figure}[cc]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
-    ./ensemble/figs/ssef_25mm_400km_h.png}\\
-    \caption{The same as in \mbox{Figure \ref{sigmax-25mm-400km-dist}}, except for fitting parameter $h$.}
-    \label{h-25mm-400km-dist}
+    ./ensemble/figs/ssef_25mm_400km_mu_x.png}\\
+    \caption{The same as in \mbox{Figure \ref{sigmax-25mm-400km-dist}}, except for fitting parameter $\mu_x$, corresponding to east-west displacement of forecasts.}
+    \label{mu_x-25mm-400km-dist}
 \end{figure}
 
 
@@ -336,9 +338,9 @@
 \begin{figure}[cc]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
-    ./ensemble/figs/ssef_25mm_400km_k.png}\\
-    \caption{The same as in \mbox{Figure \ref{sigmax-25mm-400km-dist}}, except for fitting parameter $k$.}
-    \label{k-25mm-400km-dist}
+    ./ensemble/figs/ssef_25mm_400km_mu_y.png}\\
+    \caption{The same as in \mbox{Figure \ref{sigmax-25mm-400km-dist}}, except for fitting parameter $\mu_y$, corresponding to north-south displacement of forecasts.}
+    \label{mu_y-25mm-400km-dist}
 \end{figure}
 
 
@@ -389,7 +391,7 @@
     The line of perfect reliability (diagonal; dashed) is also plotted on the reliability diagram.
     The mean values for each individual SSEF members' twenty simulations are shown in black, with standard errors in light gray.
     The ensemble average forecast verification is shown in blue.
-    The red curve depicts the verification of the modified Hamill and Colucci porbabilistic forecasts.
+    The red curve depicts the verification of the modified Hamill and Colucci probabilistic forecasts.
     }
     \label{ssef-25mm-400km-verif}
 \end{figure}
@@ -432,9 +434,9 @@
 \begin{figure}[cc]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
-    ./ensemble/figs/ssef_12mm_400km_h.png}\\
-    \caption{The same as in \mbox{Figure \ref{h-25mm-400km-dist}}, except for threshold \mbox{12.7 mm} in \mbox{6 hr}.}
-    \label{h-12mm-400km-dist}
+    ./ensemble/figs/ssef_12mm_400km_mu_x.png}\\
+    \caption{The same as in \mbox{Figure \ref{mu_x-25mm-400km-dist}}, except for threshold \mbox{12.7 mm} in \mbox{6 hr}.}
+    \label{mu_x-12mm-400km-dist}
 \end{figure}
 
 
@@ -442,9 +444,9 @@
 \begin{figure}[cc]
     \centering
     \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{%
-    ./ensemble/figs/ssef_12mm_400km_k.png}\\
-    \caption{The same as in \mbox{Figure \ref{k-25mm-400km-dist}}, except for threshold \mbox{12.7 mm} in \mbox{6 hr}.}
-    \label{k-12mm-400km-dist}
+    ./ensemble/figs/ssef_12mm_400km_mu_y.png}\\
+    \caption{The same as in \mbox{Figure \ref{mu_y-25mm-400km-dist}}, except for threshold \mbox{12.7 mm} in \mbox{6 hr}.}
+    \label{mu_y-12mm-400km-dist}
 \end{figure}
 
 

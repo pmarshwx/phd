@@ -39,10 +39,6 @@ Lateral boundary conditions for the three control members came from the 00 UTC N
 A listing of the configurations for each member of the SSEF can be found in \mbox{Table \ref{ensemble_members}}.
 
 
-The only controlled change between 2010 and 2011 for the aforementioned set of 15 forecasts came from a change in the version of WRF. In 2010, \mbox{WRF Version 3.1.1} was used whereas \mbox{WRF Version 3.2.1} was used in 2011.
-Changes in the NAM and SREF, which were used for initial and lateral boundary conditions, were controlled by the NOAA National Weather Service and could not be avoided.
-
-
 In 2010 the HWT SFE ran from 17 May through 18 June, and in 2011, the HWT SFE ran from 09  May through 10 June.
 CAPS provided SSEF forecasts each weekday during the experiment, with an additional two retrospective forecasts in 2011: one for the 27 April 2011 tornado outbreak in the southeast United States and another for the 22 May 2011 Joplin, Missouri EF-5 tornado.
 \mbox{Table \ref{sfedtes}} lists the dates for which CAPS forecasts are available.
@@ -83,7 +79,7 @@ For comparison, the NSSL-WRF training dataset had 4120 training time periods and
 In an attempt to maximize the utility of the 119 time periods, twenty ``simulations'' were created by resampling the 119 time periods.
 This was accomplished by randomly drawing, without replacement, 59 training periods from the valid 119 time periods with the remaining 60 periods used as forecast periods.
 From these 59 training periods, two-dimensional histograms were created for each of the 15 ensemble members.
-These histograms were then used to calculate the five fitting parameters --- $\sigma_x$, $\sigma_y$, $\theta$, $h$, and $k$ --- for each member's unique two-dimensional anisotropic Gaussian function.
+These histograms were then used to calculate the three fitting parameters --- $\sigma_x$, $\sigma_y$, and $\theta$ --- along with the two displacement parameters --- $\mu_x$ and $\mu_y$ --- for each member's unique two-dimensional anisotropic Gaussian function.
 Forecasts for each member were then made for each time period of the 60 forecast time periods, with each member using its own fitted anisotropic Gaussian function.
 Thus, for each simulation, all 15 ensemble members used the same 59 time periods for training and the remaining 60 time periods for forecasting.
 This resulted in 18 000 forecasts (20 simulations x 60 forecast periods x 15 members).

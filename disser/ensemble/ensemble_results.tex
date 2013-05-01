@@ -16,7 +16,7 @@ Visualizing, analyzing, and understanding all of these two-dimensional composite
 To achieve this goal, a two-step approach was taken: 1) analyze each SSEF member's distribution for each the five Gaussian fitting parameters; and 2) examine aggregate measures of the spatial distributions.
 
 
-A set of five figures (\mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{k-25mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
+A set of five figures (\mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{mu_y-25mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
 The figures contain box-and-whisker plots for each member's distribution of that figure's fitting parameter.
 The box-and-whisker plots offer insight into the variability in the various fitting functions used by each member.
 In each of the figures, the red horizontal line marks the median value of the distributions, and the blue box represents the 25th and 75th percentiles.
@@ -49,22 +49,22 @@ It is much more difficult to accurately measure the orientation of the rotation 
 
 
 The large variability in the fitting parameters was not limited to just the shape of the anisotropic Gaussian.
-The location of the fitting Gaussian also ranged widely (fitting parameters $h$ and $k$).
-Each member's distributions of the $h$ fitting parameter (displacement in the east or west direction) is shown in \mbox{Figure \ref{h-25mm-400km-dist}}.
-Generally speaking, every SSEF member's distribution of $h$ varies by over 20 kilometers (approximately 4-5 grid points), with many members demonstrating an even wider range, and that's just the variability within each member's distribution of $h$.
-Some of the values for $h$ deviated from the forecast grid point by over 40 kilometers, with the maximum difference between $h$ values between any two members being over 80 kilometers!
+The location of the fitting Gaussian also ranged widely (fitting parameters $\mu_x$ and $\mu_y$).
+Each member's distributions of the $\mu_x$ fitting parameter (displacement in the east or west direction) is shown in \mbox{Figure \ref{mu_x-25mm-400km-dist}}.
+Generally speaking, every SSEF member's distribution of $\mu_x$ varies by over 20 kilometers (approximately 4-5 grid points), with many members demonstrating an even wider range, and that's just the variability within each member's distribution of $\mu_x$.
+Some of the values for $\mu_x$ deviated from the forecast grid point by over 40 kilometers, with the maximum difference between $\mu_x$ values between any two members being over 80 kilometers!
 
 
 Specifically, ARPS and WRF-NMM members consistently demonstrated a bias toward the observations centroid being displaced eastward, which corresponds to the forecasts, on average, being too far west.
 Most of the WRF-ARW members exhibited the opposite behavior, namely having the observations too far westward (indicating a eastward bias with the forecast).
 Not every WRF-ARW member exhibited this bias, however.
-Two of the WRF-ARW members have a majority of the distribution consist of positive values for $h$ indicating a westward forecast bias.
-However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
+Two of the WRF-ARW members have a majority of the distribution consist of positive values for $\mu_x$ indicating a westward forecast bias.
+However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $\mu_x$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
 
 
-Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed (\mbox{Figure \ref{k-25mm-400km-dist}}).
+Similar variability in the distributions of fitting parameter $\mu_y$, displacement in the north-south direction, are also observed (\mbox{Figure \ref{mu_y-25mm-400km-dist}}).
 One difference, however, is that there appears to be a forecast displacement preference for most members.
-Most members' forecasts appear to be farther north than the centroid of observations.
+Most members' forecasts appear to be farther north than the centroid of observations, which is opposite of the mean NSSL-WRF latitudinal displacement.
 
 
 In addition to examining the two-dimensional composites in the context of their one-dimensional distributions of the five anisotropic Gaussian fitting parameters, a cursory examination of their spatial characteristics was also conducted.
@@ -90,7 +90,7 @@ The least variable portion region over the compositing radius is found to the no
 
 Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
 About half of the members have the centroid of observations too far east and half being too far west.
-(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
+(This corresponds to the $\mu_x$ parameter of the Gaussian fitting parameters.)
 The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
 In this simulation, the WRF-NMM has a westward bias with its forecasts, as the centroid of observations is east of the forecast grid point in every WRF-NMM member.
 A similar observation cannot be made for the WRF-ARW members.
@@ -98,7 +98,7 @@ It is unclear from this single simulation if the westward forecast bias in the W
 
 
 When examining the north-south variations of the observations centroid relative to the model forecast, similar variations are observed (not shown).
-(The north-south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
+(The north-south displacement of the observations centroid corresponds to the $\mu_y$ parameter of the Gaussian fitting parameters.)
 Slightly more than half the members have the centroid of observations too far north, indicating a southward bias of the forecast, with slightly less than half having the centroid of observations too far south.
 Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM control member having the greatest displacement.
 No obvious preference in displacement direction is readily apparent from the WRF-ARW members.
@@ -132,7 +132,7 @@ The ARPS member and the WRF-ARW control member both appear to have their highest
 The lower right panel of \mbox{Figure \ref{ssef-25mm-400km-example}} is the ``ensemble'' probability forecast.
 It was computed by taking the average of all fifteen SSEF probabilities at each grid point.
 Because each of the SSEF members highlight the same general location with their individual forecasts, the ensemble average appears to be a good forecast as well.
-However, one drawback of an ensemble average forecast is that the potential exists for the resulting forecast to be overly smooth.
+However, one drawback of an ensemble average forecast is that the potential exists for the resulting forecast to have relatively low amplitude and an overly smooth appearance.
 This is because averaging tends to dampen the higher probabilities from each of the SSEF members due to the low likelihood of the maximum probabilities from each member actually occurring on the same grid point in all of the members.
 Furthermore, if the individual probability forecasts were spatially very different, the ensemble average field would essentially average out all of the signal offered by the individual members.
 
@@ -161,7 +161,7 @@ Once again, instead of adding error bars, which would make the figure even more 
 
 \mbox{Figure \ref{ssef-25mm-400km-verif}} depicts both the performance diagram (panel a) and the reliability diagram (panel b) for the SSEF ensemble at the \mbox{25.4 mm} threshold.
 Looking at the performance diagram it is readily apparent that the overall values appear to be worse than those from the NSSL-WRF in \mbox{Figure \ref{single_verif_400km_25mm}}, with CSI scores being less than 0.1 for all probability thresholds from all ensemble members.
-Visually, it does not appear there is much difference between the individual SSEF member forecasts (black curves) and the ensemble forecast generated by a modified Hamill and Colucci method (red curve), as the latter forecasts appear to fall within the spread of SSEF member forecasts.
+Visually, it does not appear there is much difference between the individual SSEF member forecasts (black curves) and the ensemble forecast generated by a modified Hamill and Colucci method (red curve; \citealp{Hamill1998, Clark2009}), as the latter forecasts appear to fall within the spread of SSEF member forecasts.
 It does appear as if there is a slight improvement by using the ensemble mean forecast (blue curve), but it does not offer much improvement.
 Looking at the ``error clouds'' associated with each point, it does not look like there is much variability in the performance diagram plots between each simulation for each SSEF member.
 
@@ -176,7 +176,7 @@ However, one benefit of the modified Hamill and Colucci method forecasts is that
 In other words, it is possible to have a near 100\% probability forecast, that is currently not possible from the individual SSEF member forecasts.
 
 
-One thing of note in the reliability diagrams is that every probabilistic forecast, for every member, including the ensemble mean (blue curve) and modified Hamill and Colucci generated forecasts, is an over forecast.
+One thing of note in the reliability diagrams is that most probabilistic forecasts, for every member, including the ensemble mean (blue curve) and modified Hamill and Colucci generated forecasts, is an over forecast.
 In other words, the number of grid point observations at a given forecast probability is fewer than the number of observations needed to achieve perfect reliability for that particular member.
 One interesting artifact of the over forecasts by every member of the SSEF is that the ensemble average probability forecasts appear to be closer to perfect reliability than any of the individual SSEF members.
 This is because the averaging process acts as a spatial smoother, damping the peak probabilities, and spreading them out over a slightly larger area.
@@ -197,7 +197,7 @@ This should, in turn, provide for a larger sample from which to conduct the veri
 The format here follows the same as with the \mbox{25.4 mm} in \mbox{6 hr} threshold discussed in \mbox{Section \ref{eresults_25.4mm}}.
 
 
-As was the case before, a set of five figures (\mbox{Figures \ref{sigmax-12mm-400km-dist}--\ref{k-12mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
+As was the case before, a set of five figures (\mbox{Figures \ref{sigmax-12mm-400km-dist}--\ref{mu_y-12mm-400km-dist}}) were created to examine the variability of each of the five Gaussian fitting parameters --- one figure per fitting parameter.
 \mbox{Figure \ref{sigmax-25mm-400km-dist}} displays the box-and-whisker plots for the $\sigma_x$ fitting parameter.
 This parameter is the length of the long axis of the fitted anisotropic Gaussian function.
 Fairly important differences arise when comparing the distributions of the $\sigma_x$ fitting parameter between the \mbox{25.4 mm} threshold and the \mbox{12.7 mm} threshold.
@@ -223,20 +223,20 @@ This means that the fitted anisotropic Gaussian for all two-dimensional composit
 
 
 The improvement in the variability in the fitting parameters was not limited to just the shape of the fitted anisotropic Gaussian.
-The variability in the location of the fitting Gaussian also decreased (fitting parameters $h$ and $k$), although not by as much as with $\sigma_x$, $\sigma_y$, and $\theta$.
-Each member's distributions of the $h$ fitting parameter (displacement in the east or west direction) is shown in \mbox{Figure \ref{h-12mm-400km-dist}}.
-Generally speaking, every SSEF member's distribution of $h$ varies by near, or slightly less than, 20 kilometers (approximately 4 grid points).
+The variability in the location of the fitting Gaussian also decreased (fitting parameters $\mu_x$ and $\mu_y$), although not by as much as with $\sigma_x$, $\sigma_y$, and $\theta$.
+Each member's distributions of the $\mu_x$ fitting parameter (displacement in the east or west direction) is shown in \mbox{Figure \ref{mu_x-12mm-400km-dist}}.
+Generally speaking, every SSEF member's distribution of $\mu_x$ varies by near, or slightly less than, 20 kilometers (approximately 4 grid points).
 
 
 Specifically, ARPS and WRF-NMM members consistently demonstrated a bias toward the observations centroid being east, which corresponds to the forecasts, on average, being too far west.
 Most of the WRF-ARW members exhibited the opposite behavior, namely having the observations too far west (indicating an eastward bias with the forecast).
 Not every WRF-ARW member exhibited this bias, however.
-Two of the WRF-ARW members have a majority of the distribution consist of positive values for $h$ indicating a westward forecast bias.
-However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $h$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
-Similar variability in the distributions of fitting parameter $k$, displacement in the north-south direction, are also observed (\mbox{Figure \ref{k-12mm-400km-dist}}).
+Two of the WRF-ARW members have a majority of the distribution consist of positive values for $\mu_x$ indicating a westward forecast bias.
+However, unlike with the ARPS and WRF-NMM members where the entire distribution consisted of positive values for $\mu_x$, every member of the WRF-ARW had at least a portion of the distribution with negative values, indicating an eastward forecast bias compared to observations.
+Similar variability in the distributions of fitting parameter $\mu_y$, displacement in the north-south direction, are also observed (\mbox{Figure \ref{mu_y-12mm-400km-dist}}).
 One difference, however, is that there appears to be a forecast displacement preference for most members.
 Most members' forecasts appear to be farther north than the centroid of observations.
-These results are generally consistent with the distributions of $h$ and $k$ at the \mbox{25.4 mm} threshold, albeit with slightly more restricted distributions.
+These results are generally consistent with the distributions of $\mu_x$ and $\mu_y$ at the \mbox{25.4 mm} threshold, albeit with slightly more restricted distributions.
 
 
 Next, the two-dimensional composites spatial characteristics are examined.
@@ -269,7 +269,7 @@ The least variable portion region over the compositing radius is found to the no
 
 Although the orientation of the axis of maximum observations tends to generally be similar between members, the centroid of the distribution exhibits more variability.
 About two-thirds of the members have the centroid of observations too far east and one-third have the centroid be too far west.
-(This corresponds to the $h$ parameter of the Gaussian fitting parameters.)
+(This corresponds to the $\mu_x$ parameter of the Gaussian fitting parameters.)
 This represents an increase in the number of members where the centroid of observations is found to be to the east.
 The members having the observations centroid too far east tended to be farther away from the forecast than those members having the observations centroid too far west.
 This is consistent with the findings at the \mbox{25.4 mm} threshold, although the gap between the two groups of members has decreased.
@@ -279,7 +279,7 @@ As was also the case at the \mbox{25.4 mm} threshold, it is unclear from this si
 
 
 When examining the north-south variations of the observations centroid relative to the model forecast, similar variations are observed.
-(The north-south displacement of the observations centroid corresponds to the $k$ parameter of the Gaussian fitting parameters.)
+(The north-south displacement of the observations centroid corresponds to the $\mu_y$ parameter of the Gaussian fitting parameters.)
 Slightly more than half the members have the centroid of observations too far south, indicating a northward bias of the forecast, with slightly less than half having the centroid of observations too far north.
 This is the opposite that at the \mbox{25.4 mm} threshold.
 Three of the four WRF-NMM members had the forecast too far north, with the WRF-NMM S4M4 member having the least displacement.
@@ -341,7 +341,7 @@ Since the reliability curves for each SSEF member are near perfect reliability t
 \subsection{Discussion}
 \label{ediscussion}
 
-It is readily apparent from examining \mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{ssef-25mm-400km-composite} and \ref{sigmax-12mm-400km-dist}--\ref{ssef-12mm-400km-composite}} that there is a wide range of variability amongst the fitting parameters at all precipitation accumulation thresholds.
+It is evident from examining \mbox{Figures \ref{sigmax-25mm-400km-dist}--\ref{ssef-25mm-400km-composite} and \ref{sigmax-12mm-400km-dist}--\ref{ssef-12mm-400km-composite}} that there is a wide range of variability amongst the fitting parameters at all precipitation accumulation thresholds.
 Furthermore, examining the verification plots (\mbox{Figures \ref{ssef-25mm-400km-verif}a,b and \ref{ssef-12mm-400km-verif}a,b}) could lead one to believe that the probabilistic forecasts are not very good.
 However, it is important to take these results in proper context.
 
@@ -350,7 +350,7 @@ However, it is important to take these results in proper context.
 
 \subsubsection{Warm Season verus Cool Season}
 
-The period from late Spring through Summer is traditionally the hardest time for numerical weather prediction with respect to quantitative precipitation forecasts!
+The period from late Spring through Summer is characteristically the hardest time for numerical weather prediction with respect to quantitative precipitation forecasts!
 To illustrate this point, the \mbox{12.7 mm} (\mbox{0.5 in}) in \mbox{6 hr} quantitative precipitation forecast verification scores of the NAM and Global Forecast System (GFS) numerical models, as well as the human forecasts produced by the NOAA Hydrometeorological Prediction Center (HPC; Available online at \url{http://www.hpc.ncep.noaa.gov/html/hpcverif.shtml#6hour}) are shown in \mbox{Figures \ref{hpc18}--\ref{hpc36}} .
 The figures show the threat score (equivalent to CSI) of each forecast system plotted as a function of month for the same forecast time periods as used in both the NSSL-WRF and the SSEF.
 The general trend is for a decline in forecast verification scores during the warm season (late Spring through Summer) and an increase in the cool season (late Autumn through Winter).
@@ -359,11 +359,12 @@ Although these verification scores are for the year 2012, a different time perio
 
 The evaluation of the calibration method, as applied to the SSEF, has been conducted at what is traditionally one of the most challenging times for quantitative precipitation forecasting, both for numerical weather prediction and for humans!
 Bearing this in mind, a closer look at the performance diagram of the \mbox{12.7 mm} in \mbox{6 hr} threshold indicates that the CSI scores at the various probabilistic forecast values for the SSEF members are slightly better than the CSI values from the larger-scale numerical models (GFS and NAM) for the corresponding time of year.
-This means that it is possible to construct a deterministic forecast from the probabilistic forecast of any SSEF member that is more skillful than the GFS or NAM.
+This means that it is possible to construct a deterministic forecast from the probabilistic forecast of any SSEF member that is more skillful than a deterministic forecast from the GFS or NAM.
 This is achieved for any SSEF member by choosing a forecast probability threshold for that member that exhibits a higher CSI than either the NAM or GFS and converting all forecast probabilities less than that threshold into a ``NO'' forecast and forecast probabilities exceeding that threshold into a ``YES'' forecast.
 Here a ``NO'' forecast indicates that the grid point is not expected to exceed the specified threshold, and a ``YES'' forecast indicates that the grid point is expected to exceed the specified threshold.
 In fact, for some members of the SSEF, it would be possible to generate a deterministic forecast from the probabilistic forecast that would be comparable in skill to the human forecasts produced by HPC\footnote{HPC does not verify their quantitative precipitation forecasts on a grid point by grid point basis.
 Instead they verify at a number of predefined locations.
+Thus, comparison of HPC's verification to the verification of the proposed method is not one-to-one and should be considered preliminary.
 Please see \cite{Olsen1995} for additional information on how HPC conducts its verification.}.
 
 
@@ -386,7 +387,7 @@ Compare that with the hundreds of thousands found in the NSSL-WRF composite at t
 This inability to capture all of the displacement variability for all SSEF members significantly undercuts the justification of the proposed calibration method.
 Namely, that by modeling the displacement errors, and using the modeled displacement errors as the basis of KDE, one can create calibrated probabilistic forecasts from deterministic models.
 Unfortunately, the method is only as good as the ability to correctly model the underlying displacement errors.
-If the resulting two-dimensional composite is unable to adequately represent the displacement error, the method will not produce as well of a forecast as it could.
+If the resulting two-dimensional composite is unable to adequately represent the displacement error, the method will not perform optimally.
 
 
 In the case of the SSEF, simply moving to a lower threshold, such as the \mbox{12.7 mm} in \mbox{6 hr}, resulted in the maximum number of observations at any two-dimensional composite grid point being greater than one hundred thousand -- even for such a limited time period!
