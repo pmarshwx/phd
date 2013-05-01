@@ -6,9 +6,9 @@
 
 
 The motivation for this research was driven by the experiences with high resolution numerical models in the NOAA Hazardous Weather Testbed, in particular the NSSL-WRF, along with the needs of the ``Warn-on-Forecast'' (WoF) initiative \citep{Stensrud2009}.
-One aim of the WoF initiative is to transform the warning paradigm of rare convective events from one where RCE warnings are based almost entirely on observations, a warn-on-detection approach, to one where RCE warnings are based on short-term, high resolution numerical forecasts of RCEs.
+One aim of the WoF initiative is to transform the warning paradigm of rare convective events from one where RCE warnings are based almost entirely on observations, a warn-on-detection approach, to one where RCE warnings are informed strongly by short-term, high resolution numerical forecasts of RCEs.
 A key challenge for the WoF paradigm is to produce probabilistic guidance for the occurrence of RCEs that has a high degree of statistical reliability and resolution and is unambiguous for users to interpret.
-This is especially difficult since these phenomena will not be explicitly resolved in larger domain model configurations for many years to come (e.g., explicit prediction of tornadoes will require grid spacing on the order of a few tens of meters).
+This is especially difficult since these phenomena will not be explicitly resolved in larger domain model configurations for many years to come (e.g., explicit prediction of tornadoes will require resolution on the order of a few tens of meters).
 
 
 One possibility for overcoming this problem is to identify ``extreme'' model-generated features that have strong correlations with observed severe convective phenomena, and then use the former as surrogates for the severe phenomena in question.
@@ -57,7 +57,7 @@ Unfortunately, however, corresponding observational datasets with spatial and te
 
 
 Quantitative precipitation forecasts, on the other hand, pose challenges to operational forecasters similar to those posed by severe thunderstorm forecasts.
-One important difference is that quantitative precipitation forecasts have comparatively robust verification datasets.
+One important difference is that comparatively robust datasets are available for verification of quantitative precipitation forecasts.
 Thus, one approach to improving the quality of numerical models' probabilistic forecasts of RCEs is to develop and refine techniques of predicting and calibrating extreme precipitation ``events''.
 After these enhancements have been fully evaluated using extreme precipitation events the refined methods can be applied to the original severe thunderstorm prediction problem.
 
@@ -111,7 +111,7 @@ Thus, when using quantile matching as a means of bias-correcting NSSL-WRF foreca
 
 The quantile replacement approach to bias correction was used to try and improve the forecasts from both the NSSL-WRF and the CAPS SSEF.
 In both cases, the bias corrected forecasts offered little, if any, improvement to the reliability --- and in the case of the NSSL-WRF made the forecasts less reliable.
-This is due to the empirical cumulative distribution function for the training data being statistically different than for the forecast data.
+This is due to the empirical cumulative distribution function for the training data being statistically different than the distribution of forecast data.
 When the forecast and training empirical cumulative distribution functions are statistically different, the bias-corrected threshold from the training period will not be the same as the bias-corrected threshold from the forecast period.
 This results in ``bias-corrected'' probabilistic forecasts that are potentially of worse quality than non-bias-corrected forecasts.
 
@@ -137,12 +137,12 @@ As previously mentioned, KDE-based approaches rely on the underlying numerical f
 If the underlying numerical model does not forecast a phenomenon, KDE-based statistical post-processing will not produce any forecast probabilities of that phenomenon.
 This is where an ensemble prediction system and KDE-based statistical post-processing can compliment one another.
 The ensemble prediction system can provide multiple realizations from which a KDE-based statistical post-processing technique can be used.
-The likelihood that every member of an ensemble would miss and event is significantly less than the likelihood of any individual member missing that same event.
+The likelihood that every member of an ensemble would miss an event is significantly less than the likelihood of any individual member missing that same event.
 
 
 Taking a step back, the KDE-based post-processing technique proposed in this work has the potential to produce probabilistic forecasts from each member that are near perfect reliability (e.g., the SSEF forecasts at the \mbox{12.7 mm} in \mbox{6 hr} threshold used in this study).
 It is not readily apparent what to do with a set of fifteen probabilistic forecasts that differ between one another but are statically reliable.
-Each probabilistic forecast is statistically correct, but varies between one another.
+Each probabilistic forecast is statistically correct, but there is variation among them.
 Should the individual member probabilistic forecasts be combined into a single probabilistic forecast?
 Should the probabilistic forecasts from the individual members be utilized to gain insight into the uncertainty in the spatial probabilities?
 In other words, how does one maximize the utility of an ensemble of probabilities?
