@@ -1,2 +1,2 @@
-version = "0.5"
-release = False
+version = "1.0"
+release = True
