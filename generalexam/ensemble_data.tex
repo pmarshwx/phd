@@ -1,0 +1,317 @@
+%!TEX root = prospectus.tex
+
+
+% ENSEMBLE DATA
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                                           %%%
+%%%                  TABLES                   %%%
+%%%                                           %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\begin{center}
+    \renewcommand{\arraystretch}{3}
+    \centering
+    \singlespace
+    \rowcolors{2}{gray!20}{white}
+    \begin{longtable}{|c|c|c|c|c|c|c|}
+        \caption[Configurations for the 2011 CAPS Ensemble Members]
+        {Configurations for the 2010 and 2011 CAPS Ensemble Members. Members listed in red are those used in both 2010 and 2011.}
+        \label{ensemble_members} \\
+
+        % Header for the first page
+        \hline
+        \rowcolor{gray!60}
+        \member{\textbf{Member}} &
+        \ic{\textbf{Initial Conditions}} &
+        \bc{\textbf{Boundary Conditions}} &
+        \radar{\textbf{Radar Data}} &
+        \microphysics{\textbf{Microphysics}} &
+        \lsm{\textbf{LSM}} &
+        \pbl{\textbf{PBL}} \\
+        \hline
+        \endfirsthead
+
+        % Header for remaining pages
+        \multicolumn{7}{c}{{\tablename} \thetable{} -- Continued} \\
+        \hline
+        \rowcolor{gray!60}
+        \member{\textbf{Member}} &
+        \ic{\textbf{Initial Conditions}} &
+        \bc{\textbf{Boundary Conditions}} &
+        \radar{\textbf{Radar Data}} &
+        \microphysics{\textbf{Microphysics}} &
+        \lsm{\textbf{LSM}} &
+        \pbl{\textbf{PBL}} \\
+        \hline
+        \endhead
+
+        %This is the footer for all pages except the last page of the table...
+        \multicolumn{7}{l}{{Continued on Next Page \ldots}} \\
+        \endfoot
+
+        %This is the footer for the last page of the table...
+        \hline \hline
+        \multicolumn{7}{l}{Note 1: For all members, \emph{cu\_physics} = None} \\
+        \multicolumn{7}{l}{Note 2: For all ARW members, \emph{ra\_lw\_physics} = RRTM} \\
+        \multicolumn{7}{l}{Note 3: For all ARW members, \emph{ra\_sw\_physics} = Goddard} \\
+        \multicolumn{7}{l}{Note 4: For nmm\_cn, nmm\_m2, \& nmm\_m3, \emph{ra\_lw\_physics} = GFDL;
+            \emph{ra\_sw\_physics} = GFDL} \\
+        \multicolumn{7}{l}{Note 5: For nmm\_m4 \& nmm\_m5, \emph{ra\_lw\_physics} = RRTM;
+            \emph{ra\_sw\_physics} = Dudhia} \\
+        \multicolumn{7}{l}{Note 6: The arps member uses Chou/Suarex for radiation.} \\
+        \multicolumn{7}{l}{Note 7: Ferrier+ refers to a subset of changes in the updated
+            version now in NEMS/NMMB.} \\
+
+        \endlastfoot
+
+        % Member 1 of 24
+        \hline
+        \coremem\member{arw\_cn} &
+        \coremem\ic{00Z ARPS 3DVAR \& Cloud Analysis} &
+        \coremem\bc{00Z NAM Forecast} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Thompson} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{MYJ} \\
+
+        % Member 2 of 24
+        \hline
+        \coremem\member{arw\_m4} &
+        \coremem\ic{arw\_cn + em\_p1\_pert} &
+        \coremem\bc{21Z SREF em\_p1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Morrison} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{YSU} \\
+
+        % Member 3 of 24
+        \hline
+        \coremem\member{arw\_m5} &
+        \coremem\ic{arw\_cn + em\_p2\_pert} &
+        \coremem\bc{21Z SREF em\_p2} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Thompson} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{QNSE} \\
+
+        % Member 4 of 24
+        \hline
+        \coremem\member{arw\_m6} &
+        \coremem\ic{arw\_cn - nmm\_p1\_pert} &
+        \coremem\bc{21 SREF nmm\_p1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{WSM6} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{QNSE} \\
+
+        % Member 5 of 24
+        \hline
+        \coremem\member{arw\_m7} &
+        \coremem\ic{arw\_cn + nmm\_p2\_pert} &
+        \coremem\bc{21Z SREF nm\_p2} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{WDM6} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{MYNN} \\
+
+        % Member 6 of 24
+        \hline
+        \coremem\member{arw\_m8} &
+        \coremem\ic{arw\_cn + rsm\_n1\_pert} &
+        \coremem\bc{21Z SREF rsm\_n1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Ferrier} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{YSU} \\
+
+        % Member 7 of 24
+        \hline
+        \coremem\member{arw\_m9} &
+        \coremem\ic{arw\_cn - etaKF\_n1\_pert} &
+        \coremem\bc{21Z SREF etaKF\_n1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Ferrier} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{YSU} \\
+
+        % Member 8 or 24
+        \hline
+        \coremem\member{arw\_m10} &
+        \coremem\ic{arw\_cn + etaKF\_p1\_pert} &
+        \coremem\bc{21Z SREF etaKF\_p1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{WDM6} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{QNSE} \\
+
+        % Member 9 of 24
+        \hline
+        \coremem\member{arw\_m11} &
+        \coremem\ic{arw\_cn - etaBMJ\_p1\_pert} &
+        \coremem\bc{21Z SREF etaBMJ\_p1 } &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{WSM6} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{MYNN} \\
+
+        % Member 10 of 24
+        \hline
+        \coremem\member{arw\_m12} &
+        \coremem\ic{arw\_cn + etaBMJ\_p1\_pert} &
+        \coremem\bc{21Z SREF etaBMJ\_p1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Thompson} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{MYNN} \\
+
+        % Member 11 of 24
+        \hline
+        \member{arw\_m13} &
+        \ic{arw\_cn + rsm\_p1\_pert} &
+        \bc{21Z SREF rsm\_p1} &
+        \radar{Yes} &
+        \microphysics{M-Y} &
+        \lsm{Noah} &
+        \pbl{MYJ} \\
+
+        % Member 12 of 24
+        \hline
+        \member{arw\_m14} &
+        \ic{arw\_cn + em\_n1\_pert} &
+        \bc{21 SREF em\_n1} &
+        \radar{Yes} &
+        \microphysics{Ferrier+} &
+        \lsm{Noah} &
+        \pbl{YSU} \\
+
+        % Member 13 of 24
+        \hline
+        \member{arw\_m15} &
+        \ic{arw\_cn + em\_n2\_pert} &
+        \bc{21Z SREF em\_n2} &
+        \radar{Yes} &
+        \microphysics{WSM6} &
+        \lsm{Noah} &
+        \pbl{MYNN} \\
+
+        % Member 14 of 24
+        \hline
+        \member{arw\_m16} &
+        \ic{arw\_cn + nmm\_n1\_pert} &
+        \bc{21Z SREF nmm\_n1} &
+        \radar{Yes} &
+        \microphysics{Ferrier+} &
+        \lsm{Noah} &
+        \pbl{QNSE} \\
+
+        % Member 15 of 24
+        \hline
+        \member{arw\_m17} &
+        \ic{arw\_cn + nmm\_n2\_pert} &
+        \bc{21Z SREF nmm\_n2} &
+        \radar{Yes} &
+        \microphysics{Thompson} &
+        \lsm{Noah} &
+        \pbl{ACM2} \\
+
+        % Member 16 or 24
+        \hline
+        \member{arw\_m18} &
+        \ic{arw\_cn + rsm\_p2\_pert} &
+        \bc{21Z SREF rsm\_p2} &
+        \radar{Yes} &
+        \microphysics{WSM6} &
+        \lsm{Noah} &
+        \pbl{MYJ} \\
+
+        % Member 17 of 24
+        \hline
+        \member{arw\_m19} &
+        \ic{arw\_cn + rsm\_n1\_pert} &
+        \bc{21Z SREF rsm\_n1} &
+        \radar{Yes} &
+        \microphysics{M-Y} &
+        \lsm{Noah} &
+        \pbl{MYJ} \\
+
+        % Member 18 of 24
+        \hline
+        \member{arw\_m20} &
+        \ic{arw\_cn + rsm\_n2\_pert} &
+        \bc{21Z SREF rsm\_n2} &
+        \radar{Yes} &
+        \microphysics{M-Y} &
+        \lsm{RUC} &
+        \pbl{ACM2} \\
+
+        % Member 19 of 24
+        \hline
+        \coremem\member{nmm\_cn} &
+        \coremem\ic{00Z ARPS 3DVAR \& Cloud Analysis} &
+        \coremem\bc{00Z NAM Forecast} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Ferrier} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{MYJ} \\
+
+        % Member 20 of 24
+        \hline
+        \member{nmm\_m2} &
+        \ic{nmm\_cn + em\_n2\_pert} &
+        \bc{21 SREF em\_n2} &
+        \radar{Yes} &
+        \microphysics{Ferrier+} &
+        \lsm{Noah} &
+        \pbl{MYJ} \\
+
+        % Member 21 of 24
+        \hline
+        \coremem\member{nmm\_m3} &
+        \coremem\ic{nmm\_cn + nmm\_n1\_pert} &
+        \coremem\bc{21Z SREF nmm\_n1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Thompson} &
+        \coremem\lsm{Noah} &
+        \coremem\pbl{MYJ} \\
+
+        % Member 22 of 24
+        \hline
+        \coremem\member{nmm\_m4} &
+        \coremem\ic{arw\_cn + nmm\_n2\_pert} &
+        \coremem\bc{21Z SREF nmm\_n2} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{WSM6} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{MYJ} \\
+
+        % Member 23 of 24
+        \hline
+        \coremem\member{nmm\_m5} &
+        \coremem\ic{arw\_cn + em\_n1\_pert} &
+        \coremem\bc{21Z SREF em\_n1} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Ferrier} &
+        \coremem\lsm{RUC} &
+        \coremem\pbl{MYJ} \\
+
+        % Member 24 or 24
+        \hline
+        \coremem\member{arps\_cn} &
+        \coremem\ic{00Z ARPS 3DVAR \& Cloud Analysis} &
+        \coremem\bc{00Z NAM Forecast} &
+        \coremem\radar{Yes} &
+        \coremem\microphysics{Lin} &
+        \coremem\lsm{Force Restore} &
+        \coremem\pbl{??? ???} \\
+        \hline
+
+    \end{longtable}
+\end{center}
+
+
+

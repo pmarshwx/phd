@@ -1,0 +1,142 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt, generalexam]{generalexam} % prospectus style
+\usepackage[amssymb]{SIunits}                  % allows SI units
+\usepackage[pdftex]{graphicx}                  % allows .eps and .epsi graphics to be inserted
+\usepackage{epic}                              % allows use of latex graphics
+\usepackage{eepic}                             % allows use of latex graphics
+\usepackage{varioref}
+\usepackage{amssymb,amsmath}                   % Amer. Math. Soc. packages
+\usepackage{amsfonts}                          % Amer. Math. Soc. special fonts package
+\usepackage[centerfoot]{pageno}                % allows positioning of page numbers
+\usepackage{natbib} 		                   % citations with ametsoc.bst
+\usepackage[table]{xcolor}                     % allow for alternating row colors in table
+\bibpunct{(}{)}{;}{a}{}{,}                     % AMS refs are ``author year'' not ``author, year''
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{times}
+\usepackage{hyperref}
+\usepackage[bottom]{footmisc}
+\usepackage{listings}
+\labelformat{equation}{\textup{(#1)}}
+\labelformat{enumi}{\textup{(#1)}}
+% \usepackage{hyperref}
+% \renewcommand{\sectionautorefname}{Section}
+% \renewcommand{\chapterautorefname}{Chapter}
+\makeatletter
+\def\@seccntformat#1{\hb@xt@ 24px{\hfil\csname the#1\endcsname}\quad}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% control list spacing %
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{setspace}
+\let\olditemize=\itemize
+\def\itemize{\olditemize\setlength{\itemsep}{-0.5ex}\setstretch{0.85}}
+\renewcommand{\labelitemi}{$\star$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% math shortcuts %
+%%%%%%%%%%%%%%%%%%
+\newcommand{\be}{\begin{equation}}                                  % begin equation environment
+\newcommand{\ee}{\end{equation}}                                    % end equation environment
+\newcommand{\bea}{\begin{eqnarray}}                                 % begin equation array environment
+\newcommand{\eea}{\end{eqnarray}}                                   % end equation array environment
+\newcommand{\dd}{\mathrm{d}}                                        % derivative d
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}                  % partial derivative
+\newcommand{\pdd}[3]{\frac{\partial^{2}#1}{\partial#2 \partial#3}}  % second order partial derivative
+\newcommand{\mbf}[1]{\mathbf{#1}}                                   % math bold font
+\newcommand{\mc}[1]{\mathcal{#1}}                                   % math caligraphy font
+\newcommand{\ol}[1]{\overline{#1}}                                  % math overline
+\newcommand{\divider}{\vspace{7.5em}\hrule\vspace{1em}}               % big skip, line, small skip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% add revision information to footer %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\IfFileExists{revision.sty}{\usepackage{revision}}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{blockquote}{\begin{quote}\itshape}{\end{quote}}
+\lstnewenvironment{code}[1][]{\noindent\minipage{\linewidth}\vspace{0.5\baselineskip}\lstset{basicstyle=\ttfamily\footnotesize,frame=shadowbox,rulesepcolor=\color{black}, #1}}{\endminipage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% table definitions
+%%%%%%%%%%%%%%%%%%%
+\newenvironment{telement}[2]{\begin{minipage}[c]{#1} \centering #2} {\end{minipage}}
+\newcommand{\coremem}{\color{red}}
+\newcommand{\member}[1]{\begin{telement}{0.66in}{#1}\end{telement}}
+\newcommand{\ic}[1]{\begin{telement}{1in}{#1}\end{telement}}
+\newcommand{\bc}[1]{\begin{telement}{1in}{#1}\end{telement}}
+\newcommand{\radar}[1]{\begin{telement}{0.5in}{#1}\end{telement}}
+\newcommand{\microphysics}[1]{\begin{telement}{1in}{#1}\end{telement}}
+\newcommand{\lsm}[1]{\begin{telement}{0.66in}{#1}\end{telement}}
+\newcommand{\pbl}[1]{\begin{telement}{0.66in}{#1}\end{telement}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\title{An Assessment of the Primary Scientific Challenges Facing\\the Warn-on-Forecast Initiative}
+\author{PATRICK TIMOTHY MARSH}
+\depositdate{2012}
+\majorfield{SCHOOL OF METEOROLOGY}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{preface}
+% space avoids a problem, keep it
+
+\tableofcontents
+% \listoftables
+\listoffigures
+
+\doublespacing
+\prefacesection{Statement of Problem}
+\label{sproblem}
+\input{sproblem}
+
+
+% \prefacesection{Executive Summary}
+% \label{esummary}
+% \input{esummary}
+
+
+\prefacesection{Acknowledgements}
+\label{acknowledgements}
+\input{acknowledgements}
+\end{preface}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\doublespacing
+
+% INTRODUCTION
+\chapter{Introduction}
+\label{introduction}
+\input{introduction}
+
+
+% RADAR DATA ASSIMILATION
+\chapter{Assimilation of Radar Data}
+\label{data_assimilation}
+\input{data_assimilation}
+
+
+% PREDICTABILITY AND ERROR GROWTH
+\chapter{Convective-Scale Predictability and Error Growth}
+\label{predictability}
+\input{predictability}
+
+
+% UTILIZING CONVECTIVE-SCALE ENSEMBLES
+\chapter{Convective-Scale Ensembles}
+\label{ensembles}
+\input{ensembles}
+
+
+% DISCUSSION
+\chapter{Discussion}
+\label{discussion}
+\input{discussion}
+
+
+% REFERENCES
+\references{ametsoc}{./bibliography/generalexam}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% END OF TEMPLATE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

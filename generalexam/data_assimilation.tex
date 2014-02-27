@@ -1,0 +1,714 @@
+%!TEX root = generalexam.tex
+
+% BEGIN CHAPTER
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The origins of Data Assimilation}
+\label{The origins of Data Assimilation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As early as the mid-1800s, hand-analyses of weather observations were being drawn to gain insights into various atmospheric phenomena. For example, \cite{redfield1841observations} produced hand analyses of a strong cold-season extratropical cyclone over the warm-waters of the Gulf Stream Current located just south of Cape Cod, Massachusetts (what is now referred to as a Nor'Easter) in an effort gain scientific insight. Hand analyses were the only method of generating a representation of the true state of the atmosphere until the invention of the computer, when numerical analyses became possible. The first such attempt at an objective analysis done via computers was done by \cite{panofsky1949oban}, when he used third-degree polynomials fit to observations over a relatively limited area to represent the distribution of meteorological variables.
+
+
+A few years later, \cite{gilchrist1954oban} extended the work of \cite{panofsky1949oban} by creating objective analyses that utilized polynomial expansion, but only for observations within a radius of influence around each observation. They went on to compare numerical forecasts initialized from subjective analyses to those initialized with this new objective analysis approach and found that numerical forecasts initialized with the objective analyses verified better than the forecasts initialized with the subjective analyses. Gilchrist and Cressman attributed these results to the fact that objective analyses, using their method, forced geostrophic balance on the analyses which, in turn, produced analyses that fared better in a quasi-geostrophic model. This finding would ultimately have a profound impact on how to perform objective analysis and data assimilation for use in generating initial conditions in numerical models.
+
+
+\cite{gilchrist1954oban} also introduced the notion of using a previous numerical forecast as an estimate of the analysis, or background field. This was built upon by \cite{bergthorsson1955numerical} who framed the analysis problem in terms of making incremental changes to a background field. This approach utilized a statistically weighted linear combination of nearby observations and the background field. This process could then be repeated to further refine the analysis, although the first pass typically produced satisfactory results. \cite{bergthorsson1955numerical} recognized that it was most likely hopeless to try and obtain a ``\emph{true} analysis of the atmosphere'', but rather the role of objective analysis is to produce the ``\emph{most probable} analysis''. A variation on the iterative technique proposed by \cite{bergthorsson1955numerical} was implemented as the operational objective analysis system at the Joint Numerical Weather Prediction Unit in the late 1950s \citep{cressman1959operational}.
+
+
+In 1954, \cite{eliassen1954oi} proposed a statistical-based objective analysis technique, often called \emph{optimal interpolation}, or more aptly \emph{statistical interpolation}. At the same time Eliassen was developing statistical interpolation, Sasaki was developing a deterministic-based objective analysis technique employing the variational principle from calculus of variations (e.g., \citealp{sasaki1955variational, sasaki1958objective, sasaki19694dvariational, sasaki1970variational, sasaki1970numerical, sasaki1970weakconstraint}, etc.). This technique ultimately laid the foundation for the 3D-Variational (3DVAR) and 4D-Variational (4DVAR) data assimilation schemes.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Mathematics of Analysis and Data Assimilation}
+\label{The Mathematics of Analysis and Data Assimilation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The tenets of a good analysis are fairly straight forward. One variation on these tenets is given:
+
+
+    \begin{enumerate}
+        \item Begin with a good quality first guess, or background, (i.e., a previous analysis or forecast).
+        \item The analysis should be closest to the data most trusted. Conversely, areas of suspicious data should be given little weight.
+        \item When observations are dense assume the true state is near the average of the observations.
+        \item The analysis should be smooth, honoring known relationships and balances.
+        \item The analysis should respect known features of the system.
+    \end{enumerate}
+
+
+\noindent To put this another way, the background state and observations are important sources of information in an analysis, but neither can be completely trusted. This is because sources of errors exist in both the observations (e.g., instrument errors) and in the model that produced the background field (e.g., inadequate model physics or grid spacing). A good analysis scheme seeks to minimize the average difference between the analysis and the true atmospheric state\footnote{When creating an analysis for numerical weather prediction, the additional constraint of producing an analysis that adheres to the model's required balances is added, as identified by \cite{gilchrist1954oban}.}. Thus, the creation of a good analysis is an exercise in optimization theory. Typically the analysis that produces the smallest mean squared error when compared to the true atmospheric state is called the \emph{\textbf{best}} analysis.
+
+
+A popular adage in computer programming is ``Garbage in, Garbage out''. In the context of numerical weather prediction this translates to ``Poor Initial Analysis, Poor Forecast''. Even before the advent of computers, \cite{bjerknes1904nwpvision} postulated that in order to produce numerical forecasts of subsequent states of the atmosphere that:
+
+
+\begin{blockquote}
+    \begin{enumerate}
+        \item One has to know with sufficient accuracy the state of the atmosphere at a given time; and
+        \item One has to know with sufficient accuracy the laws according to which one state of the atmosphere develops from another.
+    \end{enumerate}
+\end{blockquote}
+
+
+\noindent Bjerknes recognized that the creation of sufficiently accurate analysis of the atmosphere is a necessary condition for reliable forecasts of future atmospheric states based on the integration of the governing equations.
+
+
+In the context of creating the best analysis for use in numerical weather prediction, the choice of forecast model is critical and must be made first. The model choice has a direct impact on the creation of the analysis, as it establishes the discrete basis on which the analysis will occur. After choosing the model, the entire state of the atmosphere at a single time needs to be represented in model space. This background state can be in the form of grid points, spherical harmonic coefficients, etc, and contains atmospheric variables (e.g., temperatures, wind components, etc.) and is denoted by vector $\mbf{x}_b$. Similarly the observations of the atmosphere can be represented by vector $\mbf{y}$, which consists of observations of different fields at different locations, not necessarily the same locations as $\mbf{x_b}$.
+
+
+Since no requirement is made that observations are collocated with model space, there is no guarantee that a surjection, or one-to-one mapping, exists between $\mbf{y}$ and $\mbf{x_b}$. Thus, it is assumed that the model is always possible to determine ``model equivalents'' of observations. Mathematically speaking this implies that an \emph{\textbf{observation operator}}, or\emph{\textbf{forward operator}}, $\mc{H}$, exists such that
+
+
+    \be
+        \label{observation operator}
+        \mbf{y} = \mc{H}(\mbf{x})
+    \ee
+
+
+\noindent where $\mbf{x}$ is any model-space vector. Simply stated, the observation operator takes model-space vectors and remaps them such that they can be directory compared to observation-space vectors.\footnote{One way of thinking about the resulting vector is that it consists of the model equivalents previously mentioned.} The assumption is made that $\mc{H}$ does not introduce any errors, implying that
+
+
+    \be
+        \label{perfect observation operator}
+        \mbf{y^*} = \mc{H}(\mbf{x^*})
+    \ee
+
+
+\noindent where $\mbf{x^*}$ is the true state of the atmosphere depicted in model-space and $\mbf{y^*}$ are the true values of all observations (i.e., there are no instrument errors contained in the observations). In the general case, it is required that error-free inputs ($\mbf{x_b} = \mbf{x^*}$ and $\mbf{y} = \mbf{y^*}$) into $\mc{H}$ produces an error-free analysis ($\mbf{x_a}=\mbf{x^*}$). Thus, it is assumed, at least at this point of the derivation, that the observation operator is a perfect operator and does not introduce error into an analysis. It will be shown later that this is certainly not always the case.
+
+
+The process by which one guarantees the best analysis, for a given observation operator, is known as Kalman filtering, with a basis in linear least squares analysis.  Kalman filtering methods have been derived under two general frameworks: \emph{\textbf{minimum variance}} and \emph{\textbf{maximum likelihood}}. Derivations of the Kalman filtering equations in each of these frameworks follow.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Minimum Variance Framework}
+\label{The Minimum Variance Framework}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Data assimilation is designed to ``perfectly'' blend information collected from numerous observations through the use of past analyses and model and physical constraints. Therefore, starting from the results of \cite{bergthorsson1955numerical}, data assimilation can be denoted mathematically as a simple linear combination of the background field, the model equivalents, the observations, and a vector of constants.
+
+
+\be
+    \label{multivariate linear combination}
+    \mbf{x_a} = \mbf{Fx_b} + \mbf{G}\mc{H}(\mbf{x_b}) + \mbf{Ky} + \mbf{c}
+\ee
+
+
+\noindent where $\mbf{x_a}$ is the model analysis, $\mbf{F}$, $\mbf{G}$, and $\mbf{K}$ are matrices and $\mbf{c}$ is a vector of constants.
+
+
+Recalling that error-free inputs are assumed to result in an error free analysis, \ref{multivariate linear combination} can be rewritten as:
+
+
+\be
+    \label{error-free analysis-1}
+    \mbf{x^*} = \mbf{Fx^*} + \mbf{G}\mc{H}(\mbf{x^*}) + \mbf{Ky^*} + \mbf{c}.
+\ee
+
+
+\noindent Using \ref{perfect observation operator}, and exploiting the multiplicative identity of matrices, $\mbf{x} = \mbf{Ix}$, \ref{error-free analysis-1} can be rewritten as
+
+
+\be
+    \label{error-free analysis-2}
+    \mbf{Ix^*} = \mbf{Fx^*} + \mbf{G}\mc{H}(\mbf{x^*}) + \mbf{K}\mc{H}(\mbf{x^*}) + \mbf{c}.
+\ee
+
+
+\noindent However, since \ref{error-free analysis-2} holds for all values $\mbf{x^*}$, $\mbf{c}$ must be $\mbf{0}$, and \ref{error-free analysis-2} can generalized to,
+
+
+\be
+    \label{error-free analysis-3}
+    \mbf{I} = \mbf{F} + \mbf{G}\mc{H}(\cdot) + \mbf{K}\mc{H}(\cdot).
+\ee
+
+
+\noindent Rearranging terms, it is shown that
+
+
+\be
+    \label{reduction of terms}
+    \mbf{F} + \mbf{G}\mc{H}(\cdot) = \mbf{I} - \mbf{K}\mc{H}(\cdot).
+\ee
+
+
+\noindent Plugging \ref{reduction of terms}, into \ref{multivariate linear combination}, and recalling that $\mbf{c} = \mbf{0}$, the dependencies on $\mbf{F}$, $\mbf{G}$, and $\mbf{c}$ are removed:
+
+
+\be
+    \label{expanded analysis equation}
+    \mbf{x_a} = \mbf{x_b} - \mbf{K}\mc{H}(\mbf{x_b}) + \mbf{Ky}.
+\ee
+
+
+\be
+    \label{full analysis equation}
+    \mbf{x_a} = \mbf{x_b} + \mbf{K}(\mbf{y} - \mc{H}(\mbf{x_b})).
+\ee
+
+
+\ref{full analysis equation} is the general form of the multidimensional analysis equation and $\mbf{K}$ is called the \emph{\textbf{gain matrix}}. The gain matrix is used to transform information defined in observation-space to model-space, by essentially assigning weights to each observational piece of information. Unfortunately, \ref{full analysis equation} does not guarantee to give the best analysis -- merely \emph{an} analysis. The Gauss-Markov theorem states, however, that in a linear regression the best linear unbiased estimator of the coefficients is given by the ordinary least squares estimator. This theorem assumes that the expected value of errors is zero and the errors are uncorrelated and have equal variances. Therefore, the best analysis is guaranteed when the gain matrix is chosen such that it minimizes the variance of the analysis error, under the assumptions denoted.
+
+
+To determine this optimal gain matrix, the errors associated with the analysis, background, and observations are needed. These can be defined as
+
+
+\be
+    \label{analysis error}
+    \epsilon_a = \mbf{x_a} - \mbf{x^*}
+\ee
+
+
+\be
+    \label{background error}
+    \epsilon_b = \mbf{x_b} - \mbf{x^*}
+\ee
+
+
+\be
+    \label{observation error}
+    \epsilon_o = \mbf{y} - \mbf{y^*}
+\ee
+
+
+\noindent where \ref{analysis error} defines the analysis error as the difference between the model produced analysis and the true state of the atmosphere in model-space, \ref{background error} defines the background error as the difference between the background field and the true state of the atmosphere depicted in model space, and \ref{observation error} defines the observation error as the difference between the observation vector and the state of the atmosphere. It is also assumed that the errors are sufficiently small such that
+
+
+\be
+    \label{linearized observation operator}
+    \mc{H}(\mbf{x_b}) = \mc{H}(\mbf{x^*}) + \mbf{H}\epsilon_b + \text{O}(\epsilon_b^2)
+\ee
+
+
+\noindent where $\mbf{H}$ is the Jacobian of $\mc{H}$, and O$(\epsilon_b^2) \approx 0$. This assumption is known as the \emph{\textbf{tangent linear hypothesis}}. Substituting \ref{linearized observation operator}, the expressions for the error fields, and \ref{perfect observation operator} into the analysis equation given in \ref{full analysis equation}, an expression for the analysis error can be derived:
+
+
+$$
+    \epsilon_a + \mbf{x^*} = \epsilon_b + \mbf{x^*} + \mbf{K}\left[\epsilon_o + \mbf{y^*} - \mc{H}(\mbf{x^*}) - \mbf{H}\epsilon_b \right],
+$$
+
+
+$$
+    \epsilon_a = \epsilon_b + \mbf{K}\left[\epsilon_o + \mbf{y^*} - \mbf{y^*} - \mbf{H}\epsilon_b \right],
+$$
+
+
+$$
+    \epsilon_a = \epsilon_b + \mbf{K}\left[\epsilon_o - \mbf{H}\epsilon_b \right],
+$$
+
+
+$$
+    \epsilon_a = \epsilon_b + \mbf{K}\epsilon_o - \mbf{K}\mbf{H}\epsilon_b,
+$$
+
+
+$$
+    \epsilon_a = \epsilon_b - \mbf{K}\mbf{H}\epsilon_b + \mbf{K}\epsilon_o,
+$$
+
+
+\be
+    \label{expanded analysis error}
+    \epsilon_a = \left(I - \mbf{K}\mbf{H}\right)\epsilon_b + \mbf{K}\epsilon_o.
+\ee
+
+
+As previously written, in order to satisfy the Gauss-Markov Theorem, the variance of the resulting analysis needs to be a minimum. Fortunately, the variances are contained in a larger matrix called the covariance matrix. Covariance matrices can be found by taking the expected value of each element of an outer product between a vector and itself. Mathematically this is represented by
+
+
+$$
+    \ol{\mbf{x}\mbf{x}^T}.
+$$
+
+
+\noindent The covariance matrix of the analysis error can then be given by:
+
+
+$$
+    \ol{\epsilon_a\epsilon_a^T} = \ol{\left[\left(\mbf{I}-\mbf{KH}\right)\epsilon_b+\mbf{K}\epsilon_o\right]\left[\left(\mbf{I}-\mbf{KH}\right)\epsilon_b+\mbf{K}\epsilon_o\right]^T},
+$$
+
+
+$$
+    \ol{\epsilon_a\epsilon_a^T} = \ol{\left[\left(\mbf{I}-\mbf{KH}\right)\epsilon_b+\mbf{K}\epsilon_o\right] \left[\left(\left(\mbf{I}-\mbf{KH}\right)\epsilon_b\right)^T+\left(\mbf{K}\epsilon_o\right)^T\right]},
+$$
+
+
+$$
+    \ol{\epsilon_a\epsilon_a^T} = \ol{\left[\left(\mbf{I}-\mbf{KH}\right)\epsilon_b+\mbf{K}\epsilon_o\right] \left[\left(\epsilon_b^T-\epsilon_b^T\mbf{H}^T\mbf{K}^T\right)+\epsilon_o^T\mbf{K}^T\right]},
+$$
+
+
+\bea \nonumber
+    \label{expanded analysis error covariance}
+    \ol{\epsilon_a\epsilon_a^T} &=&
+    \ol{\left(\mbf{I}-\mbf{KH}\right)\epsilon_b\epsilon_b^T\left(\mbf{I}-\mbf{KH}\right)^T} + \\ &&
+    \ol{\left(\mbf{I}-\mbf{KH}\right)\epsilon_b\epsilon_o^T\mbf{K}^T +
+    \mbf{K}\epsilon_o\epsilon_b^T(\mbf{I}-\mbf{KH})^T + \mbf{K}\epsilon_o\epsilon_o^T\mbf{K}^T}.
+\eea
+
+
+\noindent Making the assumption that the background and observation errors are uncorrelated (i.e., $\ol{\epsilon_b\epsilon_o^T} = 0 = \ol{\epsilon_o\epsilon_b^T}$), \ref{expanded analysis error covariance} becomes
+
+
+\be
+    \label{analysis error covariance expanded}
+    \ol{\epsilon_a\epsilon_a^T} =
+    \left(\mbf{I}-\mbf{KH}\right)\ol{\epsilon_b\epsilon_b^T}\left(\mbf{I}-\mbf{KH}\right)^T + \mbf{K}\ol{\epsilon_o\epsilon_o^T}\mbf{K}^T.
+\ee
+
+
+\noindent To save space, the error covariances will be denoted by:
+
+
+$$
+    \mbf{P_a} \equiv \ol{\epsilon_a\epsilon_a^T},
+$$
+
+
+$$
+    \mbf{B} \equiv \ol{\epsilon_b\epsilon_b^T},
+$$
+
+
+$$
+    \mbf{R} \equiv \ol{\epsilon_o\epsilon_o^T},
+$$
+
+
+\noindent and \ref{analysis error covariance expanded} can be rewritten as:
+
+
+\be
+    \label{analysis error covariance}
+    \mbf{P_a} =
+    \left(\mbf{I}-\mbf{KH}\right)\mbf{B}\left(\mbf{I}-\mbf{KH}\right)^T +
+    \mbf{K}\mbf{R}\mbf{K}^T.
+\ee
+
+
+In a covariance matrix, the variances are conveniently located along its diagonal. Thus, minimizing the analysis error variance is equivalent to minimizing the sum of the diagonal elements, or trace, of the analysis error covariance matrix, and solving for $\mbf{K}$. Mathematically, this is given by
+
+
+$$
+    \pd{trace(\mbf{P}_a)}{\mbf{K}} = 0,
+$$
+
+
+$$
+    \pd{trace(\mbf{P}_a)}{\mbf{K}} = \pd{}{\mbf{K}}\left[\left(\mbf{I}-\mbf{KH}\right)\mbf{B}\left(\mbf{I}-\mbf{KH}\right)^T + \mbf{KRK}^T\right]= 0,
+$$
+
+
+$$
+    \pd{}{\mbf{K}}\left[\left(\mbf{B}-\mbf{KHB}\right)\left(\mbf{I}-\mbf{H}^T\mbf{K}^T\right)\right] + \pd{}{\mbf{K}}\left[\mbf{KRK}^T\right]= 0,
+$$
+
+
+$$
+    \pd{}{\mbf{K}}\left[\mbf{B} - \mbf{BH}^T\mbf{K}^T - \mbf{KHB} + \mbf{KHBH}^T\mbf{K}\right] + \mbf{K}\left(\mbf{R} + \mbf{R}^T\right)= 0,
+$$
+
+
+$$
+    \pd{}{\mbf{K}}\left[\mbf{B}\right] - \pd{}{\mbf{K}}\left[\mbf{BH}^T\mbf{K}^T\right] - \pd{}{\mbf{K}}\left[\mbf{KHB}\right] + \pd{}{\mbf{K}}\left[\mbf{KHBH}^T\mbf{K}\right] + \mbf{K}\left(\mbf{R} + \mbf{R}^T\right)= 0,
+$$
+
+
+$$
+    0 - \mbf{BH}^T - [\mbf{HB}]^T + \mbf{K}[\mbf{HBH}^T + (\mbf{HBH}^T)^T] + \mbf{K}\left(\mbf{R} + \mbf{R}^T\right)= 0,
+$$
+
+
+$$
+    -\mbf{BH}^T - \mbf{B}^T\mbf{H}^T + \mbf{K}[\mbf{HBH}^T + \mbf{HB}^T\mbf{H}^T] + \mbf{K}\left(\mbf{R} + \mbf{R}^T\right)= 0.
+$$
+
+
+\noindent This can be simplified further by noting that the error covariance matrices are symmetric and therefore equal to their transpose.
+
+
+$$
+    -\mbf{BH}^T - \mbf{BH}^T + \mbf{K}[\mbf{HBH}^T + \mbf{HBH}^T] + \mbf{K}\left(\mbf{R} + \mbf{R}\right)=0,
+$$
+
+
+$$
+    -2\mbf{BH}^T + 2\mbf{KHBH}^T + 2\mbf{KR} = 0,
+$$
+
+
+$$
+    -\mbf{BH}^T + \mbf{KHBH}^T + \mbf{KR} = 0,
+$$
+
+
+$$
+    \mbf{KHBH}^T + \mbf{KR} = \mbf{BH}^T,
+$$
+
+
+$$
+    \mbf{K}[\mbf{HBH}^T + \mbf{R}] = \mbf{BH}^T,
+$$
+
+
+\be
+    \label{kalman gain matrix}
+    \mbf{K} = \mbf{BH}^T[\mbf{HBH}^T + \mbf{R}]^{-1},
+\ee
+
+
+\noindent where the $\mbf{K}$ given by \ref{kalman gain matrix} is called the \emph{\textbf{Kalman Gain Matrix}}. The Gauss-Markov Theorem guarantees that the Kalman Gain Matrix provides the `best' analysis for a given $\mc{H}$.
+
+
+Alternatively, the Kalman Gain Matrix can be, and often is, represented as
+
+
+$$
+    \mbf{K} = \mbf{BH}^T[\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = [(\mbf{B})^{-1}\mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{BH}^T[\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = [(\mbf{B})^{-1}\mbf{BH}^T + \mbf{H}^T\mbf{R}^{-1}\mbf{H}\mbf{BH}^T][\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = [\mbf{H}^T + \mbf{H}^T\mbf{R}^{-1}\mbf{H}\mbf{BH}^T][\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = \mbf{H}^T[\mbf{I} + \mbf{R}^{-1}\mbf{H}\mbf{BH}^T][\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = \mbf{H}^T\mbf{R}^{-1}[\mbf{R} + \mbf{H}\mbf{BH}^T][\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = \mbf{H}^T\mbf{R}^{-1}[\mbf{H}\mbf{BH}^T + \mbf{R}][\mbf{HBH}^T + \mbf{R}]^{-1},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = \mbf{H}^T\mbf{R}^{-1}\mbf{I},
+$$
+
+
+$$
+    [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]\mbf{K} = \mbf{H}^T\mbf{R}^{-1},
+$$
+
+
+\be
+    \label{alternative kalman gain matrix}
+    \mbf{K} = [(\mbf{B})^{-1} + \mbf{H}^T\mbf{R}^{-1}\mbf{H}]^{-1}\mbf{H}^T\mbf{R}^{-1}.
+\ee
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Maximum Likelihood Framework}
+\label{The Maximum Likelihood Framework}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Instead of minimizing variance between the true atmosphere and the analysis, an alternative approach is to determine the most likely analysis given a set of observations and a background state\footnote{For Gaussian errors and a linear $\mc{H}$, the two frameworks provide identical solutions.}. Mathematically, this can be represented by
+
+
+$$
+    \mbf{x_a} = \arg\max_{\mbf{x}}(P(\mbf{x}|\mbf{y} \text{ and } \mbf{x_b})),
+$$
+
+
+\noindent which succinctly states that the most likely analysis field can be found by maximizing the probability that the model's depiction of the true atmosphere is correct, given a particular background field and set of observations. For convenience, the above equation is often written in terms of a \emph{\textbf{cost function}}, defined to be
+
+
+$$
+    J = -\ln(P(\mbf{x}|\mbf{y} \text{ and } \mbf{x_b})) + c,
+$$
+
+
+\noindent where $c$ is a constant. Since the natural log function is monotonic, the best analysis can be rewritten as
+
+
+$$
+    \mbf{x_a} = \arg\min_{\mbf{x}}(J(\mbf{x})),
+$$
+
+
+\noindent or,
+
+
+\be
+    \label{expanded maximum likelihood equation}
+    \mbf{x_a} = \arg\min_{\mbf{x}}(-\ln(P(\mbf{x}|\mbf{y} \text{ and } \mbf{x_b}) + c)).
+\ee
+
+
+Bayes' Theorem states that the posterior probability of an event A occurring, given that event B is known to have occurred, is proportional to the prior probability of A multiplied by the probability of B occurring given that A is known to have occurred:
+
+
+\be
+    \label{Bayes theorem}
+    P(A|B) = \frac{P(B|A)\;P(A)}{P(B)}
+\ee
+
+
+\noindent Utilizing Bayes' Theorem,
+
+
+$$
+    P(\mbf{x}|\mbf{y}\text{ and }\mbf{x_b}) = \frac{P(\mbf{y}\text{ and }\mbf{x_b}|\; \mbf{x})}{P(\mbf{y}\text{ and }\mbf{x_b})}.
+$$
+
+
+\noindent By doing this, $P(\mbf{y}\text{ and }\mbf{x_b})$ is now independent of $\mbf{x}$. Since nothing is known $\mbf{x}$ \emph{a priori} (i.e., all values are equally likely) about $\mbf{x}$, it can be assumed that $P(\mbf{x}) / P(\mbf{y}\text{ and }\mbf{x_b})$ is also independent of $\mbf{x}$. Thus,
+
+
+$$
+    P(\mbf{x}|\mbf{y}\text{ and }\mbf{x_b}) \propto P(\mbf{y}\text{ and }\mbf{x_b}|\mbf{x}).
+$$
+
+
+\noindent Furthermore, if observations and background errors are assumed to be uncorrelated, then
+
+
+$$
+    P(\mbf{y}\text{ and }\mbf{x_b}|\mbf{x}) = P(\mbf{y}|\mbf{x})\;P(\mbf{x_b}|\mbf{x}),
+$$
+
+
+\noindent allowing the cost function to be rewritten as
+
+
+\be
+    \label{expanded cost function}
+    J(\mbf{x}) = -\ln{P(\mbf{y}|\mbf{x})} - \ln{P(\mbf{x_b}|\mbf{x})} + c.
+\ee
+
+
+Even though the maximum likelihood framework is applicable to any probability density function, consider the special case of a Gaussian probability density function:
+
+
+\be
+    \label{prob of background given truth}
+    P(\mbf{x_b}|\mbf{x}) = \left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]e^{\left[
+    -\frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x})\right]},
+\ee
+
+
+\be
+    \label{prob of obs given truth}
+    P(\mbf{y}|\mbf{x}) = \left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]e^{\left[
+    -\frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x}))\right]}.
+\ee
+
+
+\noindent Plugging \ref{prob of background given truth} and \ref{prob of obs given truth} into the cost function $J(\mbf{x})$, given by \ref{expanded cost function}:
+
+
+\bea
+    \nonumber
+    J(\mbf{x}) &=& -\ln{\left(\left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]e^{\left[-\frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x}))\right]}\right)} + \\ && -\ln{\left(\left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]e^{\left[-\frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x})\right]}\right)} + c,
+\eea
+
+
+\noindent which can be separated into
+
+
+\bea
+    \nonumber
+    J(\mbf{x}) &=& -\ln{\left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]} - \ln{\left[e^{\left[-\frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x}))\right]}\right]} + \\ && -\ln{\left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]} -\ln{\left[e^{\left[-\frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x})\right]}\right]} + c.
+\eea
+
+
+\noindent However, $-\ln{\left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]}$ and $-\ln{\left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]}$ are merely constants. So by choosing
+
+
+$$
+    c = \ln{\left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]} + \ln{\left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]},
+$$
+
+
+\noindent $J(\mbf{x})$ can be expressed as,
+
+
+\bea
+    \nonumber
+    J(\mbf{x}) &=& -\ln{\left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]} - \ln{\left[e^{\left[-\frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x}))\right]}\right]} + \\ && \nonumber -\ln{\left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]} -\ln{\left[e^{\left[-\frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x})\right]}\right]} + \\ && \ln{\left[\frac{1}{(2\pi)^{M/2}|\mbf{R}|^{1/2}}\right]} + \ln{\left[\frac{1}{(2\pi)^{N/2}|\mbf{B}|^{1/2}}\right]},
+\eea
+
+
+\noindent which reduces to
+
+
+$$
+    J(\mbf{x}) = -\ln{\left[e^{\left[-\frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x}))\right]}\right]} -\ln{\left[e^{\left[-\frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x})\right]}\right]},
+$$
+
+
+\noindent and ultimately,
+
+
+\be
+    \label{3DVAR cost function}
+    J(\mbf{x}) = \frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x})) +
+    \frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x}).
+\ee
+
+
+Since the maximum likelihood analysis corresponds to the global minimum of the cost function, the point at which the gradient of the cost function is zero is sought. Mathematically this is depicted by
+
+
+$$
+    \nabla J(\mbf{x}) = \pd{}{\mbf{x}}\left[\frac{1}{2}(\mbf{y}-\mc{H}(\mbf{x}))^T\mbf{R}^{-1}(\mbf{y}-\mc{H}(\mbf{x})) + \frac{1}{2}(\mbf{x_b}-\mbf{x})^T\mbf{B}^{-1}(\mbf{x_b}-\mbf{x})\right] = 0,
+$$
+
+
+\noindent which reduces to
+
+
+\be
+    \label{Gradient 3DVAR cost function}
+    \nabla J(\mbf{x}) = (\mbf{B})^{-1}(\mbf{x} - \mbf{x_b}) + \mbf{H}^T\mbf{R}^{-1}(\mc{H}(\mbf{x})-\mbf{y}) = 0.
+\ee
+
+
+\noindent Assuming $\mc{H}$ is a linear operator, or second-order terms are neglected, equation \ref{linearized observation operator} can be used to simplify \ref{Gradient 3DVAR cost function} to
+
+
+$$
+    \mbf{B}^{-1}(\mbf{x}-\mbf{x_b}) + \mbf{H}^T\mbf{R}^{-1}\left[\mc{H}(\mbf{x_b}) + \mbf{H}(\mbf{x}-\mbf{x_b}) - \mbf{y}\right] = 0,
+$$
+
+
+\be
+    \label{maximum likelihood framework cost function}
+    \left[\mbf{B}^{-1} + \mbf{H}^T\mbf{R}^{-1}\right](\mbf{x}-\mbf{x_b}) = \mbf{H}^T\mbf{R}^{-1}\left[\mbf{y} - \mc{H}(\mbf{x_b})\right].
+\ee
+
+
+\noindent  \ref{maximum likelihood framework cost function} can be shown to be equivalent to the minimum variance equation, given by \ref{alternative kalman gain matrix}.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Radar Data Assimilation: Benefits and Challenges}
+\label{Radar Data Assimilation: Benefits and Challenges}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+One of the hardest challenges associated with storm-scale numerical weather prediction is how to initialize the model. Although data assimilation theory is scale independent, it inherently favors assimilation on larger scales. The primary reason lies in the constraints put on the data assimilation techniques \citep{sun2005challenges}. On the large scale, the rate of change of the wind is typically negligible compared to the pressure gradient and Coriolis forces, giving rise to several force balances (e.g., hydrostatic balance, geostrophic balance, etc.) that aid data assimilation schemes by either decreasing the complexities of the equations or by providing information regarding the structure of the background error covariances \citep{lorenc1995assimilation}. However, at the convective-scale these balances are no longer valid, especially in the vicinity of strong convection.
+
+
+Ignoring for a moment the difficulties associated with achieving data assimilation at the convective scale, there is still the question of what observations can be used to drive regular convective scale data assimilation. Consider a 200 km by 200 km area; the number of hourly observation points sampled vary widely based on the source of the observation. The number of observation points contributed by tropospheric profiles (e.g., radiosondes, aircraft, satellite-borne GPS receivers) is O(100). Surface observations would number O(50) for normal National Weather Service observing sites to O(1000) for places sampled by rapidly updating local mesonets. The number of observations increases to O(10,000) when Geostationary Satellite information is considered. However, comparatively speaking, the number of these observations pale in comparison to those offered by radar. Radar reflectivity data is available O(5min), 360$^{\circ}$, to a range O(100km), with O(10) different elevations. This offers potentially O(10,000,000) observation points from reflectivity data alone. Assuming a 10\% coverage of appreciable radar reflectivity yield the possibility of O(1,000,000) additional observational points using the radial velocity field [numbers taken from \cite{fabry2011details}, Table 1].
+
+
+Placing the numbers into the context above is not an attempt to downplay the importance of radiosondes or surface observations. What it conveys is the utmost importance that must be placed on the \emph{proper} assimilation of radar data. There are relatively few data points available for any assimilation scheme to overcome erroneous, or poorly assimilated, radar data. Therefore it is imperative to ensure that the radar data driving the assimilation must be the best depiction of the troposphere possible, or the assimilation is doomed to struggle from the beginning. To illustrate this point, consider that both data assimilation frameworks implicitly require observations to be unbiased -- a consequence of \ref{perfect observation operator}, which assumes the observation operator does not introduce any errors. Since the observation operator cannot introduce any errors biased observations will \emph{always} result in a biased final analysis.
+
+
+\cite{fabry2011details} go on to discuss additional complications from using radar data in data assimilation. Side-lobe contamination, range-folding, biological targets, etc all provide sources of potential error. Even the choice of observation operator  contributes to errors in resulting analyses. \cite{fabry2011details} explicitly state that to their knowledge, no observation operator in the literature properly accounts for all the nuances associated with assimilating radial velocity data. This incorrect observation operator introduces errors of several meters per second into the radial velocities being assimilated (\citealp{fabry2011details}, Fig. 3).
+
+
+\cite{fabry2011details} conclude with a disturbing discussion about the observational covariance matrix, $\mbf{R}$. Every observation used in the assimilation adds a new entry to the observational covariance matrix; meaning for $n$ radar observations, $\mbf{R}$ will be $n\times n$. Since the number of radar observations is O($10^6$) to O($10^7$), $\mbf{R}$ is quite large and complicated. To simplify the use of $\mbf{R}$, measurement errors are often assumed to be independent of each other, or, even Gaussian. However, as their Fig. 5 reveals, even casual examination of radar data reveal highly correlated errors (e.g., beam blockage, ground clutter, biological targets, etc), which can lead to biased assimilations. When one considers the results of \cite{hohenegger2007predictability} -- that indicated that highly chaotic nature of convective scale assimilation -- introduction of errors off only a few meters per second can significantly alter the resulting analysis.
+
+
+These problems make the assimilation of radar data a daunting task, even more so for an operational system such as WoF. First, data must be properly quality controlled in an extremely efficient manner so that they are as close to unbiased as possible. Second, more robust observational operators are needed provide unbiased transformations of observations into model space. Lastly, more detailed knowledge of the observational covariances are needed. With this written, radar observations remain the greatest source of observational information only the meso-gamma and meso-beta scales.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Optimal Interpolation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Optimal interpolation is a ``sub-optimal'' statistical data assimilation method based on the multi-dimensional analysis equations derived in section \ref{The Minimum Variance Framework}. In this approach, the true background error covariance, $\mbf{B}$ is approximated by an empirical version, $\mbf{B'}$. $\mbf{B'}$ can be determined by the method of \cite{hollingsworth1986si}, which simply is to
+
+
+\begin{enumerate}
+    \item Collect differences between observations and background field.
+    \item Determine and remove the mean observation-background field error.
+    \item Calculate the error covariances from the anomaly fields computed in the last step.
+    \item Fit a model to the observed error covariances as compared to the separation of the observation site to the background field.
+    \item Extrapolate this model to where the separation distance is 0.
+    \item This extrapolated value is the empirical variance of the background field.
+\end{enumerate}
+
+
+The fundamental hypothesis of optimal interpolation is that for each model variable, only select observations are important in determining the analysis increment. So, the general idea is to split the analysis into a number of boxes which can be analyzed independently. Because observation selection is employed, $[(\mbf{HBH}^T + \mbf{R})]^{-1}$ has a smaller dimension, making it possible to invert using direct solution methods. However, one has to explicitly compute $[\mbf{BH}^T]$ and $[\mbf{HBH}^T]$, restricting the analysis to simple observation operators, which for radar data, result in additional analysis error \citep{fabry2011details}. Furthermore, significant effort must be spent to estimate the empirical background error covariances. On the positive side, optimal interpolation is relatively easy to implement and computationally cheap.  Generally, however, optimal interpolation has been abandoned in favor of variational and ensemble approaches.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Variational Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Variational data assimilation is a method of data assimilation that has its roots in variational Calculus. It attempts to avoid the calculation of the Kalman Gain Matrix completely, choosing instead to minimize the cost function. This approach typically assumes Gaussian errors and linear error growth, which may or may not be a good assumption depending on the environment. In the ``strong-constraint'' version of variational analysis, error in the model is ignored, whereas the ``weak-constraint'' it is not.
+
+
+Variational analysis is typically chosen over optimal interpolation for several reasons. First and foremost, there is no need to apply data selection to limit the number of observations in variational analysis. In other words, all observations can be accounted for simultaneously. This reduces artifacts that can, and are, introduced by sub-setting the observations. Additionally, variational analysis utilizes model-space error covariances that are more robust than optimal interpolation's limited observation-based approaches. Radiances can be directly assimilated in variational analysis, resulting in fewer correlated errors and more observations.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{3D-Variational Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+One of the most appealing aspects of 3D-Variational Analysis, or 3DVAR,  is that it is computationally cheap. This is mainly because it does not update the background error covariances as a function of atmospheric flow. Because of this, however, the assimilation results are very sensitive to how the background error covariances were constructed. One reason why 3DVAR is better than optimal interpolation because it can assimilate complicated observations (e.g., radiances). However, as noted in \cite{sun2005challenges}, 3DVAR struggles with retrieving the cross-beam component of the wind, which can be a significant issue at convective scales.
+
+
+3DVAR projects all observations in the assimilation window to a common time. This makes assimilating observations with a time component difficult (e.g., accumulated precipitation, etc). Solving the gradient of the cost function is a non-trivial exercise. Several methods for computing the cost function exist, but all of them involve transforming the problem into a set or sets of simpler problems.  However, it is the simplest and most efficient of the assimilation methods currently utilized, although it remains to be seen if the Local Ensemble Transform Kalman Filter (discussed later) can achieve computational parity.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{4D-Variational Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+4D-Variational Analysis (4DVAR) is similar to that of 3DVAR with the exception that it allows observations to be assimilated at varying time intervals. This makes it considerably easier to assimilate time-integrated observations, especially accumulated rainfall products from radars. Furthermore, since there is a time dimensions to the analysis, it is possible to allow the error covariance matrices to evolve in a manner related to the background flow. This makes the resulting analyses less sensitive to the background error covariances. One way to think of 4DVAR is to interpret the assimilation method as guiding the model trajectory.
+
+
+The biggest drawback to using 4DVAR is that it is computationally expensive. Several methods have been used to decrease the computational requirements, such as through the use of a tangent linear model (a linear version of the observation operator). The tangent linear model is an approximate way to calculate the model trajectory by capitalizing on the assumptions of \ref{linearized observation operator}. The tangent linear operator can, in turn, be used to compute the gradient of the cost function. Unfortunately, recent studies (discussed later) indicate that on the convective-scale, the tangent linear hypothesis is violated rather quickly.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ensemble Kalman Filters}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The notion of ensemble Kalman filters was first proposed by \cite{evensen1994enkf}. \cite{evensen2003enkf} is a follow up to the original paper and serves as a review article, discussing the history, evolution, and implementation of the ensemble Kalman filter from its inception to that point. Ensemble Kalman filters differ from variational methods in that variational assimilation is highly sensitive to the construction of the background error covariance, which is often simplified due to mathematical and computation complexities. The ensemble Kalman filter, however, creates an ensemble of model states, typically by taking a ``best guess'' analysis field, perturbing it, and integrating this perturbed ensemble forward in time. Because ensemble Kalman filters are sequential in nature, the model is reinitialized with new information every time an observation arrives. Background error covariances are explicitly predicted.
+
+
+The benefits of using ensemble Kalman filters revolve around error the fact that background error covariances end up being flow dependent. In other words, the error covariances depend upon the specific meteorological conditions, not a preconceived error covariance.  Additionally, there is no need for adjoint operators (which are computationally expensive) and is parallelizable.
+
+
+Although the foundation of ensemble Kalman filters have been around since the mid 1990s, they were slow to be adopted because of their complexity and the significant computational cost associated with them. \cite{ott2004local} attempted to exploit the low-dimensionality of the background error covariances in an attempt to reduce the complexity and computational requirements. In summary, since the error covariances are most likely local in nature, this property can be exploited to simplify the matrix calculations, and allowing them to be simplified and parallelized. This breakthrough allowed for accurate analyses to be produced where were comparable to the full ensemble Kalman filter, at a fraction of the computational cost. This method was finalized in \cite{hunt2007letkf} and given the name Local Ensemble Transform Kalman Filter (LETKF). This method stresses ease of use and efficiency over substantial improvements in other variations of ensemble Kalman filters. With this said, several avenues exist for improving the LETKF and this is an active area of research. Even with potential avenues of improving the Local LETKFmethod, it is still significantly better than 3DVAR and just as good as 4DVAR. In fact, \cite{yang2009comparison} demonstrated that LETKF is capable of producing results similar to those of a 4DVAR analysis using a 24 h assimilation window.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hybrid Approaches}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Several hybrid variational-ensemble Kalman filter assimilation schemes have been proposed through the years. The general idea is to utilize the ensemble Kalman filter to generate the background covariances so that they are flow dependent, and then use these updated covariances in the variational assimilation scheme.  In addition to getting flow dependent covariances, hybrid approaches tend to be an attempt to take the best of both worlds.  Since operational data assimilation approaches are typically variational in nature, utilizing a hybrid approach does not require a complete overhaul of the assimilation process.  Furthermore, hybrid techniques tend to be less computationally expensive than full ensemble Kalman filter approaches, and can sometimes provide better analyses than ensemble Kalman filter methods when small ensembles are used \citep{wang2008hybrid}.
